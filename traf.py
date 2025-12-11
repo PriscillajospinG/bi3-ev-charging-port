@@ -3,6 +3,7 @@ from ultralytics import YOLO
 from deep_sort_realtime.deepsort_tracker import DeepSort
 from collections import defaultdict
 import time
+from datetime import datetime
 
 # --------------------------
 # Load YOLO model
@@ -85,12 +86,10 @@ while cap.isOpened():
 
             # ENTRY TIME (first time crosses the line)
             if cy > line_y_red and track_id not in vehicle_data:
-                entry_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0  # seconds
+                entry_time = datetime.now()
                 vehicle_data[track_id] = {'entry_time': entry_time, 'class': class_name}
                 class_counts[class_name] += 1
-                minutes = int(entry_time // 60)
-                seconds = entry_time % 60
-                print(f"ID {track_id} ({class_name}) entered at {minutes}:{seconds:05.2f}")
+                print(f"ID {track_id} ({class_name}) entered at {entry_time.strftime('%Y-%m-%d %H:%M:%S')}")
 
             # Note: Exit time tracking removed due to DeepSort implementation complexity
             # Vehicles are counted when they first cross the line
@@ -100,15 +99,13 @@ while cap.isOpened():
 
         # Check for vehicles that disappeared (exit time)
         disappeared_tracks = active_tracks - current_frame_tracks
-        current_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
+        current_time = datetime.now()
 
         for disappeared_id in disappeared_tracks:
             if disappeared_id in vehicle_data and 'exit_time' not in vehicle_data[disappeared_id]:
                 vehicle_data[disappeared_id]['exit_time'] = current_time
                 vehicle_class = vehicle_data[disappeared_id]['class']
-                minutes = int(current_time // 60)
-                seconds = current_time % 60
-                print(f"ID {disappeared_id} ({vehicle_class}) exited at {minutes}:{seconds:05.2f}")
+                print(f"ID {disappeared_id} ({vehicle_class}) exited at {current_time.strftime('%Y-%m-%d %H:%M:%S')}")
 
         # Update active tracks for next frame
         active_tracks = current_frame_tracks
@@ -128,14 +125,12 @@ while cap.isOpened():
         break
 
 # Handle vehicles still active at end of video
-final_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
+final_time = datetime.now()
 for active_id in active_tracks:
     if active_id in vehicle_data and 'exit_time' not in vehicle_data[active_id]:
         vehicle_data[active_id]['exit_time'] = final_time
         vehicle_class = vehicle_data[active_id]['class']
-        minutes = int(final_time // 60)
-        seconds = final_time % 60
-        print(f"ID {active_id} ({vehicle_class}) exited at end of video ({minutes}:{seconds:05.2f})")
+        print(f"ID {active_id} ({vehicle_class}) exited at end of video ({final_time.strftime('%Y-%m-%d %H:%M:%S')})")
 
 # Release
 cap.release()
@@ -145,17 +140,14 @@ cv2.destroyAllWindows()
 print("----- Vehicle Entry & Exit Times -----")
 for track_id, data in vehicle_data.items():
     entry_time = data['entry_time']
-    exit_time = data.get('exit_time', "Still in frame")
+    exit_time = data.get('exit_time', None)
     vehicle_class = data['class']
 
-    entry_minutes = int(entry_time // 60)
-    entry_seconds = entry_time % 60
-
-    if exit_time != "Still in frame":
-        exit_minutes = int(exit_time // 60)
-        exit_seconds = exit_time % 60
-        exit_str = f"{exit_minutes}:{exit_seconds:05.2f}"
+    entry_str = entry_time.strftime('%Y-%m-%d %H:%M:%S')
+    
+    if exit_time:
+        exit_str = exit_time.strftime('%Y-%m-%d %H:%M:%S')
     else:
-        exit_str = exit_time
+        exit_str = "Still in frame"
 
-    print(f"ID {track_id} ({vehicle_class}): Entry {entry_minutes}:{entry_seconds:05.2f}, Exit {exit_str}")
+    print(f"ID {track_id} ({vehicle_class}): Entry {entry_str}, Exit {exit_str}")
