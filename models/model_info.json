@@ -1,0 +1,10 @@
+{
+  "model_name": "rf-detr-m",
+  "framework": "PyTorch",
+  "dataset": "COCO",
+  "classes": 80,
+  "mAP50": 54.7,
+  "inference_speed_ms": 8.5,
+  "backbone": "ResNet50",
+  "pretrained": true
+}

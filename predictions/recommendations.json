@@ -1,0 +1,20 @@
+{
+  "location_id": "EV_CHARGING_STATION_001",
+  "analysis": {
+    "total_vehicles_detected": 5,
+    "average_confidence": 0.8867,
+    "vehicle_types": [
+      "person",
+      "car",
+      "truck"
+    ]
+  },
+  "recommendation": {
+    "action": "ADD_CHARGING_PORTS",
+    "priority": "HIGH",
+    "suggested_ports": 3,
+    "revenue_impact": "\u20b915L/month",
+    "confidence": 0.87
+  },
+  "timestamp": "2025-12-11T17:58:50.919990"
+}

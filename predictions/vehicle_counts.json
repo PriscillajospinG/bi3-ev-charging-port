@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-12-11T17:58:50.955223",
+  "total_vehicles": 5,
+  "ev_vehicles": 0,
+  "vehicles_by_class": {
+    "car": 4,
+    "person": 0,
+    "truck": 1
+  },
+  "statistics": {
+    "ev_penetration_rate": 0.0,
+    "total_detections_processed": 6
+  }
+}

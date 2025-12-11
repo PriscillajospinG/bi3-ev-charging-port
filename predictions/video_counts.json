@@ -1,0 +1,162 @@
+{
+  "video_file": "data/videos/sample.mp4",
+  "timestamp": "2025-12-11T18:02:30.187014",
+  "total_vehicles": 21,
+  "ev_vehicles": 0,
+  "vehicles_by_class": {
+    "car": 21
+  },
+  "vehicles_by_frame": {
+    "0": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "4": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "8": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "20": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "24": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "48": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "52": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "84": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "88": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "92": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "96": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "100": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "104": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "108": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "112": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "124": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "132": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "140": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "144": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "148": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    },
+    "172": {
+      "vehicles": 1,
+      "ev_vehicles": 0,
+      "classes": [
+        "car"
+      ]
+    }
+  },
+  "statistics": {
+    "ev_penetration_rate": 0.0,
+    "frames_with_detections": 21
+  }
+}
