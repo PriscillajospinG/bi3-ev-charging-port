@@ -2,6 +2,7 @@ import cv2
 from ultralytics import YOLO
 from collections import defaultdict
 import time
+from deep_sort_realtime.deepsort_tracker import DeepSort  # MVSort can be implemented via DeepSort
 
 # Load the YOLO model
 model = YOLO('yolo11l.pt')
@@ -10,87 +11,87 @@ class_list = model.names
 # Open the video file
 cap = cv2.VideoCapture('vehicle.mp4')
 fps = cap.get(cv2.CAP_PROP_FPS)
-frame_time = 1 / fps  # Time per frame in seconds
 
 line_y_red = 430  # Red line position
 
-# Dictionary to store object counts by class
-class_counts = defaultdict(int)
+# Initialize DeepSort tracker (acts as MVSORT)
+tracker = DeepSort(max_age=30)
 
-# Dictionary to keep track of object IDs that have crossed the line
+# Dictionaries to store timestamps
+entry_time = {}   # {track_id: entry_time}
+exit_time = {}    # {track_id: exit_time}
 crossed_ids = set()
-
-# Dictionary to store entry timestamp for each object ID
-id_times = {}  # id_times[track_id] = {"class": class_name, "start": t_start}
-
-frame_number = 0
-video_start_time = time.time()  # Start real timestamp
+class_counts = defaultdict(int)
 
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
         break
 
-    frame_number += 1
-    # Use actual elapsed time since video started
-    current_time = time.time() - video_start_time
+    # Run YOLO inference
+    results = model.predict(frame, classes=[1,2,3,5,6,7])
 
-    # Run YOLO tracking on the frame with better tracking parameters
-    results = model.track(frame, persist=True, tracker="bytetrack.yaml", classes=[1, 2, 3, 5, 6, 7])
-
+    detections = []
     if results[0].boxes.data is not None:
-        boxes = results[0].boxes.xyxy.cpu()
-        track_ids = results[0].boxes.id.int().cpu().tolist()
+        boxes = results[0].boxes.xyxy.cpu().numpy()
         class_indices = results[0].boxes.cls.int().cpu().tolist()
-        confidences = results[0].boxes.conf.cpu()
+        confidences = results[0].boxes.conf.cpu().numpy()
 
-        cv2.line(frame, (690, line_y_red), (1130, line_y_red), (0, 0, 255), 3)
+        # Prepare detections for MVSORT (x1, y1, x2, y2, conf, class_id)
+        for box, conf, cls in zip(boxes, confidences, class_indices):
+            x1, y1, x2, y2 = box
+            detections.append([x1, y1, x2, y2, conf, cls])
 
-        for box, track_id, class_idx, conf in zip(boxes, track_ids, class_indices, confidences):
-            x1, y1, x2, y2 = map(int, box)
-            cx = (x1 + x2) // 2
-            cy = (y1 + y2) // 2
+    # Update tracker
+    tracks = tracker.update_tracks(detections, frame=frame)
 
-            class_name = class_list[class_idx]
+    cv2.line(frame, (690, line_y_red), (1130, line_y_red), (0, 0, 255), 3)
 
-            # Initialize start time for new vehicle IDs
-            if track_id not in id_times:
-                id_times[track_id] = {"class": class_name, "start": current_time}
+    for track in tracks:
+        if not track.is_confirmed():
+            continue
 
-            # Calculate live duration
-            duration = current_time - id_times[track_id]["start"]
+        track_id = track.track_id
+        ltrb = track.to_ltrb()  # left, top, right, bottom
+        x1, y1, x2, y2 = map(int, ltrb)
+        cx, cy = (x1 + x2)//2, (y1 + y2)//2
+        class_idx = track.det_class
+        class_name = class_list[class_idx]
 
-            # Draw vehicle info
-            cv2.circle(frame, (cx, cy), 4, (0, 0, 255), -1)
-            cv2.putText(frame, f"ID: {track_id} {class_name}", (x1, y1 - 25),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
-            cv2.putText(frame, f"Time: {duration:.2f}s", (x1, y1 - 5),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        # Draw bounding box
+        cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        cv2.circle(frame, (cx, cy), 4, (0, 0, 255), -1)
+        cv2.putText(frame, f"ID:{track_id} {class_name}", (x1, y1-10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,255), 2)
 
-            # Check if the object has crossed the red line
-            if cy > line_y_red and track_id not in crossed_ids:
-                crossed_ids.add(track_id)
-                class_counts[class_name] += 1
+        # Record entry timestamp
+        if cy > line_y_red and track_id not in crossed_ids:
+            crossed_ids.add(track_id)
+            class_counts[class_name] += 1
+            entry_time[track_id] = time.time()  # Record entry time
 
-        # Display counts on frame
-        y_offset = 30
-        for class_name, count in class_counts.items():
-            cv2.putText(frame, f"{class_name}: {count}", (50, y_offset),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-            y_offset += 30
+    # Check for exited vehicles (MVSORT deletes old tracks)
+    active_ids = {t.track_id for t in tracks if t.is_confirmed()}
+    for t_id in list(entry_time.keys()):
+        if t_id not in active_ids and t_id not in exit_time:
+            exit_time[t_id] = time.time()  # Record exit time
 
+    # Display counts and timestamps
+    y_offset = 30
+    for class_name, count in class_counts.items():
+        cv2.putText(frame, f"{class_name}: {count}", (50, y_offset),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+        y_offset += 30
+
+    # Show frame
     frame_resized = cv2.resize(frame, (960, 540))
-    cv2.imshow("YOLO Object Tracking & Counting with Live Timestamps", frame_resized)
-
+    cv2.imshow("YOLO + MVSORT Tracking", frame_resized)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-# Print all final durations after video ends
-print("Vehicle durations in frame:")
-for track_id, t_info in id_times.items():
-    duration = current_time - t_info["start"]
-    print(f"ID {track_id} ({t_info['class']}): {duration:.2f} seconds")
-
 cap.release()
 cv2.destroyAllWindows()
+
+# Print timestamps
+print("Entry times:", entry_time)
+print("Exit times:", exit_time)
