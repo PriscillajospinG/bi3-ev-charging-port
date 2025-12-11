@@ -1,0 +1,395 @@
+{
+  "revenue_panel": {
+    "today": {
+      "actual": "$431.08",
+      "percent_change": "+5.2%"
+    },
+    "week": {
+      "total": "$47,898.11",
+      "avg_per_day": "$9,579.62"
+    },
+    "month": {
+      "total": "$124,615.51",
+      "target_percent": 100,
+      "projected_30d": "$311,538.77"
+    }
+  },
+  "live_occupancy": {
+    "occupancy_percent": 50,
+    "status": "Normal",
+    "total_chargers": 23,
+    "in_use": 11,
+    "available": 12,
+    "waiting": 0,
+    "avg_wait_time": "0 min"
+  },
+  "traffic_analysis": {
+    "approaching": 3,
+    "eta_avg": 11,
+    "routes": [
+      {
+        "route": "Highway 101 North",
+        "count": 1
+      }
+    ]
+  },
+  "alerts": [],
+  "charger_overview": [
+    {
+      "charger": "C01",
+      "type": "DC Fast",
+      "status": "Available",
+      "utilization": "87%",
+      "sessions_24h": 21,
+      "revenue_24h": "$795.38",
+      "avg_session": "33 min",
+      "performance": 93
+    },
+    {
+      "charger": "C02",
+      "type": "DC Fast",
+      "status": "Maintenance",
+      "utilization": "95%",
+      "sessions_24h": 28,
+      "revenue_24h": "$996.75",
+      "avg_session": "31 min",
+      "performance": 94
+    },
+    {
+      "charger": "C03",
+      "type": "DC Fast",
+      "status": "Available",
+      "utilization": "58%",
+      "sessions_24h": 14,
+      "revenue_24h": "$528.75",
+      "avg_session": "33 min",
+      "performance": 94
+    },
+    {
+      "charger": "C04",
+      "type": "DC Fast",
+      "status": "In Use",
+      "utilization": "95%",
+      "sessions_24h": 36,
+      "revenue_24h": "$1,253.25",
+      "avg_session": "30 min",
+      "performance": 82
+    },
+    {
+      "charger": "C05",
+      "type": "DC Fast",
+      "status": "Available",
+      "utilization": "95%",
+      "sessions_24h": 25,
+      "revenue_24h": "$877.50",
+      "avg_session": "31 min",
+      "performance": 86
+    },
+    {
+      "charger": "C06",
+      "type": "DC Fast",
+      "status": "In Use",
+      "utilization": "91%",
+      "sessions_24h": 22,
+      "revenue_24h": "$805.50",
+      "avg_session": "32 min",
+      "performance": 86
+    },
+    {
+      "charger": "C07",
+      "type": "DC Fast",
+      "status": "In Use",
+      "utilization": "95%",
+      "sessions_24h": 23,
+      "revenue_24h": "$846.00",
+      "avg_session": "32 min",
+      "performance": 85
+    },
+    {
+      "charger": "C08",
+      "type": "DC Fast",
+      "status": "Available",
+      "utilization": "95%",
+      "sessions_24h": 29,
+      "revenue_24h": "$995.62",
+      "avg_session": "30 min",
+      "performance": 88
+    },
+    {
+      "charger": "C09",
+      "type": "DC Fast",
+      "status": "Available",
+      "utilization": "95%",
+      "sessions_24h": 32,
+      "revenue_24h": "$1,225.12",
+      "avg_session": "34 min",
+      "performance": 80
+    },
+    {
+      "charger": "C10",
+      "type": "DC Fast",
+      "status": "Available",
+      "utilization": "95%",
+      "sessions_24h": 23,
+      "revenue_24h": "$877.50",
+      "avg_session": "33 min",
+      "performance": 80
+    },
+    {
+      "charger": "C11",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "87%",
+      "sessions_24h": 21,
+      "revenue_24h": "$252.37",
+      "avg_session": "145 min",
+      "performance": 82
+    },
+    {
+      "charger": "C12",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "95%",
+      "sessions_24h": 23,
+      "revenue_24h": "$330.25",
+      "avg_session": "174 min",
+      "performance": 89
+    },
+    {
+      "charger": "C13",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "83%",
+      "sessions_24h": 20,
+      "revenue_24h": "$229.10",
+      "avg_session": "138 min",
+      "performance": 97
+    },
+    {
+      "charger": "C14",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "95%",
+      "sessions_24h": 23,
+      "revenue_24h": "$288.25",
+      "avg_session": "151 min",
+      "performance": 97
+    },
+    {
+      "charger": "C15",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "70%",
+      "sessions_24h": 17,
+      "revenue_24h": "$210.87",
+      "avg_session": "150 min",
+      "performance": 93
+    },
+    {
+      "charger": "C16",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "100%",
+      "sessions_24h": 24,
+      "revenue_24h": "$280.00",
+      "avg_session": "141 min",
+      "performance": 80
+    },
+    {
+      "charger": "C17",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "79%",
+      "sessions_24h": 19,
+      "revenue_24h": "$200.06",
+      "avg_session": "127 min",
+      "performance": 93
+    },
+    {
+      "charger": "C18",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "79%",
+      "sessions_24h": 19,
+      "revenue_24h": "$270.35",
+      "avg_session": "172 min",
+      "performance": 95
+    },
+    {
+      "charger": "C19",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "95%",
+      "sessions_24h": 23,
+      "revenue_24h": "$295.27",
+      "avg_session": "155 min",
+      "performance": 91
+    },
+    {
+      "charger": "C20",
+      "type": "Level 2",
+      "status": "Available",
+      "utilization": "95%",
+      "sessions_24h": 27,
+      "revenue_24h": "$336.93",
+      "avg_session": "151 min",
+      "performance": 96
+    },
+    {
+      "charger": "C21",
+      "type": "Level 2",
+      "status": "Available",
+      "utilization": "100%",
+      "sessions_24h": 24,
+      "revenue_24h": "$261.94",
+      "avg_session": "132 min",
+      "performance": 99
+    },
+    {
+      "charger": "C22",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "79%",
+      "sessions_24h": 19,
+      "revenue_24h": "$256.66",
+      "avg_session": "163 min",
+      "performance": 96
+    },
+    {
+      "charger": "C23",
+      "type": "Level 2",
+      "status": "In Use",
+      "utilization": "95%",
+      "sessions_24h": 29,
+      "revenue_24h": "$347.00",
+      "avg_session": "145 min",
+      "performance": 85
+    }
+  ],
+  "summary_metrics": {
+    "total_sessions": 541,
+    "total_revenue": "$12,760.42",
+    "avg_utilization": "74%",
+    "avg_performance": 94
+  },
+  "utilization_trend": [
+    {
+      "hour": "01:00",
+      "utilization": 11
+    },
+    {
+      "hour": "02:00",
+      "utilization": 10
+    },
+    {
+      "hour": "03:00",
+      "utilization": 8
+    },
+    {
+      "hour": "04:00",
+      "utilization": 8
+    },
+    {
+      "hour": "05:00",
+      "utilization": 10
+    },
+    {
+      "hour": "06:00",
+      "utilization": 13
+    },
+    {
+      "hour": "07:00",
+      "utilization": 16
+    },
+    {
+      "hour": "08:00",
+      "utilization": 17
+    },
+    {
+      "hour": "09:00",
+      "utilization": 16
+    },
+    {
+      "hour": "10:00",
+      "utilization": 13
+    },
+    {
+      "hour": "11:00",
+      "utilization": 10
+    },
+    {
+      "hour": "12:00",
+      "utilization": 7
+    },
+    {
+      "hour": "13:00",
+      "utilization": 7
+    },
+    {
+      "hour": "14:00",
+      "utilization": 9
+    },
+    {
+      "hour": "15:00",
+      "utilization": 13
+    },
+    {
+      "hour": "16:00",
+      "utilization": 17
+    },
+    {
+      "hour": "17:00",
+      "utilization": 20
+    },
+    {
+      "hour": "18:00",
+      "utilization": 20
+    },
+    {
+      "hour": "19:00",
+      "utilization": 17
+    },
+    {
+      "hour": "20:00",
+      "utilization": 12
+    },
+    {
+      "hour": "21:00",
+      "utilization": 8
+    },
+    {
+      "hour": "22:00",
+      "utilization": 7
+    },
+    {
+      "hour": "23:00",
+      "utilization": 7
+    },
+    {
+      "hour": "00:00",
+      "utilization": 9
+    }
+  ],
+  "status_distribution": {
+    "available": {
+      "percent": 34,
+      "units": 8
+    },
+    "occupied": {
+      "percent": 60,
+      "units": 14
+    },
+    "maintenance": {
+      "percent": 4,
+      "units": 1
+    },
+    "offline": {
+      "percent": 0,
+      "units": 0
+    }
+  },
+  "forecast_summary": {
+    "peak_hour": "18:00",
+    "projected_revenue_24h": "$597.64"
+  }
+}

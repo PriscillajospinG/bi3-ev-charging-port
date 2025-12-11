@@ -21,6 +21,12 @@ The core logic powering the user-facing Analytics Dashboard.
 - **Forecasting**: Internal ensemble model for dashboard predictions.
 - **Structure**: Generates the exact JSON schema required by the UI.
 
+### 4. Backend Dashboard Engine (`backend/models/dashboard/`)
+Comprehensive analytics engine for the real-time dashboard.
+- **Components**: Revenue, Occupancy, Traffic, Alerts, Performance, Forecast.
+- **Output**: Unified JSON structure `dashboard_data.json` for frontend consumption.
+- **Features**: Real-time status simulation, Prophet-based alerts, and charger-level metrics.
+
 ---
 
 ## 📂 Directory Structure

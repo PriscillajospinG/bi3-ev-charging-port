@@ -456,12 +456,25 @@ def get_dashboard_data(station_id="S01", window="24h"):
     
     return dashboard_json
 
+# Helper for JSON serialization
+class NumPyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        if isinstance(obj, (datetime.date, datetime.datetime)):
+            return obj.isoformat()
+        return super(NumPyEncoder, self).default(obj)
+
 if __name__ == "__main__":
     print("--- Running Backend Dashboard Engine ---")
     data = get_dashboard_data()
-    print(json.dumps(data, indent=2))
+    print(json.dumps(data, indent=2, cls=NumPyEncoder))
     
     # Save for frontend check
     with open('dashboard_data.json', 'w') as f:
-        json.dump(data, f, indent=2)
+        json.dump(data, f, indent=2, cls=NumPyEncoder)
     print("\n[Success] Dashboard data generated and saved to 'dashboard_data.json'")
