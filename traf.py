@@ -30,8 +30,7 @@ tracker = DeepSort(max_age=10)  # You can adjust max_age for lost track
 # Dictionaries for counting and timestamps
 # --------------------------
 class_counts = defaultdict(int)
-vehicle_entry_times = {}   # {track_id: entry_time}
-vehicle_exit_times = {}    # {track_id: exit_time}
+vehicle_data = {}          # {track_id: {'entry_time': time, 'class': class_name, 'exit_time': time}}
 active_tracks = set()      # Currently active track IDs
 
 # --------------------------
@@ -85,10 +84,13 @@ while cap.isOpened():
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255,255,0), 2)
 
             # ENTRY TIME (first time crosses the line)
-            if cy > line_y_red and track_id not in vehicle_entry_times:
-                vehicle_entry_times[track_id] = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0  # seconds
+            if cy > line_y_red and track_id not in vehicle_data:
+                entry_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0  # seconds
+                vehicle_data[track_id] = {'entry_time': entry_time, 'class': class_name}
                 class_counts[class_name] += 1
-                print(f"ID {track_id} ({class_name}) entered at {vehicle_entry_times[track_id]:.2f} s")
+                minutes = int(entry_time // 60)
+                seconds = entry_time % 60
+                print(f"ID {track_id} ({class_name}) entered at {minutes}:{seconds:05.2f}")
 
             # Note: Exit time tracking removed due to DeepSort implementation complexity
             # Vehicles are counted when they first cross the line
@@ -101,9 +103,12 @@ while cap.isOpened():
         current_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
 
         for disappeared_id in disappeared_tracks:
-            if disappeared_id in vehicle_entry_times and disappeared_id not in vehicle_exit_times:
-                vehicle_exit_times[disappeared_id] = current_time
-                print(f"ID {disappeared_id} exited at {vehicle_exit_times[disappeared_id]:.2f} s")
+            if disappeared_id in vehicle_data and 'exit_time' not in vehicle_data[disappeared_id]:
+                vehicle_data[disappeared_id]['exit_time'] = current_time
+                vehicle_class = vehicle_data[disappeared_id]['class']
+                minutes = int(current_time // 60)
+                seconds = current_time % 60
+                print(f"ID {disappeared_id} ({vehicle_class}) exited at {minutes}:{seconds:05.2f}")
 
         # Update active tracks for next frame
         active_tracks = current_frame_tracks
@@ -125,9 +130,12 @@ while cap.isOpened():
 # Handle vehicles still active at end of video
 final_time = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
 for active_id in active_tracks:
-    if active_id in vehicle_entry_times and active_id not in vehicle_exit_times:
-        vehicle_exit_times[active_id] = final_time
-        print(f"ID {active_id} exited at end of video ({vehicle_exit_times[active_id]:.2f} s)")
+    if active_id in vehicle_data and 'exit_time' not in vehicle_data[active_id]:
+        vehicle_data[active_id]['exit_time'] = final_time
+        vehicle_class = vehicle_data[active_id]['class']
+        minutes = int(final_time // 60)
+        seconds = final_time % 60
+        print(f"ID {active_id} ({vehicle_class}) exited at end of video ({minutes}:{seconds:05.2f})")
 
 # Release
 cap.release()
@@ -135,7 +143,19 @@ cv2.destroyAllWindows()
 
 # Print final entry/exit times
 print("----- Vehicle Entry & Exit Times -----")
-for vid in vehicle_entry_times:
-    entry = vehicle_entry_times[vid]
-    exit_time = vehicle_exit_times.get(vid, "Still in frame")
-    print(f"ID {vid}: Entry {entry:.2f}s, Exit {exit_time}")
+for track_id, data in vehicle_data.items():
+    entry_time = data['entry_time']
+    exit_time = data.get('exit_time', "Still in frame")
+    vehicle_class = data['class']
+
+    entry_minutes = int(entry_time // 60)
+    entry_seconds = entry_time % 60
+
+    if exit_time != "Still in frame":
+        exit_minutes = int(exit_time // 60)
+        exit_seconds = exit_time % 60
+        exit_str = f"{exit_minutes}:{exit_seconds:05.2f}"
+    else:
+        exit_str = exit_time
+
+    print(f"ID {track_id} ({vehicle_class}): Entry {entry_minutes}:{entry_seconds:05.2f}, Exit {exit_str}")
