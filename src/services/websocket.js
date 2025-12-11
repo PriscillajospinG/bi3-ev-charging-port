@@ -7,8 +7,9 @@ class WebSocketService {
     this.listeners = new Map()
   }
 
-  connect(url = 'ws://localhost:8000/ws') {
+  connect(url = import.meta.env.VITE_WS_URL || 'ws://localhost:8000/ws') {
     try {
+      console.log('🔌 Connecting WebSocket to:', url)
       this.ws = new WebSocket(url)
 
       this.ws.onopen = () => {

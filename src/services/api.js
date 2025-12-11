@@ -2,6 +2,8 @@ import axios from 'axios'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'
 
+console.log('📡 API Base URL:', API_BASE_URL)
+
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
@@ -34,6 +36,12 @@ apiClient.interceptors.response.use(
       localStorage.removeItem('auth_token')
       window.location.href = '/login'
     }
+    
+    // Log API errors for debugging
+    if (error.message === 'Network Error' || !error.response) {
+      console.error('❌ Backend connection failed:', error.message)
+    }
+    
     return Promise.reject(error)
   }
 )

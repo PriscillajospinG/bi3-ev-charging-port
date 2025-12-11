@@ -15,6 +15,7 @@ import websocket from '../services/websocket'
 
 const Dashboard = () => {
   const [timeRange, setTimeRange] = useState('24h')
+  const [useMockData, setUseMockData] = useState(false)
   const { 
     currentMetrics, 
     chargers, 
@@ -133,6 +134,9 @@ const Dashboard = () => {
   ])
 
   const setMockData = () => {
+    setUseMockData(true)
+    console.warn('⚠️ Using mock data - backend offline')
+    
     setCurrentMetrics({
       currentQueue: 8,
       queueChange: 2,
@@ -256,6 +260,17 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
+      {/* Mock Data Warning Banner */}
+      {useMockData && (
+        <div className="bg-yellow-900 border-l-4 border-yellow-500 text-yellow-100 p-4 rounded-lg flex items-center gap-3">
+          <AlertCircle size={24} />
+          <div>
+            <h3 className="font-semibold">⚠️ Demo Mode: Using Mock Data</h3>
+            <p className="text-sm text-yellow-200">Backend is offline. Showing sample data for demonstration.</p>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
