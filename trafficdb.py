@@ -10,10 +10,14 @@ conn = psycopg2.connect(
 )
 
 cursor = conn.cursor()
-def save_vehicle_event(track_id, class_name, entry, exit_time=None):
-    query = """
-        INSERT INTO vehicle_event (track_id, class_name, entry_time, exit_time)
-        VALUES (%s, %s, %s, %s)
+
+def save_vehicle_metrics(timestamp, vehicle_count, session_count, occupancy_rate, queue_length):
     """
-    cursor.execute(query, (track_id, class_name, entry, exit_time))
+    Save vehicle metrics for a given timestamp/frame.
+    """
+    query = """
+        INSERT INTO vehicle_metrics (timestamp, vehicle_count, session_count, occupancy_rate, queue_length)
+        VALUES (%s, %s, %s, %s, %s)
+    """
+    cursor.execute(query, (timestamp, vehicle_count, session_count, occupancy_rate, queue_length))
     conn.commit()
