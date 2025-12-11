@@ -419,6 +419,8 @@ if __name__ == "__main__":
     gen = DataGenerator(days=120)
     raw_df = gen.generate()
     print(f"   Generated {len(raw_df)} records.")
+    raw_df.to_csv('synthetic_data.csv', index=False)
+    print("   Data saved to synthetic_data.csv")
     
     # 2. Feature Engineering
     print("[2/5] Feature Engineering...")

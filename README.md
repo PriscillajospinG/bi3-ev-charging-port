@@ -5,17 +5,17 @@ A comprehensive AI-driven solution for electric vehicle charging infrastructure.
 
 ## 🚀 Key Modules
 
-### 1. Demand Prediction Engine (`backend_models/prediction/`)
+### 1. Demand Prediction Engine (`backend/models/prediction/`)
 Accurate demand forecasting using a multi-model ensemble approach.
 - **Models**: Prophet (Trend), XGBoost (Events), LSTM (Sequences).
 - **Features**: 24h/7d forecasts, peak detection, confidence intervals, and MAPE accuracy evaluation.
 
-### 2. Recommendation Engine (`backend_models/recommendations/`)
+### 2. Recommendation Engine (`backend/models/recommendations/`)
 Actionable insights for infrastructure optimization.
 - **Logic**: Rule-based analysis of utilization, queues, and revenue.
 - **Outputs**: Prioritized recommendations (e.g., "Add Charger", "Optimize Layout") with ROI and confidence scores.
 
-### 3. Analytics Backend Layer (`backend_models/analytics/`)
+### 3. Analytics Backend Layer (`backend/models/analytics/`)
 The core logic powering the user-facing Analytics Dashboard.
 - **Metrics**: Real-time calculation of Utilization, Sessions, Energy, and Revenue (with % change).
 - **Forecasting**: Internal ensemble model for dashboard predictions.
@@ -27,19 +27,20 @@ The core logic powering the user-facing Analytics Dashboard.
 
 ```
 bi3-ev-charging-port/
-├── backend_models/
-│   ├── prediction/             # Standalone Demand Prediction
-│   │   ├── demand_prediction_engine.py
-│   │   └── run.sh
-│   │
-│   ├── recommendations/        # Recommendation Engine
-│   │   ├── recommendation_engine.py
-│   │   └── recommendations.json
-│   │
-│   └── analytics/              # Dashboard Backend Logic
-│       ├── analytics_backend.py
-│       ├── analytics_dashboard.json
-│       └── run_with_libomp.sh
+├── backend/
+│   ├── models/
+│   │   ├── prediction/             # Standalone Demand Prediction
+│   │   │   ├── demand_prediction_engine.py
+│   │   │   └── run.sh
+│   │   │
+│   │   ├── recommendations/        # Recommendation Engine
+│   │   │   ├── recommendation_engine.py
+│   │   │   └── recommendations.json
+│   │   │
+│   │   └── analytics/              # Dashboard Backend Logic
+│   │       ├── analytics_backend.py
+│   │       ├── analytics_dashboard.json
+│   │       └── run_with_libomp.sh
 │
 └── README.md                   # Project Documentation
 ```
@@ -50,14 +51,14 @@ bi3-ev-charging-port/
 
 ### A. Run Demand Prediction
 ```bash
-cd backend_models/prediction
+cd backend/models/prediction
 ./run.sh
 ```
 **Output:** `forecast_result.json`, `forecast_plot.png`
 
 ### B. Run Recommendations
 ```bash
-cd backend_models/recommendations
+cd backend/models/recommendations
 python3 -m venv venv && ./venv/bin/pip install -r requirements.txt
 ./venv/bin/python recommendation_engine.py
 ```
@@ -65,7 +66,7 @@ python3 -m venv venv && ./venv/bin/pip install -r requirements.txt
 
 ### C. Run Analytics Backend
 ```bash
-cd backend_models/analytics
+cd backend/models/analytics
 ./run_with_libomp.sh
 ```
 **Output:** 
