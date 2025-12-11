@@ -163,29 +163,27 @@ const Dashboard = () => {
         id: 2,
         name: 'Charger A2',
         location: 'Zone A - Bay 2',
-      {/* Revenue Metrics - Owner's Primary KPI */}
-      <RevenueMetrics metrics={revenueMetrics} />
-
-      {/* Critical Info Row - Occupancy & Traffic */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <LiveOccupancy occupancy={occupancy} />
-        <TrafficFlowMap traffic={traffic} />
-      </div>
-
-      {/* Alerts - Misuse, Queues, Downtime */}
-      <AlertsPanel alerts={alerts} />
-
-      {/* Charger Performance & Utilization */}
-      <ChargerPerformanceTable chargers={chargers} />
-
-      {/* Charts Row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="card">
-          <h3 className="text-lg font-semibold mb-4">Utilization Trend (24h)</h3>
-          <UtilizationChart data={utilizationData} type="area" />
-        </div>
-        <OccupancyPieChart data={occupancyData} />
-      </div>nue: 189.60,
+        status: 'available',
+        power: 150,
+        type: 'DC Fast',
+        utilization: 62,
+        sessions: 22,
+        revenue: 267.80,
+        avgSession: 38,
+        performance: 88,
+      },
+      {
+        id: 3,
+        name: 'Charger B1',
+        location: 'Zone B - Bay 1',
+        status: 'occupied',
+        power: 50,
+        type: 'Level 2',
+        sessionTime: '1h 20m',
+        energyDelivered: 22.3,
+        utilization: 78,
+        sessions: 34,
+        revenue: 189.60,
         avgSession: 52,
         performance: 85,
       },
@@ -281,26 +279,28 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Traffic Stats */}
-      <TrafficStats stats={currentMetrics || {}} />
+      {/* Revenue Metrics - Owner's Primary KPI */}
+      <RevenueMetrics metrics={revenueMetrics} />
+
+      {/* Critical Info Row - Occupancy & Traffic */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <LiveOccupancy occupancy={occupancy} />
+        <TrafficFlowMap traffic={traffic} />
+      </div>
+
+      {/* Alerts - Misuse, Queues, Downtime */}
+      <AlertsPanel alerts={alerts} />
+
+      {/* Charger Performance & Utilization */}
+      <ChargerPerformanceTable chargers={chargers} />
 
       {/* Charts Row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="card">
-          <h3 className="text-lg font-semibold mb-4">Utilization Trend</h3>
+          <h3 className="text-lg font-semibold mb-4">Utilization Trend (24h)</h3>
           <UtilizationChart data={utilizationData} type="area" />
         </div>
         <OccupancyPieChart data={occupancyData} />
-      </div>
-
-      {/* Chargers Grid */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Active Chargers</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {chargers.map((charger) => (
-            <ChargerCard key={charger.id} charger={charger} />
-          ))}
-        </div>
       </div>
 
       {/* Quick Actions */}
