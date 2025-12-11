@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import CameraFeed from '../components/Monitoring/CameraFeed'
+import VideoUpload from '../components/Monitoring/VideoUpload'
 import TrafficStats from '../components/Monitoring/TrafficStats'
 import ChargerCard from '../components/Monitoring/ChargerCard'
 
@@ -48,11 +49,31 @@ const Monitoring = () => {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-bold">Live Monitoring</h1>
-        <p className="text-slate-400 mt-1">Real-time camera feeds and detection analytics</p>
+        <p className="text-slate-400 mt-1">Upload and process videos with YOLOv11 detection</p>
       </div>
 
-      {/* Traffic Stats */}
-      <TrafficStats stats={stats} />
+      {/* Video Upload Section */}
+      <VideoUpload />
+
+      {/* Current Detection Stats */}
+      <div className="card bg-slate-800/50 border border-slate-700">
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-4 h-4 bg-slate-400 rounded"></div>
+          <h2 className="text-xl font-semibold">Current Detection Stats</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <p className="text-sm text-slate-400 mb-2">Queue Length</p>
+            <p className="text-4xl font-bold">{stats.currentQueue}</p>
+            <p className="text-xs text-success mt-1">+{stats.queueChange} from last reading</p>
+          </div>
+          <div>
+            <p className="text-sm text-slate-400 mb-2">Avg Dwell Time</p>
+            <p className="text-4xl font-bold">{stats.avgDwellTime}</p>
+            <p className="text-xs text-success mt-1">+{stats.dwellChange} min</p>
+          </div>
+        </div>
+      </div>
 
       {/* Camera Feeds */}
       <div>

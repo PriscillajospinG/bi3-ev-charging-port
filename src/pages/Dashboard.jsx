@@ -262,11 +262,11 @@ const Dashboard = () => {
     <div className="space-y-6">
       {/* Mock Data Warning Banner */}
       {useMockData && (
-        <div className="bg-yellow-900 border-l-4 border-yellow-500 text-yellow-100 p-4 rounded-lg flex items-center gap-3">
-          <AlertCircle size={24} />
+        <div className="bg-yellow-900/30 border border-yellow-700 text-yellow-100 p-4 rounded-lg flex items-start gap-3">
+          <AlertCircle size={24} className="flex-shrink-0 text-yellow-500 mt-0.5" />
           <div>
-            <h3 className="font-semibold">⚠️ Demo Mode: Using Mock Data</h3>
-            <p className="text-sm text-yellow-200">Backend is offline. Showing sample data for demonstration.</p>
+            <h3 className="font-semibold text-yellow-200">⚠️ Demo Mode: Using Mock Data</h3>
+            <p className="text-sm text-yellow-200/80 mt-1">Backend is offline. Showing sample data for demonstration.</p>
           </div>
         </div>
       )}
