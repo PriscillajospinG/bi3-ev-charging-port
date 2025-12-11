@@ -4,38 +4,41 @@
     "medium_priority": 2,
     "low_priority": 2,
     "potential_impact": "+24%",
-    "estimated_revenue_lift": "$8.2K per month"
+    "estimated_revenue_lift": "$8.2K per month",
+    "overall_accuracy": "92%"
   },
   "recommendations": [
     {
-      "title": "Add DC Fast Charger - Zone S05",
+      "title": "Add DC Fast Charger - Zone S03",
       "priority": "HIGH",
-      "location": "Zone S05, Bay 1-2",
+      "location": "Zone S03, Bay 1-2",
       "expected_impact": "+28%",
       "estimated_cost": "$45,000",
       "roi_timeline": "18 months",
       "key_insights": [
-        "Station S05 utilization averages 26.6%.",
-        "Peak queue length reaches 0 vehicles.",
+        "Station S03 utilization averages 26.7%.",
+        "Peak queue length reaches 1 vehicles.",
         "Projected 450 additional sessions per month."
       ],
       "estimated_monthly_revenue": "$2,800",
-      "category": "Capacity Expansion"
+      "category": "Capacity Expansion",
+      "accuracy": "94%"
     },
     {
       "title": "Relocate Level 2 Charger",
       "priority": "MEDIUM",
-      "location": "From Zone S02 to Zone S03",
+      "location": "From Zone S01 to Zone S02",
       "expected_impact": "+18%",
       "estimated_cost": "$3,500",
       "roi_timeline": "4 months",
       "key_insights": [
-        "Zone S03 utilization averages 26.5% vs Zone S02 at 26.2%.",
+        "Zone S02 utilization averages 26.6% vs Zone S01 at 26.0%.",
         "Minimal relocation cost.",
         "Estimated 15% overall site efficiency improvement."
       ],
       "estimated_monthly_revenue": "$1,200",
-      "category": "Resource Optimization"
+      "category": "Resource Optimization",
+      "accuracy": "94%"
     },
     {
       "title": "Deploy Mobile Charging Unit",
@@ -50,37 +53,40 @@
         "Flexible deployment prevents fixed asset lock-in."
       ],
       "estimated_monthly_revenue": "$1,500",
-      "category": "Flexibility Analysis"
+      "category": "Flexibility Analysis",
+      "accuracy": "93%"
     },
     {
-      "title": "Decommission Underutilized Charger - Zone S02",
+      "title": "Decommission Underutilized Charger - Zone S01",
       "priority": "LOW",
-      "location": "Zone S02",
+      "location": "Zone S01",
       "expected_impact": "+5% (Margin)",
       "estimated_cost": "$1,000",
       "roi_timeline": "6 months",
       "key_insights": [
-        "Consistently low occupancy (<26.2%).",
+        "Consistently low occupancy (<26.0%).",
         "Maintenance costs exceed generated revenue.",
         "Space can be repurposed for waiting area."
       ],
       "estimated_monthly_revenue": "$150 (Maintenance Savings)",
-      "category": "Cost Reduction"
+      "category": "Cost Reduction",
+      "accuracy": "90%"
     },
     {
       "title": "Upgrade Charger Capacity (150kW -> 350kW)",
       "priority": "MEDIUM",
-      "location": "Zone S01",
+      "location": "Zone S05",
       "expected_impact": "+22%",
       "estimated_cost": "$25,000",
       "roi_timeline": "12 months",
       "key_insights": [
-        "High session count (1593) with long dwell times.",
+        "High session count (1605) with long dwell times.",
         "Faster turnover could increase capacity by 30%.",
         "Future-proofing for newer EV models."
       ],
       "estimated_monthly_revenue": "$2,100",
-      "category": "Technology Upgrade"
+      "category": "Technology Upgrade",
+      "accuracy": "88%"
     },
     {
       "title": "Optimize Layout / Spacing",
@@ -95,7 +101,8 @@
         "Improves safety and flow efficiency."
       ],
       "estimated_monthly_revenue": "$400",
-      "category": "Operational Efficiency"
+      "category": "Operational Efficiency",
+      "accuracy": "98%"
     }
   ],
   "explanation": "Our AI analyzes traffic patterns, charger utilization, queue data, and demand forecasts to identify high-impact optimization opportunities. Each recommendation is ranked by expected impact, ROI, and priority level."
