@@ -1,0 +1,5784 @@
+[
+  {
+    "frame": 1,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8073689858076913,
+        "bbox": [
+          591.0,
+          241.0,
+          721.0,
+          319.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6559270119560532,
+        "bbox": [
+          438.0,
+          520.0,
+          555.0,
+          582.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8119334412798036,
+        "bbox": [
+          906.0,
+          402.0,
+          1029.0,
+          495.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 2,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6714145578282845,
+        "bbox": [
+          449.0,
+          190.0,
+          545.0,
+          273.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6686957491624749,
+        "bbox": [
+          898.0,
+          143.0,
+          1020.0,
+          222.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7784480370181908,
+        "bbox": [
+          137.0,
+          108.0,
+          235.0,
+          204.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 3,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7873633043821526,
+        "bbox": [
+          296.0,
+          502.0,
+          438.0,
+          591.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8871721624820379,
+        "bbox": [
+          272.0,
+          272.0,
+          400.0,
+          363.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8030735967631463,
+        "bbox": [
+          674.0,
+          127.0,
+          759.0,
+          227.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9097095289729153,
+        "bbox": [
+          1001.0,
+          550.0,
+          1103.0,
+          635.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 4,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8670305054229762,
+        "bbox": [
+          348.0,
+          490.0,
+          466.0,
+          573.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 5,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7354600290949646,
+        "bbox": [
+          165.0,
+          383.0,
+          245.0,
+          451.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 6,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8368984089583414,
+        "bbox": [
+          228.0,
+          312.0,
+          339.0,
+          411.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9030065579536397,
+        "bbox": [
+          813.0,
+          560.0,
+          948.0,
+          648.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 7,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.794493910367285,
+        "bbox": [
+          78.0,
+          353.0,
+          215.0,
+          436.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8426875067693899,
+        "bbox": [
+          311.0,
+          136.0,
+          395.0,
+          206.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7643721018298114,
+        "bbox": [
+          593.0,
+          195.0,
+          700.0,
+          256.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 8,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8745469330721939,
+        "bbox": [
+          148.0,
+          57.0,
+          270.0,
+          132.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 9,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.918546886934255,
+        "bbox": [
+          102.0,
+          448.0,
+          223.0,
+          530.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7694259317358909,
+        "bbox": [
+          552.0,
+          547.0,
+          689.0,
+          615.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6818327769047602,
+        "bbox": [
+          1046.0,
+          374.0,
+          1134.0,
+          472.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9376014204097192,
+        "bbox": [
+          237.0,
+          564.0,
+          364.0,
+          663.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 10,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6524614010695418,
+        "bbox": [
+          254.0,
+          352.0,
+          365.0,
+          437.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 11,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8764581845890623,
+        "bbox": [
+          288.0,
+          364.0,
+          377.0,
+          430.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 12,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8900895149463816,
+        "bbox": [
+          105.0,
+          564.0,
+          223.0,
+          663.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 13,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8956615988047111,
+        "bbox": [
+          1026.0,
+          352.0,
+          1171.0,
+          420.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9397631451328956,
+        "bbox": [
+          1007.0,
+          246.0,
+          1090.0,
+          316.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 14,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9353127819246418,
+        "bbox": [
+          209.0,
+          417.0,
+          290.0,
+          488.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8232741240963293,
+        "bbox": [
+          944.0,
+          143.0,
+          1040.0,
+          203.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 15,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8978272658369805,
+        "bbox": [
+          539.0,
+          443.0,
+          674.0,
+          518.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8608862103672043,
+        "bbox": [
+          774.0,
+          254.0,
+          913.0,
+          329.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 16,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7462204423047663,
+        "bbox": [
+          357.0,
+          402.0,
+          451.0,
+          487.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.907357305954789,
+        "bbox": [
+          219.0,
+          384.0,
+          350.0,
+          464.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.852122988429461,
+        "bbox": [
+          335.0,
+          510.0,
+          437.0,
+          593.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 17,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8245572041102806,
+        "bbox": [
+          492.0,
+          254.0,
+          617.0,
+          317.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8527446494978811,
+        "bbox": [
+          640.0,
+          424.0,
+          761.0,
+          500.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 18,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6877912684892686,
+        "bbox": [
+          842.0,
+          375.0,
+          932.0,
+          472.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 19,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9093692659314596,
+        "bbox": [
+          667.0,
+          193.0,
+          814.0,
+          258.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 20,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7705721467394766,
+        "bbox": [
+          609.0,
+          292.0,
+          703.0,
+          388.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6864091823887548,
+        "bbox": [
+          328.0,
+          432.0,
+          441.0,
+          500.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6678002838228532,
+        "bbox": [
+          957.0,
+          285.0,
+          1086.0,
+          349.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6691514091909025,
+        "bbox": [
+          726.0,
+          387.0,
+          834.0,
+          477.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 21,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8515910043141848,
+        "bbox": [
+          368.0,
+          317.0,
+          512.0,
+          387.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 22,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8196630047442075,
+        "bbox": [
+          997.0,
+          195.0,
+          1108.0,
+          267.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6718176545582057,
+        "bbox": [
+          199.0,
+          137.0,
+          332.0,
+          223.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8050747650719604,
+        "bbox": [
+          311.0,
+          65.0,
+          429.0,
+          143.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 23,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.9272400238228584,
+        "bbox": [
+          494.0,
+          267.0,
+          630.0,
+          351.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6959380226642944,
+        "bbox": [
+          343.0,
+          570.0,
+          443.0,
+          644.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 24,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8622020159341541,
+        "bbox": [
+          747.0,
+          279.0,
+          880.0,
+          358.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 25,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7273673130102751,
+        "bbox": [
+          872.0,
+          65.0,
+          997.0,
+          158.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7609757274795904,
+        "bbox": [
+          103.0,
+          344.0,
+          239.0,
+          418.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7272375755033776,
+        "bbox": [
+          689.0,
+          421.0,
+          780.0,
+          508.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.7420189668342749,
+        "bbox": [
+          787.0,
+          156.0,
+          888.0,
+          237.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 26,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8200158654477003,
+        "bbox": [
+          210.0,
+          455.0,
+          305.0,
+          542.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.838221904744434,
+        "bbox": [
+          341.0,
+          81.0,
+          442.0,
+          156.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8453092051826752,
+        "bbox": [
+          680.0,
+          558.0,
+          789.0,
+          619.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 27,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8134386370726127,
+        "bbox": [
+          640.0,
+          136.0,
+          753.0,
+          233.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 28,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9134790305977231,
+        "bbox": [
+          774.0,
+          442.0,
+          922.0,
+          502.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 29,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8278226784985524,
+        "bbox": [
+          865.0,
+          413.0,
+          1011.0,
+          486.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8565657995206183,
+        "bbox": [
+          438.0,
+          178.0,
+          577.0,
+          245.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8353627263839306,
+        "bbox": [
+          345.0,
+          553.0,
+          474.0,
+          617.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.671557825261313,
+        "bbox": [
+          144.0,
+          152.0,
+          241.0,
+          239.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 30,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8512734820207204,
+        "bbox": [
+          900.0,
+          209.0,
+          1024.0,
+          309.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7357344604640873,
+        "bbox": [
+          122.0,
+          267.0,
+          227.0,
+          349.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7996427782188156,
+        "bbox": [
+          988.0,
+          349.0,
+          1131.0,
+          441.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 31,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9484955342446058,
+        "bbox": [
+          76.0,
+          551.0,
+          160.0,
+          624.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 32,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6926801521087221,
+        "bbox": [
+          388.0,
+          424.0,
+          479.0,
+          493.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7891591611916368,
+        "bbox": [
+          128.0,
+          216.0,
+          236.0,
+          278.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.816636347785975,
+        "bbox": [
+          965.0,
+          282.0,
+          1111.0,
+          372.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7782000040984167,
+        "bbox": [
+          560.0,
+          310.0,
+          674.0,
+          410.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 33,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6558114324753646,
+        "bbox": [
+          934.0,
+          142.0,
+          1031.0,
+          230.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 34,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6687128008505661,
+        "bbox": [
+          1073.0,
+          452.0,
+          1212.0,
+          517.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6769818383449441,
+        "bbox": [
+          435.0,
+          401.0,
+          533.0,
+          483.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 35,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8735436030795395,
+        "bbox": [
+          529.0,
+          214.0,
+          661.0,
+          300.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9196577733949223,
+        "bbox": [
+          229.0,
+          298.0,
+          378.0,
+          396.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 36,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6666523251979714,
+        "bbox": [
+          260.0,
+          542.0,
+          356.0,
+          624.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8048852059679241,
+        "bbox": [
+          241.0,
+          193.0,
+          366.0,
+          290.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8285514231351719,
+        "bbox": [
+          185.0,
+          201.0,
+          326.0,
+          277.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9457130716392741,
+        "bbox": [
+          241.0,
+          380.0,
+          373.0,
+          467.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 37,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8455923601753197,
+        "bbox": [
+          694.0,
+          529.0,
+          838.0,
+          610.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6562205094057497,
+        "bbox": [
+          932.0,
+          535.0,
+          1035.0,
+          609.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 38,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.9139413726556294,
+        "bbox": [
+          643.0,
+          317.0,
+          782.0,
+          389.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 39,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7596472626448377,
+        "bbox": [
+          632.0,
+          464.0,
+          762.0,
+          549.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9072299221732439,
+        "bbox": [
+          551.0,
+          347.0,
+          644.0,
+          407.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 40,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9239966793307209,
+        "bbox": [
+          1052.0,
+          422.0,
+          1197.0,
+          509.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8242153281672806,
+        "bbox": [
+          985.0,
+          72.0,
+          1114.0,
+          155.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 41,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7711479009933339,
+        "bbox": [
+          573.0,
+          566.0,
+          723.0,
+          635.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9404392733992482,
+        "bbox": [
+          217.0,
+          430.0,
+          357.0,
+          511.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8460275829803198,
+        "bbox": [
+          1006.0,
+          176.0,
+          1125.0,
+          264.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 42,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8552110186223248,
+        "bbox": [
+          416.0,
+          443.0,
+          552.0,
+          531.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 43,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7780545232386009,
+        "bbox": [
+          1024.0,
+          108.0,
+          1127.0,
+          201.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7225708795808887,
+        "bbox": [
+          667.0,
+          204.0,
+          757.0,
+          266.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8563480223761237,
+        "bbox": [
+          818.0,
+          303.0,
+          952.0,
+          387.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 44,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6716147040146169,
+        "bbox": [
+          957.0,
+          333.0,
+          1051.0,
+          425.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.7108354923421561,
+        "bbox": [
+          886.0,
+          417.0,
+          1011.0,
+          504.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 45,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6774594568993538,
+        "bbox": [
+          401.0,
+          122.0,
+          495.0,
+          186.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9321255071853618,
+        "bbox": [
+          787.0,
+          149.0,
+          899.0,
+          246.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7898838760174695,
+        "bbox": [
+          741.0,
+          245.0,
+          845.0,
+          342.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 46,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.9421255008101268,
+        "bbox": [
+          397.0,
+          554.0,
+          525.0,
+          637.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8786128282195245,
+        "bbox": [
+          188.0,
+          331.0,
+          312.0,
+          407.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9162484546099146,
+        "bbox": [
+          176.0,
+          303.0,
+          269.0,
+          396.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9271394773424954,
+        "bbox": [
+          711.0,
+          251.0,
+          792.0,
+          347.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 47,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7751016190070287,
+        "bbox": [
+          188.0,
+          251.0,
+          273.0,
+          341.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 48,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7923121639964528,
+        "bbox": [
+          73.0,
+          263.0,
+          199.0,
+          325.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7459393523130046,
+        "bbox": [
+          249.0,
+          93.0,
+          340.0,
+          190.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 49,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6748584325968068,
+        "bbox": [
+          59.0,
+          202.0,
+          180.0,
+          283.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 50,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7302671216871556,
+        "bbox": [
+          303.0,
+          278.0,
+          439.0,
+          346.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9210157907067651,
+        "bbox": [
+          98.0,
+          329.0,
+          200.0,
+          428.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7043769029358109,
+        "bbox": [
+          403.0,
+          447.0,
+          508.0,
+          534.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.9314102639102311,
+        "bbox": [
+          1033.0,
+          247.0,
+          1159.0,
+          338.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 51,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7179235916884126,
+        "bbox": [
+          627.0,
+          446.0,
+          768.0,
+          528.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7275266012342205,
+        "bbox": [
+          479.0,
+          529.0,
+          586.0,
+          607.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7355479090231167,
+        "bbox": [
+          865.0,
+          437.0,
+          993.0,
+          508.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 52,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8879339821740606,
+        "bbox": [
+          904.0,
+          315.0,
+          984.0,
+          408.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.786947544867401,
+        "bbox": [
+          526.0,
+          155.0,
+          610.0,
+          224.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7691441697062471,
+        "bbox": [
+          64.0,
+          506.0,
+          179.0,
+          594.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 53,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7193349123780588,
+        "bbox": [
+          202.0,
+          450.0,
+          288.0,
+          544.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8271884648066947,
+        "bbox": [
+          699.0,
+          386.0,
+          805.0,
+          473.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6998456220638437,
+        "bbox": [
+          448.0,
+          316.0,
+          570.0,
+          403.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 54,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7514800703687192,
+        "bbox": [
+          587.0,
+          557.0,
+          716.0,
+          641.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9280563233920721,
+        "bbox": [
+          709.0,
+          497.0,
+          848.0,
+          591.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 55,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7461917529631279,
+        "bbox": [
+          553.0,
+          517.0,
+          689.0,
+          584.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6780763944595594,
+        "bbox": [
+          264.0,
+          82.0,
+          387.0,
+          151.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9307528039280729,
+        "bbox": [
+          579.0,
+          336.0,
+          715.0,
+          407.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 56,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8305562626552638,
+        "bbox": [
+          691.0,
+          418.0,
+          793.0,
+          499.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7239088719563593,
+        "bbox": [
+          722.0,
+          231.0,
+          817.0,
+          322.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6526918566384003,
+        "bbox": [
+          715.0,
+          568.0,
+          803.0,
+          631.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7833522419052953,
+        "bbox": [
+          1027.0,
+          451.0,
+          1176.0,
+          525.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 57,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7390269220111991,
+        "bbox": [
+          981.0,
+          321.0,
+          1127.0,
+          416.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8687056655937476,
+        "bbox": [
+          919.0,
+          284.0,
+          1050.0,
+          367.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9032920480889919,
+        "bbox": [
+          242.0,
+          92.0,
+          344.0,
+          163.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 58,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.749388486684059,
+        "bbox": [
+          52.0,
+          290.0,
+          180.0,
+          381.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 59,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8179816859857205,
+        "bbox": [
+          54.0,
+          240.0,
+          151.0,
+          300.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6749047487916149,
+        "bbox": [
+          522.0,
+          379.0,
+          667.0,
+          470.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8363369362559805,
+        "bbox": [
+          1034.0,
+          461.0,
+          1151.0,
+          530.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 60,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7355580550931388,
+        "bbox": [
+          914.0,
+          255.0,
+          1052.0,
+          334.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 61,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6999802249015569,
+        "bbox": [
+          463.0,
+          507.0,
+          597.0,
+          578.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7796045400036763,
+        "bbox": [
+          916.0,
+          426.0,
+          1016.0,
+          506.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8046128929611079,
+        "bbox": [
+          672.0,
+          273.0,
+          807.0,
+          350.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7185548372471231,
+        "bbox": [
+          493.0,
+          296.0,
+          638.0,
+          365.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 62,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7084087911016425,
+        "bbox": [
+          1023.0,
+          280.0,
+          1163.0,
+          353.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8120248891124111,
+        "bbox": [
+          937.0,
+          564.0,
+          1072.0,
+          625.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 63,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7423088208218099,
+        "bbox": [
+          1047.0,
+          484.0,
+          1131.0,
+          547.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 64,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7023529696051727,
+        "bbox": [
+          303.0,
+          443.0,
+          398.0,
+          521.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 65,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9107715471488476,
+        "bbox": [
+          744.0,
+          126.0,
+          847.0,
+          201.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7342569745301213,
+        "bbox": [
+          234.0,
+          537.0,
+          331.0,
+          619.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8672525592638256,
+        "bbox": [
+          978.0,
+          198.0,
+          1124.0,
+          292.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 66,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7539834982525669,
+        "bbox": [
+          79.0,
+          107.0,
+          187.0,
+          186.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9393462584055727,
+        "bbox": [
+          649.0,
+          229.0,
+          754.0,
+          319.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9099762483071321,
+        "bbox": [
+          57.0,
+          553.0,
+          200.0,
+          636.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 67,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7801823944807641,
+        "bbox": [
+          150.0,
+          274.0,
+          255.0,
+          369.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9092511311197096,
+        "bbox": [
+          587.0,
+          125.0,
+          687.0,
+          199.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 68,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9069876416873836,
+        "bbox": [
+          663.0,
+          302.0,
+          788.0,
+          385.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8883962368457964,
+        "bbox": [
+          528.0,
+          506.0,
+          615.0,
+          582.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8805444535072297,
+        "bbox": [
+          991.0,
+          304.0,
+          1097.0,
+          402.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 69,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9412782722090665,
+        "bbox": [
+          965.0,
+          500.0,
+          1057.0,
+          579.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9495027274014337,
+        "bbox": [
+          163.0,
+          285.0,
+          256.0,
+          364.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.843635586374343,
+        "bbox": [
+          461.0,
+          339.0,
+          610.0,
+          406.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6851503022518601,
+        "bbox": [
+          515.0,
+          380.0,
+          606.0,
+          449.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 70,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8472224695386061,
+        "bbox": [
+          756.0,
+          285.0,
+          853.0,
+          361.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.7364653957593708,
+        "bbox": [
+          532.0,
+          157.0,
+          680.0,
+          251.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9079199994328182,
+        "bbox": [
+          1033.0,
+          291.0,
+          1183.0,
+          374.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6793789004272109,
+        "bbox": [
+          467.0,
+          129.0,
+          560.0,
+          203.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 71,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.750795804732045,
+        "bbox": [
+          560.0,
+          317.0,
+          707.0,
+          393.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8849498162050704,
+        "bbox": [
+          262.0,
+          524.0,
+          356.0,
+          622.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7234371326172713,
+        "bbox": [
+          1067.0,
+          529.0,
+          1166.0,
+          605.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 72,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7181305957711663,
+        "bbox": [
+          891.0,
+          474.0,
+          1033.0,
+          544.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8818474182347833,
+        "bbox": [
+          809.0,
+          397.0,
+          919.0,
+          495.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 73,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6763109680785988,
+        "bbox": [
+          273.0,
+          443.0,
+          353.0,
+          525.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9342347470648016,
+        "bbox": [
+          1001.0,
+          315.0,
+          1081.0,
+          397.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8566483795867685,
+        "bbox": [
+          960.0,
+          546.0,
+          1069.0,
+          639.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 74,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7738196552122536,
+        "bbox": [
+          256.0,
+          128.0,
+          391.0,
+          200.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7486767978285648,
+        "bbox": [
+          553.0,
+          365.0,
+          679.0,
+          437.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 75,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7177600217439504,
+        "bbox": [
+          384.0,
+          203.0,
+          483.0,
+          287.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9322525375400276,
+        "bbox": [
+          977.0,
+          340.0,
+          1082.0,
+          409.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 76,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6661825042460485,
+        "bbox": [
+          196.0,
+          371.0,
+          321.0,
+          452.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8789394323039171,
+        "bbox": [
+          386.0,
+          288.0,
+          468.0,
+          374.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 77,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6738133221560691,
+        "bbox": [
+          173.0,
+          546.0,
+          254.0,
+          619.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8786917294603985,
+        "bbox": [
+          265.0,
+          118.0,
+          404.0,
+          184.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9260856774086837,
+        "bbox": [
+          700.0,
+          159.0,
+          844.0,
+          219.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 78,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7483324746092866,
+        "bbox": [
+          772.0,
+          396.0,
+          871.0,
+          492.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 79,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6702096783035228,
+        "bbox": [
+          271.0,
+          205.0,
+          364.0,
+          293.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 80,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8636794707591556,
+        "bbox": [
+          365.0,
+          139.0,
+          512.0,
+          226.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6847674765661711,
+        "bbox": [
+          1065.0,
+          177.0,
+          1202.0,
+          267.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7172647617871742,
+        "bbox": [
+          483.0,
+          353.0,
+          593.0,
+          415.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 81,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.9112154598345577,
+        "bbox": [
+          746.0,
+          487.0,
+          835.0,
+          578.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 82,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6799452553064212,
+        "bbox": [
+          327.0,
+          429.0,
+          415.0,
+          494.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9131840525951209,
+        "bbox": [
+          719.0,
+          333.0,
+          806.0,
+          396.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7255174066458792,
+        "bbox": [
+          664.0,
+          477.0,
+          745.0,
+          546.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8471166887692745,
+        "bbox": [
+          632.0,
+          81.0,
+          719.0,
+          171.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 83,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8330221935517628,
+        "bbox": [
+          425.0,
+          506.0,
+          575.0,
+          569.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7773032318810842,
+        "bbox": [
+          863.0,
+          236.0,
+          997.0,
+          304.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7907244042275614,
+        "bbox": [
+          640.0,
+          420.0,
+          762.0,
+          502.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 84,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8282033835037631,
+        "bbox": [
+          799.0,
+          568.0,
+          948.0,
+          629.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9244066640586157,
+        "bbox": [
+          560.0,
+          127.0,
+          654.0,
+          197.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 85,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7094085390896235,
+        "bbox": [
+          531.0,
+          190.0,
+          671.0,
+          264.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7347115979674117,
+        "bbox": [
+          480.0,
+          418.0,
+          560.0,
+          480.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8406101918983624,
+        "bbox": [
+          922.0,
+          434.0,
+          1053.0,
+          515.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7750628293196103,
+        "bbox": [
+          914.0,
+          169.0,
+          998.0,
+          235.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 86,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7804820139457948,
+        "bbox": [
+          366.0,
+          117.0,
+          481.0,
+          181.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8193224131335408,
+        "bbox": [
+          404.0,
+          58.0,
+          515.0,
+          149.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 87,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.9019353320868022,
+        "bbox": [
+          86.0,
+          327.0,
+          236.0,
+          391.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 88,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.6504438505235111,
+        "bbox": [
+          608.0,
+          183.0,
+          702.0,
+          243.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.677838517254152,
+        "bbox": [
+          286.0,
+          260.0,
+          424.0,
+          326.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 89,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7015750741344576,
+        "bbox": [
+          886.0,
+          72.0,
+          996.0,
+          158.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8622076216725321,
+        "bbox": [
+          133.0,
+          381.0,
+          248.0,
+          447.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 90,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8624531113062254,
+        "bbox": [
+          367.0,
+          450.0,
+          491.0,
+          531.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 91,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7929183880106777,
+        "bbox": [
+          434.0,
+          284.0,
+          532.0,
+          367.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7846062205496492,
+        "bbox": [
+          62.0,
+          356.0,
+          168.0,
+          426.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8499967534606532,
+        "bbox": [
+          372.0,
+          226.0,
+          464.0,
+          291.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 92,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7332686486507066,
+        "bbox": [
+          976.0,
+          363.0,
+          1101.0,
+          457.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7255106749413147,
+        "bbox": [
+          60.0,
+          304.0,
+          176.0,
+          367.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 93,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.9378180039772063,
+        "bbox": [
+          703.0,
+          406.0,
+          795.0,
+          470.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8174073874223616,
+        "bbox": [
+          976.0,
+          404.0,
+          1087.0,
+          472.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9421488166038836,
+        "bbox": [
+          731.0,
+          302.0,
+          856.0,
+          394.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 94,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8479878300671715,
+        "bbox": [
+          72.0,
+          372.0,
+          217.0,
+          463.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7462692944295565,
+        "bbox": [
+          162.0,
+          91.0,
+          296.0,
+          169.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8868536904480163,
+        "bbox": [
+          576.0,
+          304.0,
+          719.0,
+          370.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7769899098766976,
+        "bbox": [
+          365.0,
+          388.0,
+          453.0,
+          465.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 95,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8551387289330076,
+        "bbox": [
+          962.0,
+          352.0,
+          1071.0,
+          425.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.9172025131018351,
+        "bbox": [
+          388.0,
+          211.0,
+          510.0,
+          302.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8116573723510296,
+        "bbox": [
+          718.0,
+          175.0,
+          827.0,
+          258.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 96,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7477777886956121,
+        "bbox": [
+          306.0,
+          269.0,
+          409.0,
+          362.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8044682384052502,
+        "bbox": [
+          251.0,
+          185.0,
+          400.0,
+          264.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8636556759959089,
+        "bbox": [
+          473.0,
+          285.0,
+          617.0,
+          385.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7402749281233794,
+        "bbox": [
+          666.0,
+          175.0,
+          771.0,
+          264.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 97,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8505362058021997,
+        "bbox": [
+          424.0,
+          561.0,
+          508.0,
+          636.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 98,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8819971825212968,
+        "bbox": [
+          1068.0,
+          243.0,
+          1170.0,
+          328.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8402809074143331,
+        "bbox": [
+          914.0,
+          411.0,
+          1016.0,
+          500.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6698833260053543,
+        "bbox": [
+          928.0,
+          76.0,
+          1033.0,
+          170.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6527988364030939,
+        "bbox": [
+          554.0,
+          141.0,
+          702.0,
+          228.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 99,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7949370861613482,
+        "bbox": [
+          649.0,
+          198.0,
+          744.0,
+          281.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9331358525460899,
+        "bbox": [
+          282.0,
+          345.0,
+          415.0,
+          437.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7367995829360142,
+        "bbox": [
+          398.0,
+          60.0,
+          547.0,
+          134.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8835449109108662,
+        "bbox": [
+          824.0,
+          564.0,
+          938.0,
+          629.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 100,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9084490830812983,
+        "bbox": [
+          270.0,
+          123.0,
+          359.0,
+          207.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8449779185003633,
+        "bbox": [
+          453.0,
+          441.0,
+          593.0,
+          531.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8440015671713572,
+        "bbox": [
+          920.0,
+          89.0,
+          1038.0,
+          180.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9258334570048516,
+        "bbox": [
+          982.0,
+          268.0,
+          1086.0,
+          351.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 101,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7399906240057694,
+        "bbox": [
+          702.0,
+          90.0,
+          838.0,
+          161.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7165971906574254,
+        "bbox": [
+          708.0,
+          52.0,
+          837.0,
+          116.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 102,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7592880378759692,
+        "bbox": [
+          923.0,
+          77.0,
+          1019.0,
+          154.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 103,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.9180749496134503,
+        "bbox": [
+          457.0,
+          509.0,
+          550.0,
+          608.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 104,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.9143734325473614,
+        "bbox": [
+          489.0,
+          236.0,
+          590.0,
+          336.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7379156571979477,
+        "bbox": [
+          1076.0,
+          475.0,
+          1222.0,
+          573.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 105,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7648013867050353,
+        "bbox": [
+          528.0,
+          260.0,
+          623.0,
+          335.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8178526912036518,
+        "bbox": [
+          666.0,
+          260.0,
+          759.0,
+          327.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6726245627175653,
+        "bbox": [
+          473.0,
+          220.0,
+          554.0,
+          315.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8429992253582959,
+        "bbox": [
+          383.0,
+          517.0,
+          495.0,
+          589.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 106,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7240760889613802,
+        "bbox": [
+          282.0,
+          315.0,
+          381.0,
+          383.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.915387863338103,
+        "bbox": [
+          157.0,
+          311.0,
+          250.0,
+          395.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7124410012771011,
+        "bbox": [
+          743.0,
+          61.0,
+          865.0,
+          141.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 107,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.9004958580879422,
+        "bbox": [
+          938.0,
+          339.0,
+          1019.0,
+          405.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 108,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7649660503988127,
+        "bbox": [
+          907.0,
+          64.0,
+          1016.0,
+          129.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7431794092914615,
+        "bbox": [
+          55.0,
+          424.0,
+          202.0,
+          518.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8904773450157685,
+        "bbox": [
+          569.0,
+          153.0,
+          698.0,
+          241.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 109,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8736047022068769,
+        "bbox": [
+          66.0,
+          379.0,
+          150.0,
+          451.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8624105902199848,
+        "bbox": [
+          292.0,
+          373.0,
+          402.0,
+          447.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6564559743384,
+        "bbox": [
+          941.0,
+          288.0,
+          1050.0,
+          381.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 110,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9122858088082255,
+        "bbox": [
+          1042.0,
+          403.0,
+          1164.0,
+          469.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.711126087021811,
+        "bbox": [
+          715.0,
+          222.0,
+          819.0,
+          321.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6687798024434758,
+        "bbox": [
+          502.0,
+          417.0,
+          647.0,
+          494.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 111,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8376342127876668,
+        "bbox": [
+          841.0,
+          187.0,
+          939.0,
+          281.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6755240998483533,
+        "bbox": [
+          323.0,
+          413.0,
+          442.0,
+          473.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8021936138350262,
+        "bbox": [
+          435.0,
+          208.0,
+          530.0,
+          275.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8478576495685557,
+        "bbox": [
+          765.0,
+          345.0,
+          889.0,
+          443.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 112,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7380728887105964,
+        "bbox": [
+          420.0,
+          88.0,
+          540.0,
+          152.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 113,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9215493241159065,
+        "bbox": [
+          334.0,
+          230.0,
+          442.0,
+          290.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9349274763627047,
+        "bbox": [
+          390.0,
+          570.0,
+          478.0,
+          640.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 114,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7159756811083202,
+        "bbox": [
+          310.0,
+          557.0,
+          423.0,
+          633.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6678051405641515,
+        "bbox": [
+          477.0,
+          531.0,
+          622.0,
+          625.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9206447828434832,
+        "bbox": [
+          198.0,
+          261.0,
+          329.0,
+          329.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 115,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7436944059198815,
+        "bbox": [
+          1068.0,
+          105.0,
+          1168.0,
+          198.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8367836616053906,
+        "bbox": [
+          789.0,
+          342.0,
+          880.0,
+          406.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9467661034980518,
+        "bbox": [
+          497.0,
+          63.0,
+          621.0,
+          123.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8088088919440749,
+        "bbox": [
+          374.0,
+          516.0,
+          494.0,
+          583.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 116,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8292006497475594,
+        "bbox": [
+          891.0,
+          194.0,
+          1013.0,
+          291.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 117,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9250036329889477,
+        "bbox": [
+          165.0,
+          261.0,
+          247.0,
+          352.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8748971864951879,
+        "bbox": [
+          524.0,
+          201.0,
+          640.0,
+          278.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 118,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7817227917317958,
+        "bbox": [
+          235.0,
+          68.0,
+          341.0,
+          150.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6608894339274707,
+        "bbox": [
+          1003.0,
+          464.0,
+          1127.0,
+          557.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7721047030069369,
+        "bbox": [
+          544.0,
+          156.0,
+          624.0,
+          244.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 119,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.6818229529063835,
+        "bbox": [
+          620.0,
+          68.0,
+          735.0,
+          147.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8579901029227008,
+        "bbox": [
+          532.0,
+          151.0,
+          646.0,
+          240.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8185500909086887,
+        "bbox": [
+          240.0,
+          90.0,
+          369.0,
+          181.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 120,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.9354943936116804,
+        "bbox": [
+          462.0,
+          278.0,
+          579.0,
+          356.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6719441891495705,
+        "bbox": [
+          654.0,
+          351.0,
+          742.0,
+          414.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.9471608077494273,
+        "bbox": [
+          776.0,
+          562.0,
+          913.0,
+          646.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8415152408027617,
+        "bbox": [
+          587.0,
+          491.0,
+          673.0,
+          560.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 121,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7129859127713379,
+        "bbox": [
+          393.0,
+          472.0,
+          526.0,
+          533.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 122,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.6575031730816394,
+        "bbox": [
+          221.0,
+          316.0,
+          324.0,
+          404.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8492749302485236,
+        "bbox": [
+          340.0,
+          56.0,
+          469.0,
+          140.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6643166129615051,
+        "bbox": [
+          181.0,
+          187.0,
+          304.0,
+          270.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 123,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.6955776754034149,
+        "bbox": [
+          645.0,
+          452.0,
+          777.0,
+          534.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 124,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7105127930420674,
+        "bbox": [
+          935.0,
+          237.0,
+          1035.0,
+          312.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8466342906536395,
+        "bbox": [
+          1008.0,
+          350.0,
+          1120.0,
+          417.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8953606643525239,
+        "bbox": [
+          700.0,
+          250.0,
+          815.0,
+          331.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.909604939927533,
+        "bbox": [
+          66.0,
+          553.0,
+          177.0,
+          615.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 125,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6902555106910939,
+        "bbox": [
+          326.0,
+          116.0,
+          457.0,
+          200.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6765021867720106,
+        "bbox": [
+          555.0,
+          473.0,
+          662.0,
+          547.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6950292024492195,
+        "bbox": [
+          296.0,
+          438.0,
+          394.0,
+          513.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 126,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7132816314877762,
+        "bbox": [
+          322.0,
+          137.0,
+          453.0,
+          218.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8953910658759241,
+        "bbox": [
+          298.0,
+          243.0,
+          412.0,
+          306.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8004716562859272,
+        "bbox": [
+          444.0,
+          276.0,
+          560.0,
+          376.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 127,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6934785101980733,
+        "bbox": [
+          284.0,
+          273.0,
+          433.0,
+          340.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6660794599089677,
+        "bbox": [
+          212.0,
+          451.0,
+          323.0,
+          545.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.657181372903979,
+        "bbox": [
+          694.0,
+          336.0,
+          836.0,
+          414.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8268037437409466,
+        "bbox": [
+          974.0,
+          201.0,
+          1058.0,
+          283.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 128,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8797214406745526,
+        "bbox": [
+          858.0,
+          395.0,
+          990.0,
+          492.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6660191221067328,
+        "bbox": [
+          242.0,
+          150.0,
+          379.0,
+          222.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8317105309210294,
+        "bbox": [
+          847.0,
+          364.0,
+          996.0,
+          430.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 129,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8241312613013696,
+        "bbox": [
+          80.0,
+          412.0,
+          221.0,
+          478.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 130,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.9081057678116992,
+        "bbox": [
+          509.0,
+          337.0,
+          653.0,
+          437.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9207586603149915,
+        "bbox": [
+          767.0,
+          456.0,
+          876.0,
+          547.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 131,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9090596209382487,
+        "bbox": [
+          853.0,
+          467.0,
+          942.0,
+          531.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8882191926326994,
+        "bbox": [
+          83.0,
+          487.0,
+          187.0,
+          553.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8964761551032712,
+        "bbox": [
+          439.0,
+          279.0,
+          526.0,
+          339.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 132,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8337238362309485,
+        "bbox": [
+          372.0,
+          232.0,
+          461.0,
+          316.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.674717833093655,
+        "bbox": [
+          1036.0,
+          249.0,
+          1178.0,
+          317.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 133,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9278513133723447,
+        "bbox": [
+          668.0,
+          444.0,
+          791.0,
+          511.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8242441196870711,
+        "bbox": [
+          507.0,
+          67.0,
+          646.0,
+          158.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 134,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8203630242457897,
+        "bbox": [
+          960.0,
+          239.0,
+          1097.0,
+          304.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.657041153395728,
+        "bbox": [
+          918.0,
+          207.0,
+          999.0,
+          303.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8351237388156257,
+        "bbox": [
+          1066.0,
+          285.0,
+          1153.0,
+          355.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7446106918735158,
+        "bbox": [
+          984.0,
+          538.0,
+          1067.0,
+          603.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 135,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.9201877134019457,
+        "bbox": [
+          721.0,
+          485.0,
+          810.0,
+          556.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8920518075392831,
+        "bbox": [
+          126.0,
+          249.0,
+          242.0,
+          321.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 136,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7081180494830367,
+        "bbox": [
+          326.0,
+          81.0,
+          415.0,
+          161.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9304278633320553,
+        "bbox": [
+          618.0,
+          248.0,
+          741.0,
+          338.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8605614171725213,
+        "bbox": [
+          398.0,
+          230.0,
+          515.0,
+          324.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 137,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.6618415918629601,
+        "bbox": [
+          721.0,
+          152.0,
+          845.0,
+          221.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9382699960730538,
+        "bbox": [
+          708.0,
+          246.0,
+          848.0,
+          324.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.865038948785965,
+        "bbox": [
+          957.0,
+          258.0,
+          1103.0,
+          329.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8713484147125663,
+        "bbox": [
+          293.0,
+          99.0,
+          430.0,
+          183.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 138,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7833686335119108,
+        "bbox": [
+          542.0,
+          53.0,
+          691.0,
+          120.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.906981375691901,
+        "bbox": [
+          685.0,
+          114.0,
+          835.0,
+          177.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 139,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.710221984966849,
+        "bbox": [
+          496.0,
+          560.0,
+          616.0,
+          630.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6553537361873978,
+        "bbox": [
+          63.0,
+          381.0,
+          186.0,
+          446.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.7620249338481669,
+        "bbox": [
+          720.0,
+          425.0,
+          815.0,
+          522.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 140,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6970318790035349,
+        "bbox": [
+          276.0,
+          370.0,
+          422.0,
+          439.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9439187301785488,
+        "bbox": [
+          1063.0,
+          99.0,
+          1203.0,
+          166.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 141,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7554700943934204,
+        "bbox": [
+          411.0,
+          570.0,
+          491.0,
+          641.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.891285838750439,
+        "bbox": [
+          685.0,
+          446.0,
+          768.0,
+          545.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8212517129116745,
+        "bbox": [
+          51.0,
+          413.0,
+          195.0,
+          493.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 142,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7959775942287116,
+        "bbox": [
+          634.0,
+          388.0,
+          757.0,
+          487.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 143,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.9134089392387162,
+        "bbox": [
+          415.0,
+          327.0,
+          556.0,
+          397.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.7813774063771446,
+        "bbox": [
+          162.0,
+          517.0,
+          269.0,
+          602.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7932325577108301,
+        "bbox": [
+          463.0,
+          526.0,
+          574.0,
+          601.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 144,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.774888404546467,
+        "bbox": [
+          843.0,
+          485.0,
+          946.0,
+          572.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9183585080619432,
+        "bbox": [
+          515.0,
+          178.0,
+          609.0,
+          268.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 145,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7961919226973043,
+        "bbox": [
+          1008.0,
+          203.0,
+          1129.0,
+          302.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8377904073451046,
+        "bbox": [
+          986.0,
+          232.0,
+          1116.0,
+          295.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8921087617317404,
+        "bbox": [
+          668.0,
+          452.0,
+          801.0,
+          544.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7631129515542362,
+        "bbox": [
+          965.0,
+          544.0,
+          1055.0,
+          608.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 146,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6688131719505032,
+        "bbox": [
+          514.0,
+          536.0,
+          596.0,
+          621.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9406521488202486,
+        "bbox": [
+          857.0,
+          443.0,
+          999.0,
+          534.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7763030571033098,
+        "bbox": [
+          143.0,
+          143.0,
+          246.0,
+          218.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 147,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7335812357912488,
+        "bbox": [
+          594.0,
+          396.0,
+          735.0,
+          478.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 148,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6756821545561591,
+        "bbox": [
+          441.0,
+          486.0,
+          583.0,
+          569.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 149,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.8918522070985576,
+        "bbox": [
+          1066.0,
+          316.0,
+          1200.0,
+          410.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.684085451970536,
+        "bbox": [
+          913.0,
+          473.0,
+          1024.0,
+          547.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8949515440045042,
+        "bbox": [
+          335.0,
+          231.0,
+          426.0,
+          307.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8356439623476084,
+        "bbox": [
+          667.0,
+          523.0,
+          802.0,
+          586.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 150,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7463082304628055,
+        "bbox": [
+          594.0,
+          208.0,
+          742.0,
+          303.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8873274560599631,
+        "bbox": [
+          797.0,
+          334.0,
+          897.0,
+          394.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.827455171990118,
+        "bbox": [
+          299.0,
+          289.0,
+          382.0,
+          372.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 151,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.6947282753583163,
+        "bbox": [
+          861.0,
+          256.0,
+          944.0,
+          342.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 152,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6968369500097835,
+        "bbox": [
+          583.0,
+          230.0,
+          688.0,
+          312.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8233298195836196,
+        "bbox": [
+          913.0,
+          125.0,
+          1054.0,
+          224.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 153,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.75722290402694,
+        "bbox": [
+          434.0,
+          146.0,
+          539.0,
+          228.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 154,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7168619324480315,
+        "bbox": [
+          787.0,
+          304.0,
+          898.0,
+          382.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6964137799749481,
+        "bbox": [
+          234.0,
+          99.0,
+          331.0,
+          198.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7742692593578168,
+        "bbox": [
+          772.0,
+          311.0,
+          883.0,
+          401.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 155,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7215794806957363,
+        "bbox": [
+          1070.0,
+          388.0,
+          1214.0,
+          478.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 156,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9333501500684644,
+        "bbox": [
+          246.0,
+          158.0,
+          385.0,
+          239.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 157,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7573714579665926,
+        "bbox": [
+          742.0,
+          121.0,
+          867.0,
+          194.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 158,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6524441219803147,
+        "bbox": [
+          668.0,
+          487.0,
+          790.0,
+          558.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.7288871324416486,
+        "bbox": [
+          655.0,
+          319.0,
+          756.0,
+          402.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8806352979341225,
+        "bbox": [
+          733.0,
+          86.0,
+          861.0,
+          169.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 159,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6758325610166004,
+        "bbox": [
+          349.0,
+          337.0,
+          464.0,
+          398.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 160,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9314203188846477,
+        "bbox": [
+          115.0,
+          522.0,
+          261.0,
+          602.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7390098652496,
+        "bbox": [
+          117.0,
+          157.0,
+          250.0,
+          242.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 161,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7824002543716642,
+        "bbox": [
+          405.0,
+          436.0,
+          491.0,
+          534.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8673538465906578,
+        "bbox": [
+          879.0,
+          185.0,
+          1019.0,
+          277.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7426632737127142,
+        "bbox": [
+          759.0,
+          444.0,
+          876.0,
+          513.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 162,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8079374461516708,
+        "bbox": [
+          196.0,
+          433.0,
+          298.0,
+          516.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.793758504656862,
+        "bbox": [
+          829.0,
+          290.0,
+          967.0,
+          359.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.916855498341368,
+        "bbox": [
+          421.0,
+          258.0,
+          526.0,
+          353.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6961403950940339,
+        "bbox": [
+          609.0,
+          208.0,
+          703.0,
+          306.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 163,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9020575357643331,
+        "bbox": [
+          104.0,
+          329.0,
+          240.0,
+          425.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 164,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8024077167050636,
+        "bbox": [
+          57.0,
+          381.0,
+          140.0,
+          458.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9036516685045815,
+        "bbox": [
+          124.0,
+          210.0,
+          237.0,
+          274.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9288368827057181,
+        "bbox": [
+          1047.0,
+          359.0,
+          1133.0,
+          458.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8199907696912259,
+        "bbox": [
+          825.0,
+          235.0,
+          905.0,
+          317.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 165,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8781573360890294,
+        "bbox": [
+          399.0,
+          185.0,
+          504.0,
+          245.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.8948000427224099,
+        "bbox": [
+          311.0,
+          104.0,
+          430.0,
+          202.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 166,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.7395646471884944,
+        "bbox": [
+          577.0,
+          292.0,
+          673.0,
+          390.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8108793627300752,
+        "bbox": [
+          625.0,
+          187.0,
+          775.0,
+          270.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6641728264380309,
+        "bbox": [
+          919.0,
+          373.0,
+          1050.0,
+          442.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 167,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7020575548493843,
+        "bbox": [
+          548.0,
+          62.0,
+          647.0,
+          129.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 168,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7843846388892176,
+        "bbox": [
+          940.0,
+          449.0,
+          1051.0,
+          509.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7461580760883518,
+        "bbox": [
+          286.0,
+          108.0,
+          430.0,
+          187.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 169,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.8008547162607388,
+        "bbox": [
+          113.0,
+          271.0,
+          207.0,
+          359.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 170,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7657565728955873,
+        "bbox": [
+          608.0,
+          231.0,
+          700.0,
+          322.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.916435286268156,
+        "bbox": [
+          387.0,
+          350.0,
+          490.0,
+          439.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 171,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.9135787309685757,
+        "bbox": [
+          782.0,
+          481.0,
+          876.0,
+          560.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8441538721410952,
+        "bbox": [
+          736.0,
+          122.0,
+          858.0,
+          198.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 172,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7716337752129955,
+        "bbox": [
+          344.0,
+          473.0,
+          436.0,
+          538.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6663610474249476,
+        "bbox": [
+          840.0,
+          241.0,
+          973.0,
+          315.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9234056836154902,
+        "bbox": [
+          110.0,
+          236.0,
+          220.0,
+          323.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.77614526527828,
+        "bbox": [
+          341.0,
+          303.0,
+          462.0,
+          373.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 173,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7925799398292142,
+        "bbox": [
+          977.0,
+          333.0,
+          1087.0,
+          404.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8690176599498916,
+        "bbox": [
+          480.0,
+          306.0,
+          610.0,
+          396.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9244838657680885,
+        "bbox": [
+          879.0,
+          460.0,
+          987.0,
+          538.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 174,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7534677304052083,
+        "bbox": [
+          887.0,
+          122.0,
+          1006.0,
+          216.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7970023747114043,
+        "bbox": [
+          369.0,
+          451.0,
+          480.0,
+          537.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7598431477802539,
+        "bbox": [
+          199.0,
+          273.0,
+          298.0,
+          338.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 175,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8664421407955485,
+        "bbox": [
+          624.0,
+          115.0,
+          759.0,
+          190.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8014601113176445,
+        "bbox": [
+          806.0,
+          548.0,
+          940.0,
+          613.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.6741762725776995,
+        "bbox": [
+          218.0,
+          390.0,
+          332.0,
+          473.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.6826243144673515,
+        "bbox": [
+          498.0,
+          270.0,
+          598.0,
+          341.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 176,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.7488199452095555,
+        "bbox": [
+          253.0,
+          526.0,
+          394.0,
+          618.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7946692181084365,
+        "bbox": [
+          1000.0,
+          289.0,
+          1101.0,
+          383.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 177,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.9341255634085439,
+        "bbox": [
+          812.0,
+          439.0,
+          925.0,
+          539.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8063718007383043,
+        "bbox": [
+          387.0,
+          89.0,
+          521.0,
+          180.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7901914070456801,
+        "bbox": [
+          595.0,
+          358.0,
+          705.0,
+          419.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 178,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.6892638710810362,
+        "bbox": [
+          344.0,
+          309.0,
+          473.0,
+          374.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8124752679142961,
+        "bbox": [
+          75.0,
+          210.0,
+          182.0,
+          306.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7618301638329642,
+        "bbox": [
+          950.0,
+          341.0,
+          1059.0,
+          411.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 179,
+    "detections": [
+      {
+        "class": "truck",
+        "confidence": 0.6716591181423881,
+        "bbox": [
+          412.0,
+          403.0,
+          535.0,
+          489.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8786079059591589,
+        "bbox": [
+          601.0,
+          203.0,
+          692.0,
+          267.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 180,
+    "detections": [
+      {
+        "class": "motorcycle",
+        "confidence": 0.6538103599245346,
+        "bbox": [
+          466.0,
+          307.0,
+          605.0,
+          407.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.7036800981843347,
+        "bbox": [
+          713.0,
+          455.0,
+          832.0,
+          555.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8870796833042008,
+        "bbox": [
+          682.0,
+          338.0,
+          802.0,
+          418.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 181,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7350763624987023,
+        "bbox": [
+          840.0,
+          325.0,
+          926.0,
+          423.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8945636191194858,
+        "bbox": [
+          1080.0,
+          405.0,
+          1204.0,
+          477.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9304806262650316,
+        "bbox": [
+          956.0,
+          142.0,
+          1091.0,
+          219.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 182,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7657998679166356,
+        "bbox": [
+          424.0,
+          302.0,
+          561.0,
+          381.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7338650562052961,
+        "bbox": [
+          1061.0,
+          264.0,
+          1174.0,
+          364.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.696928676219065,
+        "bbox": [
+          904.0,
+          505.0,
+          1035.0,
+          599.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.6875994548408297,
+        "bbox": [
+          132.0,
+          153.0,
+          233.0,
+          250.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 183,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.751324935962923,
+        "bbox": [
+          127.0,
+          134.0,
+          207.0,
+          213.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8305477544092255,
+        "bbox": [
+          297.0,
+          569.0,
+          382.0,
+          641.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 184,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7355765217905378,
+        "bbox": [
+          977.0,
+          426.0,
+          1086.0,
+          512.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.757098585519296,
+        "bbox": [
+          185.0,
+          92.0,
+          271.0,
+          173.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 185,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.844794839678327,
+        "bbox": [
+          1040.0,
+          442.0,
+          1171.0,
+          504.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7914242240514952,
+        "bbox": [
+          563.0,
+          377.0,
+          682.0,
+          441.0
+        ]
+      }
+    ],
+    "total_in_frame": 2
+  },
+  {
+    "frame": 186,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8476888149988347,
+        "bbox": [
+          86.0,
+          89.0,
+          172.0,
+          185.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.9490600652558749,
+        "bbox": [
+          561.0,
+          461.0,
+          650.0,
+          534.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7078956459477967,
+        "bbox": [
+          689.0,
+          196.0,
+          782.0,
+          287.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 187,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7012713766684949,
+        "bbox": [
+          726.0,
+          450.0,
+          817.0,
+          535.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 188,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.8189798066186788,
+        "bbox": [
+          335.0,
+          431.0,
+          469.0,
+          522.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.7164654561245737,
+        "bbox": [
+          531.0,
+          470.0,
+          667.0,
+          564.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7413422475208734,
+        "bbox": [
+          978.0,
+          474.0,
+          1094.0,
+          539.0
+        ]
+      },
+      {
+        "class": "truck",
+        "confidence": 0.9471873035022632,
+        "bbox": [
+          657.0,
+          250.0,
+          750.0,
+          331.0
+        ]
+      }
+    ],
+    "total_in_frame": 4
+  },
+  {
+    "frame": 189,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7400427902541208,
+        "bbox": [
+          452.0,
+          565.0,
+          592.0,
+          632.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.7326422768655191,
+        "bbox": [
+          707.0,
+          530.0,
+          852.0,
+          617.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8791649987368233,
+        "bbox": [
+          69.0,
+          463.0,
+          186.0,
+          524.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  },
+  {
+    "frame": 190,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.6756881265957687,
+        "bbox": [
+          904.0,
+          213.0,
+          992.0,
+          286.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 191,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7353885973069696,
+        "bbox": [
+          397.0,
+          132.0,
+          539.0,
+          221.0
+        ]
+      }
+    ],
+    "total_in_frame": 1
+  },
+  {
+    "frame": 192,
+    "detections": [
+      {
+        "class": "car",
+        "confidence": 0.7371878489930983,
+        "bbox": [
+          994.0,
+          327.0,
+          1086.0,
+          397.0
+        ]
+      },
+      {
+        "class": "car",
+        "confidence": 0.8282106432837847,
+        "bbox": [
+          1003.0,
+          247.0,
+          1089.0,
+          323.0
+        ]
+      },
+      {
+        "class": "motorcycle",
+        "confidence": 0.8946441226223074,
+        "bbox": [
+          765.0,
+          403.0,
+          909.0,
+          485.0
+        ]
+      }
+    ],
+    "total_in_frame": 3
+  }
+]

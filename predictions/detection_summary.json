@@ -1,0 +1,12 @@
+{
+  "frames_processed": 192,
+  "total_detections": 463,
+  "total_vehicles": 463,
+  "vehicle_counts": {
+    "truck": 91,
+    "car": 290,
+    "motorcycle": 82
+  },
+  "output_video": "predictions/output_detected_video.mp4",
+  "detections_log": "predictions/video_detections.json"
+}
