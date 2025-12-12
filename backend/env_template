@@ -1,0 +1,1 @@
+DATABASE_URL=postgresql+asyncpg://tsdbadmin:REPLACE_WITH_PASSWORD@dxa9gx2exf.o5no6bjuna.tsdb.cloud.timescale.com:39979/tsdb?sslmode=require
