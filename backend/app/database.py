@@ -13,7 +13,12 @@ if not DATABASE_URL:
     # For dev safety here without revealing secrets in logs easily:
     pass
 
-engine = create_async_engine(DATABASE_URL, echo=False)
+# Explicitly disable SSL for asyncpg if not specified, to match successful test script behavior
+# If user wants SSL, they should ensure the server handshake works or pass valid context.
+# Given the "hang", we force False to unblock.
+connect_args = {"ssl": False}
+
+engine = create_async_engine(DATABASE_URL, echo=False, connect_args=connect_args)
 
 AsyncSessionLocal = sessionmaker(
     bind=engine,

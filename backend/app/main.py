@@ -162,10 +162,14 @@ async def startup_event():
             ]
             csv_path = None
             for p in paths_to_check:
+                print(f"Checking path: {os.path.abspath(p)}")
                 if os.path.exists(p):
+                    print(f"Found at: {p}")
                     csv_path = p
                     break
+            print(f"CWD: {os.getcwd()}")
             
+            if csv_path:
                 df_seed = pd.read_csv(csv_path)
                 df_seed['timestamp'] = pd.to_datetime(df_seed['timestamp'])
                 # Ensure UTC if naive
