@@ -61,8 +61,6 @@ export const api = {
   getForecast: (days = 7) => apiClient.get(`/forecast/run?days=${days}`),
   getForecastAccuracy: () => apiClient.get('/forecast/accuracy'),
 
-  // Recommendations endpoints
-  getRecommendations: () => api.get('/recommendations'),
 
   // Chargers
   getChargers: () => apiClient.get('/chargers'),
@@ -80,6 +78,7 @@ export const api = {
   getPeakPredictions: () => apiClient.get('/predictions/peaks'),
   getSeasonalAnalysis: () => apiClient.get('/predictions/seasonal'),
 
+  // Recommendations
   // Recommendations
   getRecommendations: () => apiClient.get('/recommendations'),
   getRecommendationById: (id) => apiClient.get(`/recommendations/${id}`),
