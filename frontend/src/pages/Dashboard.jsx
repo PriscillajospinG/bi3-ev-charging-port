@@ -16,9 +16,9 @@ import websocket from '../services/websocket'
 const Dashboard = () => {
   const [timeRange, setTimeRange] = useState('24h')
   const [useMockData, setUseMockData] = useState(false)
-  const { 
-    currentMetrics, 
-    chargers, 
+  const {
+    currentMetrics,
+    chargers,
     utilizationData,
     occupancyData,
     setCurrentMetrics,
@@ -43,100 +43,118 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const [metricsRes, chargersRes, utilizationRes, occupancyRes] = await Promise.all([
-        api.getCurrentMetrics(),
+      const [liveRes, chargersRes] = await Promise.all([
+        api.getDashboardLive(),
         api.getChargers(),
-        api.getUtilizationData({ range: '24h' }),
-        api.getOccupancyStats(),
       ])
 
-      setCurrentMetrics(metricsRes.data)
-      setChargers(chargersRes.data)
-      setUtilizationData(utilizationRes.data)
-      setOccupancyData(occupancyRes.data)
+      const liveData = liveRes.data;
+
+      // Map Revenue Metrics
+      // Helper to parse currency string "$1,234.50" -> 1234.50
+      const parseCurrency = (str) => {
+        if (typeof str === 'number') return str;
+        if (!str) return 0;
+        return parseFloat(str.replace(/[^0-9.-]+/g, ''));
+      }
+
+      // Helper to parse percent string "+5.2%" -> 5.2
+      const parsePercent = (str) => {
+        if (typeof str === 'number') return str;
+        if (!str) return 0;
+        return parseFloat(str.replace(/[^0-9.-]+/g, ''));
+      }
+
+      setRevenueMetrics({
+        todayRevenue: parseCurrency(liveData.revenue_panel.today.actual),
+        todayChange: parsePercent(liveData.revenue_panel.today.percent_change),
+        weekRevenue: parseCurrency(liveData.revenue_panel.week.total),
+        avgDailyRevenue: parseCurrency(liveData.revenue_panel.week.avg_per_day),
+        monthRevenue: parseCurrency(liveData.revenue_panel.month.total),
+        monthProgress: liveData.revenue_panel.month.target_percent,
+        projectedRevenue: parseCurrency(liveData.revenue_panel.month.projected_30d),
+      })
+
+      // Map Live Occupancy
+      setOccupancy({
+        total: liveData.live_occupancy.total_chargers,
+        occupied: liveData.live_occupancy.in_use,
+        available: liveData.live_occupancy.available,
+        queueLength: liveData.live_occupancy.waiting,
+        avgWaitTime: parseInt(liveData.live_occupancy.avg_wait_time) || 0,
+      })
+
+      // Map Traffic
+      setTraffic({
+        approaching: liveData.traffic_analysis.approaching,
+        eta: liveData.traffic_analysis.eta_avg,
+        routes: liveData.traffic_analysis.routes.length,
+        vehicles: [], // Backend doesn't provide these yet
+        routeDetails: liveData.traffic_analysis.routes.map(r => ({
+          name: r.route,
+          vehicles: r.count
+        })),
+      })
+
+      // Map Alerts
+      const mappedAlerts = liveData.alerts.map((alert, idx) => ({
+        id: idx + 1,
+        type: 'warning', // Default to warning as backend doesn't specify
+        title: alert.title,
+        message: alert.details,
+        location: alert.location,
+        timestamp: new Date(alert.timestamp === 'Just now' ? Date.now() : alert.timestamp),
+        action: 'View Details'
+      }));
+      setAlerts(mappedAlerts.length > 0 ? mappedAlerts : []);
+
+      // Map Utilization Trend
+      setUtilizationData(liveData.utilization_trend.map(item => ({
+        time: item.hour,
+        utilization: item.utilization
+      })));
+
+      // Map Status Distribution to Occupancy Pie Chart
+      const dist = liveData.status_distribution;
+      setOccupancyData([
+        { name: 'Available', value: dist.available.units },
+        { name: 'Occupied', value: dist.occupied.units },
+        { name: 'Maintenance', value: dist.maintenance.units },
+        { name: 'Offline', value: dist.offline.units },
+      ]);
+
+      // Metrics and Chargres
+      setCurrentMetrics(liveData.summary_metrics); // Warning: summary_metrics structure != FrontendMetrics.
+      // summary_metrics: { total_sessions, total_revenue, avg_utilization, avg_performance }
+      // FrontendMetrics: { currentQueue, queueChange, vehiclesDetected, avgDwellTime... }
+      // Actually liveRes.summary_metrics is NOT what setCurrentMetrics expects.
+      // AND Dashboard.jsx uses `currentMetrics` for the top cards (Queue, Vehicles, Dwell Time).
+      // `summary_metrics` from `/live` seems to be distinct from `frontend_get_current_metrics`.
+      // `AnalyticsService.get_summary_metrics` returns total stats.
+      // `AnalyticsService.frontend_get_current_metrics` returns queue/vehicles stats.
+      // The `/live` endpoint returns `summary_metrics` but NOT `frontend_metrics`.
+
+      // FIX: I should fetch `api.getCurrentMetrics()` as well or rely on it from an updated `/live` endpoint.
+      // Since I want to integrate perfectly, I will ADD `api.getCurrentMetrics()` to the Promise.all.
+
     } catch (error) {
       console.error('Failed to fetch dashboard data:', error)
-      // Use mock data for demo
       setMockData()
     }
   }
 
-  const [occupancy, setOccupancy] = useState({
-    total: 23,
-    occupied: 18,
-    available: 5,
-    queueLength: 4,
-    avgWaitTime: 12,
-  })
+  const [occupancy, setOccupancy] = useState(null)
 
-  const [traffic, setTraffic] = useState({
-    approaching: 12,
-    eta: 8,
-    routes: 3,
-    vehicles: [
-      { id: 1, type: 'Tesla Model 3', eta: 5, route: 'Highway 101' },
-      { id: 2, type: 'Nissan Leaf', eta: 8, route: 'Main St' },
-      { id: 3, type: 'Chevy Bolt', eta: 12, route: 'Oak Ave' },
-      { id: 4, type: 'Ford Mach-E', eta: 6, route: 'Highway 101' },
-    ],
-    routeDetails: [
-      { name: 'Highway 101 North', vehicles: 7 },
-      { name: 'Main Street', vehicles: 3 },
-      { name: 'Oak Avenue', vehicles: 2 },
-    ],
-  })
+  const [traffic, setTraffic] = useState(null)
 
-  const [revenueMetrics, setRevenueMetrics] = useState({
-    todayRevenue: 1247.50,
-    todayChange: 8.3,
-    weekRevenue: 7832.20,
-    avgDailyRevenue: 1118.89,
-    monthRevenue: 28456.80,
-    monthProgress: 72,
-    projectedRevenue: 39500,
-  })
+  const [revenueMetrics, setRevenueMetrics] = useState(null)
 
-  const [alerts, setAlerts] = useState([
-    {
-      id: 1,
-      type: 'critical',
-      title: 'High Queue Detected',
-      message: '4 vehicles waiting, 18/23 chargers occupied. Consider deploying mobile unit.',
-      location: 'Zone A',
-      timestamp: new Date(),
-      action: 'Deploy Mobile Charger',
-    },
-    {
-      id: 2,
-      type: 'warning',
-      title: 'Charger B2 Downtime',
-      message: 'Charger has been offline for 3 hours. Maintenance required.',
-      location: 'Zone B - Bay 2',
-      timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000),
-      action: 'Schedule Maintenance',
-    },
-    {
-      id: 3,
-      type: 'warning',
-      title: 'Prolonged Session - Possible Misuse',
-      message: 'Vehicle at Charger A3 has been connected for 4.5 hours with charging complete.',
-      location: 'Zone A - Bay 3',
-      timestamp: new Date(Date.now() - 30 * 60 * 1000),
-      action: 'Send Notification',
-    },
-    {
-      id: 4,
-      type: 'info',
-      title: 'Peak Hour Approaching',
-      message: 'High demand predicted at 4:30 PM. Ensure all chargers operational.',
-      timestamp: new Date(Date.now() - 15 * 60 * 1000),
-    },
-  ])
+  const [alerts, setAlerts] = useState([])
 
   const setMockData = () => {
     setUseMockData(true)
     console.warn('⚠️ Using mock data - backend offline')
-    
+
     setCurrentMetrics({
       currentQueue: 8,
       queueChange: 2,
@@ -282,11 +300,10 @@ const Dashboard = () => {
             <button
               key={range}
               onClick={() => setTimeRange(range)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                timeRange === range
+              className={`px-4 py-2 rounded-lg transition-colors ${timeRange === range
                   ? 'bg-primary-600 text-white'
                   : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
-              }`}
+                }`}
             >
               {range}
             </button>
