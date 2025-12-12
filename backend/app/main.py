@@ -166,9 +166,11 @@ async def startup_event():
                     csv_path = p
                     break
             
-            if csv_path:
                 df_seed = pd.read_csv(csv_path)
                 df_seed['timestamp'] = pd.to_datetime(df_seed['timestamp'])
+                # Ensure UTC if naive
+                if df_seed['timestamp'].dt.tz is None:
+                    df_seed['timestamp'] = df_seed['timestamp'].dt.tz_localize('UTC')
                 
                 # Bulk Insert Logic
                 # Convert DF to dicts
