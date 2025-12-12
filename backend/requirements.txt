@@ -15,3 +15,4 @@ ultralytics
 python-multipart
 httpx
 asyncio
+plotly

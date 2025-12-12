@@ -10,8 +10,11 @@ fi
 ./venv/bin/pip install -r requirements.txt
 
 # Load environment variables
+# Load environment variables
 if [ -f .env ]; then
-  export $(cat .env | xargs)
+  set -a
+  source .env
+  set +a
 fi
 
 # Run Uvicorn
