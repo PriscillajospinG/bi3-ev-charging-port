@@ -9,9 +9,15 @@ from ..schemas.dashboard import (
 
 router = APIRouter(tags=["Frontend Integration"])
 
+from ..database import get_db
+from sqlalchemy.ext.asyncio import AsyncSession
+
 @router.get("/api/metrics/current", response_model=FrontendMetrics, tags=["Metrics"])
-async def get_current_metrics(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.frontend_get_current_metrics()
+async def get_current_metrics(
+    service: AnalyticsService = Depends(get_analytics_service),
+    db: AsyncSession = Depends(get_db)
+):
+    return await service.frontend_get_current_metrics(db)
 
 @router.get("/api/chargers", response_model=List[FrontendCharger], tags=["Chargers"])
 async def get_chargers(service: AnalyticsService = Depends(get_analytics_service)):

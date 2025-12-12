@@ -34,26 +34,6 @@ async def get_recommendations(
             # Add other fields if needed or mocks
         } for r in rows]
 
-    # Fallback to Engine Generation if DB empty
-    if service.session_df is None:
-        return []
-    
-    engine = RecommendationEngine(service.session_df)
-    results = engine.generate_recommendations()
-    
-    # Persist Recommendations
-    for r in results:
-        rec_db = Recommendation(
-            title=r['title'],
-            priority=r['priority'],
-            location=r['location'],
-            expected_impact=r['expected_impact'],
-            estimated_cost=r['estimated_cost'],
-            roi_timeline=r['roi_timeline'],
-            category=r.get('category', 'General')
-        )
-        db.add(rec_db)
-    
-    await db.commit()
-    
-    return results
+    # Strict DB Mode - No on-the-fly generation in request
+    # If empty, return empty list.
+    return []

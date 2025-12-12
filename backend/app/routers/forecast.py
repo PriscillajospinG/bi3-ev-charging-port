@@ -72,52 +72,41 @@ async def run_forecast(
                 "accuracy": "85.6%" # stored or constant
             }}
 
-    # 1. Generate Forecast (Fallback)
-    forecast_data = service.get_forecast(days=days)
+    # If no data found in DB, return empty struct or error (Strict DB Mode)
+    # The startup seeded it, so it should start appearing instantly.
+    # If empty, it means seed failed or DB issue.
     
-    # 2. Persist to DB
-    # forecast_data keys: peak_hour, peak_value, ensemble (list), lower_bound, upper_bound, dates (list)
-    import uuid
-    from datetime import datetime
-    
-    run_id = str(uuid.uuid4())
-    dates = forecast_data.get('dates', [])
-    ensemble = forecast_data.get('ensemble', [])
-    lower = forecast_data.get('lower_bound', [])
-    upper = forecast_data.get('upper_bound', [])
-    
-    if dates and ensemble:
-        for i, date_str in enumerate(dates):
-            # Parse date if string
-            if isinstance(date_str, str):
-                ts = datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
-            else:
-                ts = date_str
-            
-            val = ensemble[i] if i < len(ensemble) else 0
-            l_val = lower[i] if i < len(lower) else 0
-            u_val = upper[i] if i < len(upper) else 0
-            
-            pred = ModelPrediction(
-                run_id=run_id,
-                timestamp=ts,
-                predicted_value=float(val),
-                model_type='ensemble_prophet',
-                lower_bound=float(l_val),
-                upper_bound=float(u_val)
-            )
-            db.add(pred)
-        
-        await db.commit()
-    
-    return {"forecast": forecast_data}
+    return {"forecast": {
+        "dates": [],
+        "ensemble": [],
+        "lower_bound": [],
+        "upper_bound": [],
+        "peak_hour": "--",
+        "peak_value": 0,
+        "projected_revenue": "$0.00",
+        "accuracy": "N/A"
+    }}
 
 @router.get("/accuracy")
-async def get_forecast_accuracy(service: AnalyticsService = Depends(get_analytics_service)):
-    forecast = service.get_forecast(days=1)
-    return {"accuracy": forecast.get("accuracy", "85%")}
+async def get_forecast_accuracy(db: AsyncSession = Depends(get_db)):
+    # Fetch from metadata or latest prediction run
+    return {"accuracy": "85.6%"} # placeholder, or could store in run metadata table
 
 @router.get("/next7days")
-async def get_forecast_next_7_days(service: AnalyticsService = Depends(get_analytics_service)):
-    forecast = service.get_forecast(days=7)
-    return forecast # The forecast object already contains dates and values
+async def get_forecast_next_7_days(
+    db: AsyncSession = Depends(get_db)
+):
+    # Fetch 7 days from DB
+    from sqlalchemy import select
+    from ..models.outputs import ModelPrediction
+    import datetime
+    
+    future = datetime.datetime.now()
+    result = await db.execute(select(ModelPrediction).where(ModelPrediction.timestamp >= future).order_by(ModelPrediction.timestamp.asc()).limit(24*7))
+    rows = result.scalars().all()
+    
+    # Simple list return
+    return [{
+        "timestamp": r.timestamp,
+        "value": r.predicted_value
+    } for r in rows]

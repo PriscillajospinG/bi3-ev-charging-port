@@ -12,13 +12,24 @@ import datetime
 class DataCache:
     df = None
     session_df = None
+    _service_instance = None
 
 data_cache = DataCache()
 
 def get_analytics_service():
+    # Return cached service if available
+    if data_cache._service_instance:
+        return data_cache._service_instance
+
     # Only creating service if data is loaded, otherwise empty
     # In main startup we load data_cache
     if data_cache.df is None:
         # Fallback empty df to prevent crash if startup failed
         return AnalyticsService(pd.DataFrame({'timestamp': [], 'vehicle_count': []}))
-    return AnalyticsService(data_cache.df, data_cache.session_df)
+    
+    # Create and cache service
+    service = AnalyticsService(data_cache.df, data_cache.session_df)
+    # Pre-warm forecast to incur cost once (optional, but good)
+    # service.get_forecast() 
+    data_cache._service_instance = service
+    return service

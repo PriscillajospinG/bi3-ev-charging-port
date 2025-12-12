@@ -9,10 +9,12 @@ class ModelPrediction(Base):
     run_id = Column(String, index=True)  # To group predictions from a single execution
     timestamp = Column(DateTime(timezone=True), index=True) # The future time being predicted
     predicted_value = Column(Float)
-    model_type = Column(String) # 'ensemble', 'prophet', etc.
+    model_type = Column(String) # 'ensemble', 'prophet', (from file or engine)
     lower_bound = Column(Float, nullable=True)
     upper_bound = Column(Float, nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    # Adding metadata for file-based tracking
+    source_file = Column(String, nullable=True) # e.g. 'forecast_result.json'
 
 class Recommendation(Base):
     __tablename__ = "recommendations"

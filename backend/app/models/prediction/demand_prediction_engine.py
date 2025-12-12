@@ -156,8 +156,14 @@ class ProphetWrapper:
         p_df = df[['timestamp', 'vehicle_count']].rename(columns={'timestamp': 'ds', 'vehicle_count': 'y'})
         self.model = Prophet(yearly_seasonality=False, weekly_seasonality=True, daily_seasonality=True)
         self.model.fit(p_df)
+
+    def load(self, path):
+        import pickle
+        with open(path, 'rb') as f:
+            self.model = pickle.load(f)
         
     def predict(self, periods=24):
+        if not self.model: return pd.DataFrame()
         future = self.model.make_future_dataframe(periods=periods, freq='H')
         forecast = self.model.predict(future)
         return forecast[['ds', 'yhat']].tail(periods)
@@ -171,6 +177,9 @@ class XGBoostWrapper:
         X = df[self.features]
         y = df['vehicle_count']
         self.model.fit(X, y)
+
+    def load(self, path):
+        self.model.load_model(path)
         
     def predict(self, df_input):
         X = df_input[self.features]
@@ -204,8 +213,17 @@ class LSTMWrapper:
         self.model.add(Dense(1))
         self.model.compile(loss='mean_squared_error', optimizer='adam')
         self.model.fit(X, y, epochs=20, batch_size=32, verbose=0)
+
+    def load(self, model_path, scaler_path):
+        import joblib
+        from tensorflow.keras.models import load_model
+        self.model = load_model(model_path)
+        self.scaler = joblib.load(scaler_path)
+        # Note: self.scaled_data is needed for sequence prediction. 
+        # In a real app, we'd load reference data from DB to build the context window.
         
     def predict_sequence(self, last_sequence, n_steps):
+        if self.model is None: return np.zeros(n_steps)
         predictions = []
         curr_seq = last_sequence.copy()
         
@@ -231,15 +249,52 @@ class EnsembleForecaster:
         self.xgboost = XGBoostWrapper()
         self.lstm = LSTMWrapper(look_back=24)
             
-    def train(self):
-        print("   - Training Prophet...")
-        self.prophet.train(self.df_full)
+    def load_or_train(self, model_dir):
+        """Attempts to load models; logs error if missing (does NOT retrain automatically per user request)."""
+        import os
         
-        print("   - Training XGBoost...")
-        self.xgboost.train(self.df_model)
+        p_path = os.path.join(model_dir, "prophet_model.pkl")
+        x_path = os.path.join(model_dir, "xgboost_model.json")
+        l_path = os.path.join(model_dir, "lstm_model.keras")
+        s_path = os.path.join(model_dir, "lstm_scaler.pkl")
         
-        print("   - Training LSTM...")
-        self.lstm.train(self.df_model)
+        loaded_count = 0
+        
+        # Prophet
+        if os.path.exists(p_path):
+            print(f"Loading Prophet from {p_path}")
+            try:
+                self.prophet.load(p_path)
+                loaded_count += 1
+            except Exception as e:
+                print(f"Failed to load Prophet: {e}")
+        else:
+            print("Prophet model file not found.")
+
+        # XGBoost
+        if os.path.exists(x_path):
+             print(f"Loading XGBoost from {x_path}")
+             try:
+                self.xgboost.load(x_path)
+                loaded_count += 1
+             except Exception as e:
+                print(f"Failed to load XGBoost: {e}")
+        else:
+            print("XGBoost model file not found.")
+
+        # LSTM
+        if os.path.exists(l_path) and os.path.exists(s_path):
+             print(f"Loading LSTM from {l_path}")
+             try:
+                self.lstm.load(l_path, s_path)
+                loaded_count += 1
+             except Exception as e:
+                print(f"Failed to load LSTM: {e}")
+        else:
+            print("LSTM model/scaler file not found.")
+            
+        if loaded_count == 0:
+            print("WARNING: No models loaded. Predictions will fail or return empty.")
         
     def evaluate(self, test_hours=24):
         """Calculates accuracy on the last 'test_hours' of data."""
