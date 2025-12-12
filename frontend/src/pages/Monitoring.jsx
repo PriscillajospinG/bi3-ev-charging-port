@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 import VideoUpload from '../components/Monitoring/VideoUpload'
-import TrafficStats from '../components/Monitoring/TrafficStats'
+import DetectionResults from '../components/Monitoring/DetectionResults'
 import ChargerCard from '../components/Monitoring/ChargerCard'
 import { api } from '../services/api'
 
@@ -48,6 +48,9 @@ const Monitoring = () => {
 
       {/* Video Upload Section */}
       <VideoUpload />
+
+      {/* Detection Results Section */}
+      <DetectionResults />
 
       {/* Current Detection Stats */}
       <div className="card bg-slate-800/50 border border-slate-700">

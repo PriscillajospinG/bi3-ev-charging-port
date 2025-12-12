@@ -49,13 +49,12 @@ const VideoUpload = () => {
     formData.append('file', file)
 
     try {
-      await api.uploadVideo(formData)
+      const response = await api.uploadVideo(formData)
       setUploadStatus('success')
-      alert("Video uploaded! Processing in background.")
+      console.log('Upload successful:', response.data)
     } catch (e) {
       console.error("Upload failed", e)
       setUploadStatus('error')
-      alert("Upload failed. Check console.")
     } finally {
       setIsUploading(false)
     }
@@ -92,8 +91,8 @@ const VideoUpload = () => {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className={`border-2 border-dashed rounded-lg p-12 text-center transition-colors ${isDragOver
-            ? 'border-primary-400 bg-primary-500/10'
-            : 'border-slate-600 bg-slate-900/50 hover:border-slate-500'
+          ? 'border-primary-400 bg-primary-500/10'
+          : 'border-slate-600 bg-slate-900/50 hover:border-slate-500'
           }`}
       >
         <Upload size={48} className="mx-auto mb-4 text-slate-400" />
@@ -119,7 +118,7 @@ const VideoUpload = () => {
 
       {selectedFile && (
         <div className={`mt-4 p-3 border rounded-lg flex items-center gap-3 ${uploadStatus === 'error' ? 'bg-red-500/10 border-red-500/30' :
-            uploadStatus === 'success' ? 'bg-success/10 border-success/30' : 'bg-slate-700/30 border-slate-600'
+          uploadStatus === 'success' ? 'bg-success/10 border-success/30' : 'bg-slate-700/30 border-slate-600'
           }`}>
           {isUploading ? <Loader className="animate-spin text-primary-400" size={20} /> :
             uploadStatus === 'success' ? <CheckCircle className="text-success" size={20} /> :
@@ -135,7 +134,16 @@ const VideoUpload = () => {
             </p>
           </div>
 
-          {uploadStatus === 'success' && <span className="text-xs font-bold text-success">PROCESSED</span>}
+          {uploadStatus === 'success' && (
+            <span className="text-xs font-bold text-success">
+              QUEUED FOR PROCESSING ↓
+            </span>
+          )}
+          {uploadStatus === 'error' && (
+            <span className="text-xs font-bold text-red-400">
+              UPLOAD FAILED
+            </span>
+          )}
         </div>
       )}
     </div>

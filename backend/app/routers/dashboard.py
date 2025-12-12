@@ -5,6 +5,13 @@ from ..schemas.dashboard import DashboardResponse
 
 router = APIRouter(prefix="/api/dashboard", tags=["Dashboard"])
 
+@router.get("/stats")
+async def get_dashboard_stats(service: AnalyticsService = Depends(get_analytics_service)):
+    """Get dashboard stats for the main dashboard page."""
+    summary = service.get_summary_metrics()
+    return summary
+
+
 @router.get("/live", response_model=DashboardResponse)
 async def get_dashboard_live(service: AnalyticsService = Depends(get_analytics_service)):
     # Aggregating all sub-components for the main dashboard view

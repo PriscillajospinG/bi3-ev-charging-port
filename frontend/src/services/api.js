@@ -91,6 +91,12 @@ export const api = {
     },
   }),
 
+  // Video Status & Results
+  getVideoStatus: (filename) => apiClient.get(`/video/status/${encodeURIComponent(filename)}`),
+  getAllVideoStatus: () => apiClient.get('/video/status'),
+  getVideoResults: () => apiClient.get('/video/results'),
+  getVideoResultsBySource: (videoSource) => apiClient.get(`/video/results/${encodeURIComponent(videoSource)}`),
+
   // Cameras
   getCameraFeeds: () => apiClient.get('/cameras'),
   getCameraById: (id) => apiClient.get(`/cameras/${id}`),

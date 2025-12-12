@@ -14,7 +14,10 @@ if [ -f .env ]; then
   export $(cat .env | xargs)
 fi
 
-# Run Uvicorn
-# We run from current dir so "app.main" resolves correctly
-echo "Starting FastAPI Server..."
-./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+# Kill any existing process on port 8002
+fuser -k 8000/tcp 2>/dev/null || true
+sleep 1
+
+# Run Uvicorn (using port 8002 to avoid conflicts)
+echo "Starting FastAPI Server on port 8000..."
+./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000

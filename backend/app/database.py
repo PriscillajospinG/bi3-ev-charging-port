@@ -5,27 +5,31 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+# Get DATABASE_URL and clean it (stop at first newline or extra content)
+raw_db_url = os.getenv("DATABASE_URL", "")
+# Extract just the first line if there are multiple
+DATABASE_URL = raw_db_url.split('\n')[0].split('OPEN_CHARGE')[0].strip() if raw_db_url else None
 
-if not DATABASE_URL:
-    # Fallback to local sqlite for dev if no URL provided (though user provided TimescaleDB)
-    # But since we are building for TimescaleDB specifically, we should warn or expect it.
-    # For dev safety here without revealing secrets in logs easily:
-    pass
+USE_SQLITE = False
+connect_args = {}
 
-# Explicitly require SSL for TimescaleDB
-# asyncpg with SQLAlchemy sometimes needs an SSLContext object for "require",
-# or we can pass it via the query string if the driver supports it.
-# However, for many cloud providers, a simple context with verify_mode=CERT_NONE (if using self-signed or system CA) works best.
-import ssl
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
-
-connect_args = {"ssl": ctx}
+if DATABASE_URL and DATABASE_URL.startswith("postgresql"):
+    # PostgreSQL/TimescaleDB mode
+    import ssl
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    connect_args = {"ssl": ctx}
+    engine_url = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://")
+else:
+    # Fallback to SQLite for dev/testing
+    USE_SQLITE = True
+    engine_url = "sqlite+aiosqlite:///./ev_charging.db"
+    connect_args = {"check_same_thread": False}
+    print("⚠️  Using SQLite fallback database for development")
 
 # Create engine with connect_args
-engine = create_async_engine(DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://"), echo=False, connect_args=connect_args)
+engine = create_async_engine(engine_url, echo=False, connect_args=connect_args)
 
 AsyncSessionLocal = sessionmaker(
     bind=engine,
@@ -38,3 +42,4 @@ Base = declarative_base()
 async def get_db():
     async with AsyncSessionLocal() as session:
         yield session
+
