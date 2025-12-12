@@ -12,7 +12,8 @@ import {
     AlertCircle,
     Loader,
     ChevronDown,
-    ChevronUp
+    ChevronUp,
+    Trash2
 } from 'lucide-react'
 import { api } from '../../services/api'
 
@@ -23,6 +24,7 @@ const DetectionResults = () => {
     const [error, setError] = useState(null)
     const [expandedVideo, setExpandedVideo] = useState(null)
     const [autoRefresh, setAutoRefresh] = useState(true)
+    const [resetting, setResetting] = useState(false)
 
     const fetchData = async () => {
         try {
@@ -38,6 +40,27 @@ const DetectionResults = () => {
             setError('Failed to load detection results')
         } finally {
             setLoading(false)
+        }
+    }
+
+    const handleReset = async () => {
+        if (!window.confirm('Are you sure you want to clear all processing history and results? This cannot be undone.')) {
+            return
+        }
+
+        setResetting(true)
+        try {
+            await api.resetVideoProcessing()
+            // Clear local state immediately
+            setResults(null)
+            setProcessingJobs([])
+            // Fetch fresh (empty) data
+            await fetchData()
+        } catch (e) {
+            console.error('Failed to reset data', e)
+            alert('Failed to reset data')
+        } finally {
+            setResetting(false)
         }
     }
 
@@ -115,8 +138,8 @@ const DetectionResults = () => {
                         <button
                             onClick={() => setAutoRefresh(!autoRefresh)}
                             className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm transition-colors ${autoRefresh
-                                    ? 'bg-primary-600 text-white'
-                                    : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                                ? 'bg-primary-600 text-white'
+                                : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
                                 }`}
                         >
                             <RefreshCw size={14} className={autoRefresh ? 'animate-spin' : ''} />
@@ -153,13 +176,67 @@ const DetectionResults = () => {
                                         </div>
                                     )}
                                 </div>
+                                <div className="mt-3 grid grid-cols-2 md:grid-cols-4 gap-4 bg-slate-700/30 p-3 rounded-lg">
+                                    {job.avg_dwell_time !== undefined && (
+                                        <div className="flex items-center gap-2">
+                                            <Clock size={16} className="text-primary-400" />
+                                            <div>
+                                                <p className="text-xs text-slate-400">Avg Dwell Time</p>
+                                                <p className="font-semibold">{job.avg_dwell_time}s</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {job.max_queue_length !== undefined && (
+                                        <div className="flex items-center gap-2">
+                                            <Activity size={16} className="text-amber-400" />
+                                            <div>
+                                                <p className="text-xs text-slate-400">Max Queue</p>
+                                                <p className="font-semibold">{job.max_queue_length} vehicles</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {job.avg_queue_length !== undefined && (
+                                        <div className="flex items-center gap-2">
+                                            <Activity size={16} className="text-blue-400" />
+                                            <div>
+                                                <p className="text-xs text-slate-400">Avg Queue</p>
+                                                <p className="font-semibold">{job.avg_queue_length} vehicles</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {job.queue_length !== undefined && job.status === 'processing' && (
+                                        <div className="flex items-center gap-2">
+                                            <Activity size={16} className="text-green-400 animate-pulse" />
+                                            <div>
+                                                <p className="text-xs text-slate-400">Current Queue</p>
+                                                <p className="font-semibold">{job.queue_length} vehicles</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {job.dwell_time_by_class && Object.keys(job.dwell_time_by_class).length > 0 && (
+                                    <div className="mt-3">
+                                        <p className="text-xs text-slate-400 mb-1">Dwell Time by Class:</p>
+                                        <div className="flex flex-wrap gap-3">
+                                            {Object.entries(job.dwell_time_by_class).map(([cls, time]) => (
+                                                <div key={cls} className="flex items-center gap-1.5 bg-slate-700/50 px-2 py-1 rounded text-xs">
+                                                    {getVehicleIcon(cls)}
+                                                    <span className="text-slate-300 capitalize">{cls}:</span>
+                                                    <span className="font-mono text-primary-400">{time}s</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
                                 {job.status === 'processing' && job.total_frames > 0 && (
                                     <div className="mt-3">
                                         <div className="w-full bg-slate-700 rounded-full h-2">
                                             <div
                                                 className="bg-blue-500 h-2 rounded-full transition-all duration-300"
                                                 style={{
-                                                    width: `${Math.min(100, (job.processed_frames / (job.total_frames / 30)) * 100)}%`
+                                                    width: `${Math.min(100, (job.processed_frames / (job.total_frames || 1)) * 100)}%`
                                                 }}
                                             />
                                         </div>
@@ -181,12 +258,23 @@ const DetectionResults = () => {
                         <BarChart3 size={24} className="text-primary-400" />
                         <h2 className="text-xl font-semibold">Detection Results</h2>
                     </div>
-                    <button
-                        onClick={fetchData}
-                        className="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors"
-                    >
-                        <RefreshCw size={18} />
-                    </button>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={handleReset}
+                            disabled={resetting}
+                            className="p-2 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-colors disabled:opacity-50"
+                            title="Reset all data"
+                        >
+                            <Trash2 size={18} />
+                        </button>
+                        <button
+                            onClick={fetchData}
+                            className="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition-colors"
+                            title="Refresh data"
+                        >
+                            <RefreshCw size={18} />
+                        </button>
+                    </div>
                 </div>
 
                 {error ? (

@@ -8,10 +8,12 @@ from ..services.video_processor import (
     process_video_file, 
     get_processing_status, 
     get_all_processing_status,
-    update_status
+    update_status,
+    reset_processing_status
 )
 from ..database import AsyncSessionLocal
 from ..models.events import VehicleEvent
+from sqlalchemy import delete
 
 router = APIRouter(
     prefix="/api/video",
@@ -72,6 +74,24 @@ async def get_all_video_status():
         "total": len(all_status),
         "jobs": [{"filename": k, **v} for k, v in all_status.items()]
     }
+
+@router.post("/reset")
+async def reset_video_processing():
+    """
+    Reset all video processing data (status and database records).
+    """
+    # Clear in-memory status
+    reset_processing_status()
+    
+    # Clear database records
+    try:
+        async with AsyncSessionLocal() as session:
+            await session.execute(delete(VehicleEvent))
+            await session.commit()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to clear database: {e}")
+        
+    return {"message": "All video processing data reset successfully"}
 
 @router.get("/results")
 async def get_all_detection_results(limit: int = 100, offset: int = 0):

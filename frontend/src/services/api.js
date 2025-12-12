@@ -79,23 +79,19 @@ export const api = {
   getSeasonalAnalysis: () => apiClient.get('/predictions/seasonal'),
 
   // Recommendations
-  // Recommendations
   getRecommendations: () => apiClient.get('/recommendations'),
   getRecommendationById: (id) => apiClient.get(`/recommendations/${id}`),
   implementRecommendation: (id) => apiClient.post(`/recommendations/${id}/implement`),
 
-  // Video Upload
+  // Video Processing
   uploadVideo: (formData) => apiClient.post('/video/upload', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
+    headers: { 'Content-Type': 'multipart/form-data' }
   }),
-
-  // Video Status & Results
-  getVideoStatus: (filename) => apiClient.get(`/video/status/${encodeURIComponent(filename)}`),
+  getVideoStatus: (filename) => apiClient.get(`/video/status/${filename}`),
   getAllVideoStatus: () => apiClient.get('/video/status'),
-  getVideoResults: () => apiClient.get('/video/results'),
-  getVideoResultsBySource: (videoSource) => apiClient.get(`/video/results/${encodeURIComponent(videoSource)}`),
+  getVideoResults: (params) => apiClient.get('/video/results', { params }),
+  getVideoResultsBySource: (source) => apiClient.get(`/video/results/${source}`),
+  resetVideoProcessing: () => apiClient.post('/video/reset'),
 
   // Cameras
   getCameraFeeds: () => apiClient.get('/cameras'),
