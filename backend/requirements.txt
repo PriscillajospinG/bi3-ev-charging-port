@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+pandas
+numpy
+scikit-learn
+xgboost
+prophet
+tensorflow
+ultralytics
+deep-sort-realtime
+opencv-python
+python-multipart
+python-dotenv
