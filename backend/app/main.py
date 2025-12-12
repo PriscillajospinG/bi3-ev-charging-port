@@ -1,5 +1,4 @@
-from fastapi import FastAPI, APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect
-from typing import List
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import os
@@ -8,110 +7,8 @@ import sys
 # Add app to path to allow absolute imports if needed, though structure should handle it
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from .services.analytics import AnalyticsService
-from .services.forecast import PredictionService
-from .services.recommendations import RecommendationService
-from .schemas.dashboard import (
-    DashboardResponse, RevenuePanel, LiveOccupancy, TrafficAnalysis, 
-    ForecastResponse, Recommendation,
-    FrontendMetrics, FrontendCharger, FrontendOccupancyItem, FrontendUtilizationItem, Alert
-)
-
-# --- Router Setup ---
-
-dashboard_router = APIRouter(prefix="/api/dashboard", tags=["Dashboard"])
-analytics_router = APIRouter(prefix="/api/analytics", tags=["Analytics"])
-forecast_router = APIRouter(prefix="/api/forecast", tags=["Forecast"])
-recommendations_router = APIRouter(prefix="/api/recommendations", tags=["Recommendations"])
-
-# --- Dependency Injection / Data Loading ---
-
-# --- Dependency Injection / Data Loading ---
-
-# Global Data Cache (Simulating DB load for this phase)
-class DataCache:
-    df = None
-    session_df = None
-    
-data_cache = DataCache()
-
-def get_analytics_service():
-    if data_cache.df is None:
-        raise HTTPException(status_code=503, detail="Data not loaded yet")
-    # Init service with both raw events and detailed session data
-    return AnalyticsService(data_cache.df, data_cache.session_df)
-
-def get_prediction_service():
-    return PredictionService()
-
-def get_rec_service():
-    return RecommendationService()
-
-# --- Dashboard Endpoints ---
-
-@dashboard_router.get("/live", response_model=DashboardResponse)
-async def get_dashboard_live(service: AnalyticsService = Depends(get_analytics_service)):
-    # Aggregating all sub-components for the main dashboard view
-    return DashboardResponse(
-        revenue_panel=service.get_revenue_panel(),
-        live_occupancy=service.get_live_occupancy(),
-        traffic_analysis=service.get_traffic_analysis(),
-        alerts=service.get_alerts(),
-        charger_overview=service.get_charger_overview(),
-        summary_metrics=service.get_summary_metrics(),
-        utilization_trend=service.get_utilization_trend(),
-        status_distribution=service.get_status_distribution()
-    )
-
-@dashboard_router.get("/alerts")
-async def get_dashboard_alerts(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.get_alerts()
-
-@dashboard_router.get("/performance")
-async def get_dashboard_performance(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.get_charger_overview()
-
-@dashboard_router.get("/utilization-trend")
-async def get_utilization_trend(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.get_utilization_trend()
-
-# --- Analytics Endpoints ---
-
-@analytics_router.get("/summary")
-async def get_analytics_summary(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.get_summary_metrics()
-
-@analytics_router.get("/daily")
-async def get_analytics_daily(service: AnalyticsService = Depends(get_analytics_service)):
-    # Reuse utilization trend as proxy for daily profile
-    return service.get_utilization_trend()
-
-# --- Forecast Endpoints ---
-
-@forecast_router.get("/run", response_model=ForecastResponse)
-async def run_forecast(
-    days: int = 7, 
-    service: PredictionService = Depends(get_prediction_service)
-):
-    if data_cache.df is None:
-        raise HTTPException(status_code=503, detail="Data not loaded")
-    return service.run_forecast(data_cache.df, days)
-
-@forecast_router.get("/accuracy")
-async def get_forecast_accuracy():
-    return {"accuracy": "88.5%", "metric": "MAPE"}
-
-@forecast_router.get("/next7days")
-async def get_next_7_days(service: PredictionService = Depends(get_prediction_service)):
-    if data_cache.df is None:
-        raise HTTPException(status_code=503, detail="Data not loaded")
-    return service.run_forecast(data_cache.df, days=7)
-
-# --- Recommendation Endpoints ---
-
-@recommendations_router.get("/", response_model=list[Recommendation])
-async def get_recommendations(service: RecommendationService = Depends(get_rec_service)):
-    return service.get_recommendations()
+from .dependencies import data_cache
+from .routers import dashboard, analytics, forecast, recommendations, frontend
 
 # --- Main App ---
 
@@ -126,27 +23,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Frontend Integration Endpoints ---
-
-@app.get("/api/metrics/current", response_model=FrontendMetrics, tags=["Metrics"])
-async def get_current_metrics(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.frontend_get_current_metrics()
-
-@app.get("/api/chargers", response_model=List[FrontendCharger], tags=["Chargers"])
-async def get_chargers(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.frontend_get_chargers()
-
-@app.get("/api/analytics/utilization", response_model=List[FrontendUtilizationItem], tags=["Analytics"])
-async def get_frontend_utilization(range: str = "24h", service: AnalyticsService = Depends(get_analytics_service)):
-    return service.frontend_get_utilization(range)
-
-@app.get("/api/analytics/occupancy", response_model=List[FrontendOccupancyItem], tags=["Analytics"])
-async def get_frontend_occupancy(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.frontend_get_occupancy()
-
-@app.get("/api/alerts", response_model=List[Alert], tags=["Alerts"])
-async def get_frontend_alerts(service: AnalyticsService = Depends(get_analytics_service)):
-    return service.get_alerts()
+# --- Include Routers ---
+app.include_router(dashboard.router)
+app.include_router(analytics.router)
+app.include_router(forecast.router)
+app.include_router(recommendations.router)
+app.include_router(frontend.router)
 
 # Startup Event to Load Data & Init DB
 @app.on_event("startup")
@@ -269,12 +151,6 @@ async def websocket_endpoint(websocket: WebSocket):
         print("Client disconnected")
     except Exception as e:
         print(f"WebSocket Error: {e}")
-
-# Include Routers
-app.include_router(dashboard_router)
-app.include_router(analytics_router)
-app.include_router(forecast_router)
-app.include_router(recommendations_router)
 
 @app.get("/")
 async def root():
