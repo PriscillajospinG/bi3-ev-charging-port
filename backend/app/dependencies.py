@@ -4,7 +4,8 @@ from .models.dashboard.dashboard_engine import DataSimulator
 import pandas as pd
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from .database import get_db, EvEvent
+from .database import get_db
+from .models.events import EvEvent
 import datetime
 
 # Singleton Cache (Simple in-memory for demo)

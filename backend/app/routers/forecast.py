@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from ..dependencies import get_prediction_service, data_cache, get_analytics_service
+from ..dependencies import data_cache, get_analytics_service
 from ..services.forecast import PredictionService
 from ..services.analytics import AnalyticsService
 from ..schemas.dashboard import ForecastResponse
