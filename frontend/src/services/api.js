@@ -52,6 +52,18 @@ export const api = {
   getDashboardStats: () => apiClient.get('/dashboard/stats'),
   getDashboardLive: () => apiClient.get('/dashboard/live'),
 
+  // Analytics endpoints
+  getAnalyticsSummary: () => apiClient.get('/analytics/summary'),
+  getAnalyticsDaily: () => apiClient.get('/analytics/daily'),
+  getUtilizationTrend: () => apiClient.get('/dashboard/utilization-trend'),
+
+  // Forecast endpoints
+  getForecast: (days = 7) => apiClient.get(`/forecast/run?days=${days}`),
+  getForecastAccuracy: () => apiClient.get('/forecast/accuracy'),
+
+  // Recommendations endpoints
+  getRecommendations: () => api.get('/recommendations'),
+
   // Chargers
   getChargers: () => apiClient.get('/chargers'),
   getChargerById: (id) => apiClient.get(`/chargers/${id}`),

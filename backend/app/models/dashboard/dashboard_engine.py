@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import datetime
-import random
 import json
 from prophet import Prophet
 import warnings
@@ -350,18 +349,27 @@ def get_dashboard_data(station_id="S01", window="24h"):
         raw_df['timestamp'] = pd.to_datetime(raw_df['timestamp'])
     except:
         # Fallback generator if file not found (self-contained)
-        timestamps = pd.date_range(end=datetime.datetime.now(), periods=24*30, freq='H')
+        current_time = datetime.datetime.now()
         data = []
-        for ts in timestamps:
+        # Generate data for the last 30 days, hourly
+        for i in range(24 * 30):
+            # Deterministic pattern based on hour
+            hour = (current_time - datetime.timedelta(hours=i)).hour
+            v_count = 10 + (hour * 2)
+            s_count = int(v_count * 0.8)
+            occ = min(0.9, 0.1 + (hour / 30.0))
+            q_len = int(hour / 6)
+            
             data.append({
-                'timestamp': ts,
-                'station_id': 'S01',
-                'vehicle_count': random.randint(5, 40),
-                'session_count': random.randint(5, 30),
-                'occupancy_rate': random.uniform(0.1, 0.9),
-                'queue_length': random.randint(0, 5)
+                'timestamp': current_time - datetime.timedelta(hours=i),
+                'station_id': "S01",
+                'vehicle_count': v_count,
+                'session_count': s_count,
+                'occupancy_rate': occ,
+                'queue_length': q_len
             })
         raw_df = pd.DataFrame(data)
+        raw_df = raw_df.sort_values(by='timestamp').reset_index(drop=True) # Ensure chronological order
 
     # Simulator for charger details
     sim = DataSimulator(raw_df)
