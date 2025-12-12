@@ -1,17 +1,12 @@
 import { useState, useEffect } from 'react'
-import CameraFeed from '../components/Monitoring/CameraFeed'
+
 import VideoUpload from '../components/Monitoring/VideoUpload'
 import TrafficStats from '../components/Monitoring/TrafficStats'
 import ChargerCard from '../components/Monitoring/ChargerCard'
 import { api } from '../services/api'
 
 const Monitoring = () => {
-  const [cameras] = useState([
-    { id: 1, title: 'Main Entrance', rtspUrl: 'rtsp://camera1/stream', type: 'road' },
-    { id: 2, title: 'Zone A - Chargers', rtspUrl: 'rtsp://camera2/stream', type: 'charger' },
-    { id: 3, title: 'Zone B - Chargers', rtspUrl: 'rtsp://camera3/stream', type: 'charger' },
-    { id: 4, title: 'Exit Lane', rtspUrl: 'rtsp://camera4/stream', type: 'road' },
-  ])
+
 
   const [stats, setStats] = useState({
     currentQueue: 0,
@@ -74,21 +69,7 @@ const Monitoring = () => {
         </div>
       </div>
 
-      {/* Camera Feeds */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Camera Feeds</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {cameras.map((camera) => (
-            <CameraFeed
-              key={camera.id}
-              cameraId={camera.id}
-              title={camera.title}
-              rtspUrl={camera.rtspUrl}
-              type={camera.type}
-            />
-          ))}
-        </div>
-      </div>
+
 
       {/* Live Charger Status */}
       <div>

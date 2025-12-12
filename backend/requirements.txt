@@ -10,3 +10,6 @@ scikit-learn
 xgboost
 python-dotenv
 tensorflow
+opencv-python-headless
+ultralytics
+python-multipart

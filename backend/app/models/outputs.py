@@ -29,3 +29,5 @@ class Recommendation(Base):
     category = Column(String)
     generated_at = Column(DateTime(timezone=True), server_default=func.now())
     status = Column(String, default="Proposed") # Proposed, Implemented, Rejected
+    estimated_monthly_revenue = Column(String, nullable=True)
+    key_insights = Column(String, nullable=True) # Stored as JSON string

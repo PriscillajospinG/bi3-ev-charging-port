@@ -84,6 +84,13 @@ export const api = {
   getRecommendationById: (id) => apiClient.get(`/recommendations/${id}`),
   implementRecommendation: (id) => apiClient.post(`/recommendations/${id}/implement`),
 
+  // Video Upload
+  uploadVideo: (formData) => apiClient.post('/video/upload', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }),
+
   // Cameras
   getCameraFeeds: () => apiClient.get('/cameras'),
   getCameraById: (id) => apiClient.get(`/cameras/${id}`),
