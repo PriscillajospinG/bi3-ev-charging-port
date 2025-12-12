@@ -17,4 +17,4 @@ fi
 # Run Uvicorn
 # We run from current dir so "app.main" resolves correctly
 echo "Starting FastAPI Server..."
-./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+./venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload

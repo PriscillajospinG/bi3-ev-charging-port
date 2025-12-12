@@ -10,3 +10,5 @@ scikit-learn
 xgboost
 python-dotenv
 tensorflow
+httpx
+asyncio
