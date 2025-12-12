@@ -43,9 +43,10 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const [liveRes, chargersRes] = await Promise.all([
+      const [liveRes, chargersRes, metricsRes] = await Promise.all([
         api.getDashboardLive(),
         api.getChargers(),
+        api.getCurrentMetrics(),
       ])
 
       const liveData = liveRes.data;
@@ -123,19 +124,9 @@ const Dashboard = () => {
         { name: 'Offline', value: dist.offline.units },
       ]);
 
-      // Metrics and Chargres
-      setCurrentMetrics(liveData.summary_metrics); // Warning: summary_metrics structure != FrontendMetrics.
-      // summary_metrics: { total_sessions, total_revenue, avg_utilization, avg_performance }
-      // FrontendMetrics: { currentQueue, queueChange, vehiclesDetected, avgDwellTime... }
-      // Actually liveRes.summary_metrics is NOT what setCurrentMetrics expects.
-      // AND Dashboard.jsx uses `currentMetrics` for the top cards (Queue, Vehicles, Dwell Time).
-      // `summary_metrics` from `/live` seems to be distinct from `frontend_get_current_metrics`.
-      // `AnalyticsService.get_summary_metrics` returns total stats.
-      // `AnalyticsService.frontend_get_current_metrics` returns queue/vehicles stats.
-      // The `/live` endpoint returns `summary_metrics` but NOT `frontend_metrics`.
-
-      // FIX: I should fetch `api.getCurrentMetrics()` as well or rely on it from an updated `/live` endpoint.
-      // Since I want to integrate perfectly, I will ADD `api.getCurrentMetrics()` to the Promise.all.
+      // Metrics & Chargers
+      setCurrentMetrics(metricsRes.data)
+      setChargers(chargersRes.data)
 
     } catch (error) {
       console.error('Failed to fetch dashboard data:', error)
@@ -143,11 +134,31 @@ const Dashboard = () => {
     }
   }
 
-  const [occupancy, setOccupancy] = useState(null)
+  const [occupancy, setOccupancy] = useState({
+    total: 0,
+    occupied: 0,
+    available: 0,
+    queueLength: 0,
+    avgWaitTime: 0,
+  })
 
-  const [traffic, setTraffic] = useState(null)
+  const [traffic, setTraffic] = useState({
+    approaching: 0,
+    eta: 0,
+    routes: 0,
+    vehicles: [],
+    routeDetails: [],
+  })
 
-  const [revenueMetrics, setRevenueMetrics] = useState(null)
+  const [revenueMetrics, setRevenueMetrics] = useState({
+    todayRevenue: 0,
+    todayChange: 0,
+    weekRevenue: 0,
+    avgDailyRevenue: 0,
+    monthRevenue: 0,
+    monthProgress: 0,
+    projectedRevenue: 0,
+  })
 
   const [alerts, setAlerts] = useState([])
 
@@ -301,8 +312,8 @@ const Dashboard = () => {
               key={range}
               onClick={() => setTimeRange(range)}
               className={`px-4 py-2 rounded-lg transition-colors ${timeRange === range
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                ? 'bg-primary-600 text-white'
+                : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
                 }`}
             >
               {range}

@@ -26,16 +26,20 @@ recommendations_router = APIRouter(prefix="/api/recommendations", tags=["Recomme
 
 # --- Dependency Injection / Data Loading ---
 
+# --- Dependency Injection / Data Loading ---
+
 # Global Data Cache (Simulating DB load for this phase)
 class DataCache:
     df = None
+    session_df = None
     
 data_cache = DataCache()
 
 def get_analytics_service():
     if data_cache.df is None:
         raise HTTPException(status_code=503, detail="Data not loaded yet")
-    return AnalyticsService(data_cache.df)
+    # Init service with both raw events and detailed session data
+    return AnalyticsService(data_cache.df, data_cache.session_df)
 
 def get_prediction_service():
     return PredictionService()
@@ -221,10 +225,7 @@ async def startup_event():
         # 3. Load Data into Cache (Hybrid pattern)
         print("Loading data into Analytics Cache from DB...")
         # Fetch all data for analytics engine
-        # Note: In prod with millions of rows, we'd refactor AnalyticsService to run SQL aggregations.
-        # For this demo scale (14k rows), loading to DF is instant and allows reusing our python engine logic flawlessly.
         
-        # Using pandas read_sql with async engine is tricky, better to fetch and construct
         result_all = await session.execute(select(EvEvent).order_by(EvEvent.timestamp))
         rows = result_all.scalars().all()
         
@@ -240,6 +241,15 @@ async def startup_event():
         
         data_cache.df = pd.DataFrame(data)
         print(f"Analytics Cache Ready: {len(data_cache.df)} rows loaded.")
+        
+        # 4. Generate Consistent Session Data for Detail Views
+        # Use DataSimulator to create a consistent view of chargers/sessions
+        from .models.dashboard.dashboard_engine import DataSimulator
+        
+        print("Generating consistent session/charger data...")
+        simulator = DataSimulator(data_cache.df)
+        data_cache.session_df = simulator.get_charger_level_data()
+        print(f"Session Cache Ready: {len(data_cache.session_df)} sessions generated.")
 
 # --- WebSocket ---
 @app.websocket("/ws")
