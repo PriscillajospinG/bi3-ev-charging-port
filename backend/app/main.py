@@ -9,6 +9,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from .dependencies import data_cache
 from .routers import dashboard, analytics, forecast, recommendations, frontend, video
+from .routers import dashboard, analytics, forecast, recommendations, frontend, map_router
 
 # --- Main App ---
 
@@ -30,6 +31,7 @@ app.include_router(forecast.router)
 app.include_router(recommendations.router)
 app.include_router(video.router)
 app.include_router(frontend.router)
+app.include_router(map_router.router)
 
 # Startup Event to Load Data & Init DB
 @app.on_event("startup")

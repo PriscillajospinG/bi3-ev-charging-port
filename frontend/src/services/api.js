@@ -67,6 +67,9 @@ export const api = {
   getChargerById: (id) => apiClient.get(`/chargers/${id}`),
   getChargerStatus: () => apiClient.get('/chargers/status'),
 
+  // Map / Stations
+  getStations: (params) => apiClient.get('/map/stations', { params }),
+
   // Analytics
   getUtilizationData: (params) => apiClient.get('/analytics/utilization', { params }),
   getTrafficData: (params) => apiClient.get('/analytics/traffic', { params }),

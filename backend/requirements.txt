@@ -13,3 +13,5 @@ tensorflow
 opencv-python-headless
 ultralytics
 python-multipart
+httpx
+asyncio

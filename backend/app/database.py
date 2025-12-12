@@ -25,7 +25,10 @@ ctx.verify_mode = ssl.CERT_NONE
 connect_args = {"ssl": ctx}
 
 # Create engine with connect_args
-engine = create_async_engine(DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://"), echo=False, connect_args=connect_args)
+# Strip sslmode=require if present because asyncpg doesn't support it in the connection string
+# when using connect_args for SSL configuration.
+clean_db_url = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://").replace("?sslmode=require", "").replace("&sslmode=require", "")
+engine = create_async_engine(clean_db_url, echo=False, connect_args=connect_args)
 
 AsyncSessionLocal = sessionmaker(
     bind=engine,
