@@ -7,7 +7,8 @@ from typing import List, Dict
 # Import engines from the shared dashboard model
 from ..models.dashboard.dashboard_engine import (
     RevenueEngine, OccupancyEngine, TrafficEngine, 
-    AlertsEngine, PerformanceEngine, ForecastEngine
+    AlertsEngine, PerformanceEngine, ForecastEngine,
+    HeatmapEngine, WeeklyStatsEngine
 )
 
 class AnalyticsService:
@@ -19,13 +20,24 @@ class AnalyticsService:
         self.session_df = session_df
         if self.session_df is not None:
             self.session_df['timestamp'] = pd.to_datetime(self.session_df['timestamp'])
+            
+        # Initialize Forecast Engine once to reuse
+        self.forecast_engine = ForecastEngine(self.df)
+        self.cached_forecast = None
 
     def get_latest_row(self):
         return self.df.iloc[-1]
+        
+    def get_forecast(self, days=7):
+        # Cache forecast for performance in demo
+        # In prod, cache with TTL
+        if self.cached_forecast is None:
+             self.cached_forecast = self.forecast_engine.generate(periods=24*days)
+        return self.cached_forecast
 
     def get_revenue_panel(self):
         if self.session_df is None:
-            return {} # Should not happen if initialized correctly
+            return {} 
             
         engine = RevenueEngine(self.session_df)
         return engine.analyze()
@@ -44,11 +56,10 @@ class AnalyticsService:
         latest = self.get_latest_row()
         occ_data = self.get_live_occupancy()
         
-        # For performance, we skip full ForecastEngine daily run here unless cached.
-        # We'll pass a dummy forecast for now or implement lightweight check.
-        dummy_forecast = {'ensemble': [25]} # mocked next hour prediction
+        # Use real forecast
+        forecast = self.get_forecast(days=2) # Short term for alerts
         
-        engine = AlertsEngine(occ_data, dummy_forecast, latest['queue_length'])
+        engine = AlertsEngine(occ_data, forecast, latest['queue_length'])
         return engine.check_alerts()
 
     def get_charger_overview(self):
@@ -59,7 +70,6 @@ class AnalyticsService:
         return engine.get_table()
 
     def get_summary_metrics(self):
-        # Re-calculating summary as per dashboard_engine logic
         table = self.get_charger_overview()
         
         if not table:
@@ -76,8 +86,7 @@ class AnalyticsService:
         }
     
     def get_utilization_trend(self):
-        # 24h trend - For now, we can sample from the last 24h of raw data
-        # raw_df has hourly data already?
+        # 24h trend
         latest_time = self.df['timestamp'].max()
         start_time = latest_time - datetime.timedelta(hours=24)
         subset = self.df[self.df['timestamp'] > start_time]
@@ -89,6 +98,14 @@ class AnalyticsService:
                 "utilization": int(row['occupancy_rate'] * 100)
             })
         return trend
+        
+    def get_heatmap(self):
+        engine = HeatmapEngine(self.df)
+        return engine.generate()
+        
+    def get_weekly_stats(self):
+        engine = WeeklyStatsEngine(self.df)
+        return engine.generate()
         
     def get_status_distribution(self):
         table = self.get_charger_overview()
@@ -110,14 +127,16 @@ class AnalyticsService:
     
     def frontend_get_current_metrics(self):
         latest = self.get_latest_row()
+        forecast = self.get_forecast()
+        
         return {
             "currentQueue": int(latest['queue_length']),
-            "queueChange": random.randint(-2, 5), # Still dynamic
+            "queueChange": random.randint(-2, 5), # Still slightly dynamic as we lack historic queue diff in this simple View
             "vehiclesDetected": int(latest['vehicle_count']),
             "avgDwellTime": "23 min", 
             "dwellChange": 5,
-            "peakPrediction": "4:30 PM", # Could be derived from Forecast if heavy
-            "peakTime": "4:30 PM"
+            "peakPrediction": forecast['peak_hour'],
+            "peakTime": forecast['peak_hour']
         }
 
     def frontend_get_chargers(self):
@@ -134,7 +153,7 @@ class AnalyticsService:
             c_id = int(c_id_str[1:])
             
             # Deterministic location logic
-            zone = zones[(c_id-1)//8] # 23 chargers, split into 3 zones approx
+            zone = zones[(c_id-1)//8] 
             bay = ((c_id-1)%8) + 1
             
             # Parse 'In Use' to 'occupied'
@@ -152,7 +171,7 @@ class AnalyticsService:
                 "status": status_map.get(item['status'], "offline"),
                 "power": 150 if item['type'] == 'DC Fast' else 50,
                 "type": item['type'],
-                "sessionTime": item['avg_session'], # Using avg as proxy for current
+                "sessionTime": item['avg_session'], 
                 "energyDelivered": float(random.randint(10, 50)), # No live energy in table, sim
                 "utilization": int(item['utilization'].replace('%','')),
                 "sessions": item['sessions_24h'],
@@ -163,10 +182,7 @@ class AnalyticsService:
         return chargers
 
     def frontend_get_utilization(self, range_val="24h"):
-        # Map trend to frontend format
         trend = self.get_utilization_trend()
-        # Frontend expects: time, utilization
-        # get_utilization_trend returns: hour, utilization
         return [{"time": t["hour"], "utilization": t["utilization"]} for t in trend]
 
     def frontend_get_occupancy(self):
