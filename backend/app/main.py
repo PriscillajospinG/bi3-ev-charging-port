@@ -39,6 +39,7 @@ async def startup_event():
     print("Initializing Database Schema...")
     from .database import engine, Base
     from .models.events import EvEvent
+    from .models.outputs import ModelPrediction, Recommendation
     from sqlalchemy import text
     
     async with engine.begin() as conn:

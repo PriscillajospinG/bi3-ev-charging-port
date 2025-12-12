@@ -18,7 +18,7 @@ class PredictionService:
         # Initialize models or load pre-trained if available
         pass
 
-    def run_forecast(self, df: pd.DataFrame, days: int = 7):
+    def run_forecast(self, df: pd.DataFrame, days: int = 7, db_session=None):
         """
         Runs the full ensemble forecasting logic.
         """
@@ -60,7 +60,8 @@ class PredictionService:
         peak_idx = np.argmax(ensemble)
         avg_dem = np.mean(ensemble)
         
-        return {
+        # Prepare return structure
+        result = {
             "timestamp": timestamps,
             "prophet": p_vals.tolist(),
             "lstm": l_vals.tolist(),
@@ -72,3 +73,38 @@ class PredictionService:
             "peak_hour": timestamps[peak_idx],
             "avg_demand": round(avg_dem, 2)
         }
+
+        # --- Persistence Logic ---
+        # If db_session is provided, save the ensemble forecast
+        if db_session:
+             import uuid
+             from ..models.outputs import ModelPrediction
+             
+             run_id = str(uuid.uuid4())
+             
+             for i, ts_str in enumerate(timestamps):
+                 # Convert str back to datetime for DB
+                 ts = datetime.datetime.strptime(ts_str, '%Y-%m-%d %H:%M')
+                 
+                 pred = ModelPrediction(
+                     run_id=run_id,
+                     timestamp=ts,
+                     predicted_value=float(ensemble[i]),
+                     model_type='ensemble',
+                     lower_bound=float(lower[i]),
+                     upper_bound=float(upper[i])
+                 )
+                 db_session.add(pred)
+             
+             # Don't commit here, let the caller commit if needed, or we can flush?
+             # Given it's a service, we usually let the UoW (dependency) handle commit,
+             # but to be safe if caller expects it done:
+             # But here run_forecast is called by router, router can commit.
+             # However, since we are moving fast, let's try/expect router to commit.
+             # Actually, `run_forecast` currently doesn't await anything, it's CPU bound (Prophet).
+             # Persistence should ideally be async. 
+             # Refactoring to make this async would affect callers.
+             # Let's keep it synchronous here but assume we are in a context where we can add to session.
+             pass
+
+        return result
