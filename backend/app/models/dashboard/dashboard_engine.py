@@ -56,19 +56,23 @@ class DataSimulator:
             
             count = row['session_count']
             if count > 0:
-                for _ in range(count):
-                    # Pick a random charger
-                    charger = random.choice(chargers)
+                for j in range(count):
+                    # Deterministic charger selection
+                    # Hash (timestamp + j) % 23
+                    idx = (int(ts.timestamp()) + j) % 23
+                    charger = chargers[idx]
                     
-                    # Duration & Revenue Simulation
+                    # Duration & Revenue Simulation (Deterministic)
+                    # Duration based on hour of day and index
+                    hour_seed = ts.hour + j
                     if charger['type'] == 'DC Fast':
-                        duration_mins = random.randint(20, 45)
-                        kwh = duration_mins * (150/60) # Avg 150kW speed
+                        duration_mins = 20 + (hour_seed % 25) # 20-45
+                        kwh = duration_mins * (150/60)
                     else:
-                        duration_mins = random.randint(60, 240)
-                        kwh = duration_mins * (11/60) # Avg 11kW speed
+                        duration_mins = 60 + (hour_seed % 180) # 60-240
+                        kwh = duration_mins * (11/60)
                         
-                    revenue = kwh * 0.45 # $0.45 per kWh
+                    revenue = kwh * 0.45 
                     
                     expanded_data.append({
                         'timestamp': ts,
@@ -78,7 +82,7 @@ class DataSimulator:
                         'duration_mins': duration_mins,
                         'energy_kwh': kwh,
                         'revenue': revenue,
-                        'status': 'Completed' # Historical sessions are completed
+                        'status': 'Completed'
                     })
         
         return pd.DataFrame(expanded_data)
@@ -178,12 +182,11 @@ class TrafficEngine:
         self.v_count = current_vehicle_count
         
     def analyze(self):
-        # Simulate incoming traffic based on current load
-        # If high current load, assume incoming is also flowing
-        approaching = int(self.v_count * random.uniform(0.5, 1.5))
-        eta = random.randint(5, 15)
+        # Simulate incoming traffic based on current load (deterministic)
+        approaching = int(self.v_count * 0.8)
+        eta = 10 # fixed average
         
-        # Route logic
+        # Route logic (deterministic split)
         routes = [
             {"route": "Highway 101 North", "weight": 0.6},
             {"route": "Main Street", "weight": 0.3},
@@ -234,15 +237,6 @@ class AlertsEngine:
                 "location": "System Wide"
             })
             
-        # Simulated "Downtime/Misuse" for demo
-        if random.random() < 0.3:
-            alerts.append({
-                "title": "Charger Misuse",
-                "timestamp": timestamp,
-                "details": "Vehicle at C04 > 4 hours session.",
-                "location": "Station S01"
-            })
-            
         return alerts
 
 # --- 5. Charger Performance Table ---
@@ -279,17 +273,20 @@ class PerformanceEngine:
                 sessions = row.iloc[0]['timestamp']
                 rev = row.iloc[0]['revenue']
                 avg_dur = row.iloc[0]['duration_mins']
-                
-            # Simulate status
-            status_opts = ["In Use", "Available", "Maintenance", "Offline"]
-            status_wts = [0.6, 0.3, 0.05, 0.05]
-            status = random.choices(status_opts, weights=status_wts)[0]
+            
+            # Deterministic Status based on sessions
+            # If sessions high, likely In Use
+            status = "Available"
+            if sessions > 15:
+                status = "In Use"
+            elif i % 23 == 0: # deterministic maintenance
+                status = "Maintenance"
             
             # Util Calc
             util = int((sessions / 24.0) * 100) # Simple metric
             if util > 100: util = 95
             
-            perf_score = random.randint(80, 100) if status != "Offline" else 0
+            perf_score = 100 - (i % 5) * 2 # Deterministic score
             
             output.append({
                 "charger": c_id,

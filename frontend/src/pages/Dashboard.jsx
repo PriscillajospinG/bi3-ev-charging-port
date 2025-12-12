@@ -15,7 +15,6 @@ import websocket from '../services/websocket'
 
 const Dashboard = () => {
   const [timeRange, setTimeRange] = useState('24h')
-  const [useMockData, setUseMockData] = useState(false)
   const {
     currentMetrics,
     chargers,
@@ -130,7 +129,6 @@ const Dashboard = () => {
 
     } catch (error) {
       console.error('Failed to fetch dashboard data:', error)
-      setMockData()
     }
   }
 
@@ -162,123 +160,6 @@ const Dashboard = () => {
 
   const [alerts, setAlerts] = useState([])
 
-  const setMockData = () => {
-    setUseMockData(true)
-    console.warn('⚠️ Using mock data - backend offline')
-
-    setCurrentMetrics({
-      currentQueue: 8,
-      queueChange: 2,
-      vehiclesDetected: 142,
-      avgDwellTime: '23 min',
-      dwellChange: 5,
-      peakPrediction: '4:30 PM',
-      peakTime: '4:30 PM',
-    })
-
-    setChargers([
-      {
-        id: 1,
-        name: 'Charger A1',
-        location: 'Zone A - Bay 1',
-        status: 'occupied',
-        power: 150,
-        type: 'DC Fast',
-        sessionTime: '45 min',
-        energyDelivered: 38.5,
-        utilization: 85,
-        sessions: 28,
-        revenue: 324.50,
-        avgSession: 42,
-        performance: 92,
-      },
-      {
-        id: 2,
-        name: 'Charger A2',
-        location: 'Zone A - Bay 2',
-        status: 'available',
-        power: 150,
-        type: 'DC Fast',
-        utilization: 62,
-        sessions: 22,
-        revenue: 267.80,
-        avgSession: 38,
-        performance: 88,
-      },
-      {
-        id: 3,
-        name: 'Charger B1',
-        location: 'Zone B - Bay 1',
-        status: 'occupied',
-        power: 50,
-        type: 'Level 2',
-        sessionTime: '1h 20m',
-        energyDelivered: 22.3,
-        utilization: 78,
-        sessions: 34,
-        revenue: 189.60,
-        avgSession: 52,
-        performance: 85,
-      },
-      {
-        id: 4,
-        name: 'Charger B2',
-        location: 'Zone B - Bay 2',
-        status: 'maintenance',
-        power: 50,
-        type: 'Level 2',
-        maintenanceNote: 'Scheduled maintenance',
-        utilization: 45,
-        sessions: 18,
-        revenue: 98.40,
-        avgSession: 48,
-        performance: 65,
-      },
-      {
-        id: 5,
-        name: 'Charger C1',
-        location: 'Zone C - Bay 1',
-        status: 'occupied',
-        power: 150,
-        type: 'DC Fast',
-        sessionTime: '32 min',
-        energyDelivered: 28.2,
-        utilization: 91,
-        sessions: 31,
-        revenue: 358.90,
-        avgSession: 35,
-        performance: 94,
-      },
-      {
-        id: 6,
-        name: 'Charger C2',
-        location: 'Zone C - Bay 2',
-        status: 'available',
-        power: 50,
-        type: 'Level 2',
-        utilization: 58,
-        sessions: 25,
-        revenue: 145.20,
-        avgSession: 45,
-        performance: 82,
-      },
-    ])
-
-    setUtilizationData(
-      Array.from({ length: 24 }, (_, i) => ({
-        time: `${i}:00`,
-        utilization: Math.floor(Math.random() * 40) + 30,
-      }))
-    )
-
-    setOccupancyData([
-      { name: 'Available', value: 12 },
-      { name: 'Occupied', value: 8 },
-      { name: 'Maintenance', value: 2 },
-      { name: 'Offline', value: 1 },
-    ])
-  }
-
   const handleMetricsUpdate = (data) => {
     setCurrentMetrics(data)
   }
@@ -289,16 +170,6 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
-      {/* Mock Data Warning Banner */}
-      {useMockData && (
-        <div className="bg-yellow-900/30 border border-yellow-700 text-yellow-100 p-4 rounded-lg flex items-start gap-3">
-          <AlertCircle size={24} className="flex-shrink-0 text-yellow-500 mt-0.5" />
-          <div>
-            <h3 className="font-semibold text-yellow-200">⚠️ Demo Mode: Using Mock Data</h3>
-            <p className="text-sm text-yellow-200/80 mt-1">Backend is offline. Showing sample data for demonstration.</p>
-          </div>
-        </div>
-      )}
 
       {/* Header */}
       <div className="flex items-center justify-between">
