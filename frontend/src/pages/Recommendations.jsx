@@ -1,102 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import RecommendationCard from '../components/Recommendations/RecommendationCard'
 import { Filter, Lightbulb, TrendingUp } from 'lucide-react'
+import { api } from '../services/api'
 
 const Recommendations = () => {
   const [filter, setFilter] = useState('all')
+  const [recommendations, setRecommendations] = useState([])
 
-  const recommendations = [
-    {
-      type: 'add',
-      title: 'Add DC Fast Charger - Zone C',
-      description: 'High demand detected in Zone C during peak hours with frequent queue buildup',
-      location: 'Zone C, Bay 4-5',
-      priority: 'high',
-      impact: 28,
-      cost: '$45,000',
-      roi: '18 months',
-      insights: [
-        'Zone C experiences 35% higher wait times than other zones',
-        'Projected 450 additional sessions per month',
-        'Expected revenue increase of $2,800/month',
-      ],
-    },
-    {
-      type: 'relocate',
-      title: 'Relocate Level 2 Charger',
-      description: 'Charger B3 shows low utilization (32%) while Zone A is consistently at capacity',
-      location: 'From Zone B to Zone A',
-      priority: 'medium',
-      impact: 18,
-      cost: '$3,500',
-      roi: '4 months',
-      insights: [
-        'Zone A utilization averages 89% vs Zone B at 42%',
-        'Minimal relocation costs due to existing infrastructure',
-        'Estimated 15% overall efficiency improvement',
-      ],
-    },
-    {
-      type: 'add',
-      title: 'Deploy Mobile Charging Unit',
-      description: 'Weekend demand spikes suggest need for flexible capacity',
-      location: 'Rotating: Zones A, C, D',
-      priority: 'medium',
-      impact: 22,
-      cost: '$28,000',
-      roi: '12 months',
-      insights: [
-        'Weekend demand 45% higher than weekday average',
-        'Mobile unit can serve multiple high-demand periods',
-        'Reduces need for permanent infrastructure expansion',
-      ],
-    },
-    {
-      type: 'remove',
-      title: 'Decommission Underutilized Charger',
-      description: 'Charger D2 consistently shows <15% utilization over 3 months',
-      location: 'Zone D, Bay 2',
-      priority: 'low',
-      impact: 5,
-      cost: '$1,200',
-      roi: '2 months',
-      insights: [
-        'Only 8 sessions per week average',
-        'High maintenance costs relative to usage',
-        'Can reallocate resources to higher-demand areas',
-      ],
-    },
-    {
-      type: 'add',
-      title: 'Upgrade to 350kW Ultra-Fast Charger',
-      description: 'Long session times causing queue buildup in Zone A',
-      location: 'Zone A, Bay 1 (Replace existing 150kW)',
-      priority: 'high',
-      impact: 35,
-      cost: '$65,000',
-      roi: '16 months',
-      insights: [
-        'Average session time reduced from 45min to 15min',
-        'Serves 3x more vehicles per day',
-        'Premium pricing opportunity for ultra-fast charging',
-      ],
-    },
-    {
-      type: 'relocate',
-      title: 'Optimize Charger Spacing',
-      description: 'Camera analysis shows inefficient traffic flow in Zone B',
-      location: 'Zone B - Reconfigure layout',
-      priority: 'low',
-      impact: 12,
-      cost: '$8,500',
-      roi: '8 months',
-      insights: [
-        'Current layout causes 12% increase in dwell time',
-        'Optimization can improve throughput by 15%',
-        'Reduces congestion and improves user experience',
-      ],
-    },
-  ]
+  useEffect(() => {
+    const fetchRecs = async () => {
+      try {
+        const res = await api.getRecommendations();
+        setRecommendations(res.data);
+      } catch (e) {
+        console.error("Failed to fetch recommendations", e);
+      }
+    }
+    fetchRecs();
+  }, [])
 
   const filteredRecommendations = recommendations.filter((rec) => {
     if (filter === 'all') return true

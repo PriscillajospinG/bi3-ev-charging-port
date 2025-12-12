@@ -1,32 +1,84 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Download, Calendar } from 'lucide-react'
 import UtilizationChart from '../components/Analytics/UtilizationChart'
 import HeatMap from '../components/Analytics/HeatMap'
 import OccupancyPieChart from '../components/Analytics/OccupancyPieChart'
+import { api } from '../services/api'
 
 const Analytics = () => {
   const [timeRange, setTimeRange] = useState('7d')
-  
-  const utilizationData = Array.from({ length: 24 }, (_, i) => ({
-    time: `${i}:00`,
-    utilization: Math.floor(Math.random() * 40) + 30,
-  }))
+  const [utilizationData, setUtilizationData] = useState([])
+  const [occupancyData, setOccupancyData] = useState([
+    { name: 'Available', value: 0 },
+    { name: 'Occupied', value: 0 },
+    { name: 'Maintenance', value: 0 },
+    { name: 'Offline', value: 0 },
+  ])
+  const [weeklyTrend, setWeeklyTrend] = useState([])
+  const [metrics, setMetrics] = useState({
+    avgUtilization: '0%',
+    totalSessions: 0,
+    energy: 0,
+    revenue: '$0'
+  })
+  const [chargers, setChargers] = useState([])
 
-  const occupancyData = [
-    { name: 'Available', value: 12 },
-    { name: 'Occupied', value: 8 },
-    { name: 'Maintenance', value: 2 },
-    { name: 'Offline', value: 1 },
-  ]
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [summaryRes, utilRes, chargersRes] = await Promise.all([
+          api.getAnalyticsSummary(),
+          api.getUtilizationTrend(),
+          api.getChargers()
+        ])
 
-  const weeklyTrend = Array.from({ length: 7 }, (_, i) => ({
-    time: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i],
-    utilization: Math.floor(Math.random() * 30) + 50,
-  }))
+        // Map Metrics
+        const s = summaryRes.data;
+        setMetrics({
+          avgUtilization: s.avg_utilization || '0%',
+          totalSessions: s.total_sessions || 0,
+          energy: s.energy_delivered || 0,
+          revenue: s.revenue || '$0'
+        })
+
+        // Map Util Data (using same trend for now as backend provides 24h profile)
+        const trend = utilRes.data.map(item => ({
+          time: item.hour,
+          utilization: item.utilization
+        }));
+        setUtilizationData(trend);
+        // Simulate weekly by repeating/shifting for now as backend 'daily' mock endpoint reuses this
+        setWeeklyTrend(trend.slice(0, 7).map((t, i) => ({
+          time: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i],
+          utilization: t.utilization
+        })));
+
+        // Map Chargers & Occupancy
+        const cList = chargersRes.data;
+        setChargers(cList);
+
+        const occCounts = { Available: 0, Occupied: 0, Maintenance: 0, Offline: 0 };
+        cList.forEach(c => {
+          let status = c.status === 'In Use' ? 'Occupied' : c.status;
+          if (!occCounts[status] && status !== 'Occupied') status = 'Available'; // fallback
+          if (occCounts[status] !== undefined) occCounts[status]++;
+        });
+        setOccupancyData([
+          { name: 'Available', value: occCounts.Available },
+          { name: 'Occupied', value: occCounts.Occupied },
+          { name: 'Maintenance', value: occCounts.Maintenance },
+          { name: 'Offline', value: occCounts.Offline },
+        ]);
+
+      } catch (e) {
+        console.error("Failed to fetch analytics", e);
+      }
+    }
+    fetchData();
+  }, [timeRange])
 
   const exportReport = () => {
     console.log('Exporting analytics report...')
-    // In production, this would generate and download a PDF/CSV report
   }
 
   return (
@@ -50,11 +102,10 @@ const Analytics = () => {
               <button
                 key={range}
                 onClick={() => setTimeRange(range)}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  timeRange === range
+                className={`px-4 py-2 rounded-lg transition-colors ${timeRange === range
                     ? 'bg-primary-600 text-white'
                     : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
-                }`}
+                  }`}
               >
                 {range}
               </button>
@@ -67,22 +118,22 @@ const Analytics = () => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="card">
           <p className="text-sm text-slate-400 mb-1">Avg Utilization</p>
-          <p className="text-3xl font-bold text-primary-400">74.2%</p>
+          <p className="text-3xl font-bold text-primary-400">{metrics.avgUtilization}</p>
           <p className="text-xs text-success mt-1">↑ 5.3% from last period</p>
         </div>
         <div className="card">
           <p className="text-sm text-slate-400 mb-1">Total Sessions</p>
-          <p className="text-3xl font-bold text-primary-400">1,284</p>
+          <p className="text-3xl font-bold text-primary-400">{metrics.totalSessions.toLocaleString()}</p>
           <p className="text-xs text-success mt-1">↑ 12.4% from last period</p>
         </div>
         <div className="card">
           <p className="text-sm text-slate-400 mb-1">Energy Delivered</p>
-          <p className="text-3xl font-bold text-primary-400">8,432</p>
+          <p className="text-3xl font-bold text-primary-400">{metrics.energy.toLocaleString()}</p>
           <p className="text-xs text-slate-400 mt-1">kWh</p>
         </div>
         <div className="card">
           <p className="text-sm text-slate-400 mb-1">Revenue</p>
-          <p className="text-3xl font-bold text-success">$3,847</p>
+          <p className="text-3xl font-bold text-success">{metrics.revenue}</p>
           <p className="text-xs text-success mt-1">↑ 8.7% from last period</p>
         </div>
       </div>
@@ -125,18 +176,18 @@ const Analytics = () => {
               </tr>
             </thead>
             <tbody>
-              {['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map((charger, i) => (
-                <tr key={charger} className="border-b border-slate-800 hover:bg-slate-800/50">
-                  <td className="py-3 px-4 font-medium">Charger {charger}</td>
-                  <td className="py-3 px-4">{Math.floor(Math.random() * 100) + 50}</td>
+              {chargers.map((c, i) => (
+                <tr key={c.id} className="border-b border-slate-800 hover:bg-slate-800/50">
+                  <td className="py-3 px-4 font-medium">{c.name}</td>
+                  <td className="py-3 px-4">{c.sessions}</td>
                   <td className="py-3 px-4">
                     <span className="text-primary-400 font-semibold">
-                      {Math.floor(Math.random() * 40) + 50}%
+                      {c.utilization}%
                     </span>
                   </td>
-                  <td className="py-3 px-4">{(Math.random() * 2000 + 500).toFixed(0)}</td>
-                  <td className="py-3 px-4 text-success">${(Math.random() * 1000 + 200).toFixed(2)}</td>
-                  <td className="py-3 px-4">{Math.floor(Math.random() * 40) + 20} min</td>
+                  <td className="py-3 px-4">{c.energyDelivered || '-'}</td>
+                  <td className="py-3 px-4 text-success">${c.revenue || '0.00'}</td>
+                  <td className="py-3 px-4">{c.avgSession || 0} min</td>
                 </tr>
               ))}
             </tbody>

@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import CameraFeed from '../components/Monitoring/CameraFeed'
 import VideoUpload from '../components/Monitoring/VideoUpload'
 import TrafficStats from '../components/Monitoring/TrafficStats'
 import ChargerCard from '../components/Monitoring/ChargerCard'
+import { api } from '../services/api'
 
 const Monitoring = () => {
   const [cameras] = useState([
@@ -12,38 +13,36 @@ const Monitoring = () => {
     { id: 4, title: 'Exit Lane', rtspUrl: 'rtsp://camera4/stream', type: 'road' },
   ])
 
-  const [stats] = useState({
-    currentQueue: 8,
-    queueChange: 2,
-    vehiclesDetected: 142,
-    avgDwellTime: '23 min',
-    dwellChange: 5,
-    peakPrediction: '4:30 PM',
-    peakTime: '4:30 PM',
+  const [stats, setStats] = useState({
+    currentQueue: 0,
+    queueChange: 0,
+    vehiclesDetected: 0,
+    avgDwellTime: '0 min',
+    dwellChange: 0,
+    peakPrediction: '--',
+    peakTime: '--',
   })
 
-  const [chargers] = useState([
-    {
-      id: 1,
-      name: 'Charger A1',
-      location: 'Zone A - Bay 1',
-      status: 'occupied',
-      power: 150,
-      type: 'DC Fast',
-      sessionTime: '45 min',
-      energyDelivered: 38.5,
-      utilization: 85,
-    },
-    {
-      id: 2,
-      name: 'Charger A2',
-      location: 'Zone A - Bay 2',
-      status: 'available',
-      power: 150,
-      type: 'DC Fast',
-      utilization: 62,
-    },
-  ])
+  const [chargers, setChargers] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [metricsRes, chargersRes] = await Promise.all([
+          api.getCurrentMetrics(),
+          api.getChargers()
+        ])
+        setStats(metricsRes.data)
+        setChargers(chargersRes.data)
+      } catch (e) {
+        console.error("Failed to fetch monitoring data", e)
+      }
+    }
+    fetchData()
+    // Poll every 10s for monitoring
+    const interval = setInterval(fetchData, 10000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="space-y-6">

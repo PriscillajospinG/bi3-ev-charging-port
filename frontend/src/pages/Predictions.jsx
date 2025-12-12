@@ -1,76 +1,87 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PredictionCard from '../components/Predictions/PredictionCard'
 import DemandForecast from '../components/Predictions/DemandForecast'
 import { Calendar, TrendingUp } from 'lucide-react'
+import { api } from '../services/api'
 
 const Predictions = () => {
   const [forecastPeriod, setForecastPeriod] = useState('7d')
+  const [demandData, setDemandData] = useState([])
+  const [predictions, setPredictions] = useState([])
+  const [forecastStats, setForecastStats] = useState({
+    peak: 0,
+    peakTime: '--',
+    average: 0,
+    accuracy: 0
+  })
 
-  const predictions = [
-    {
-      title: 'Peak Demand Today',
-      timeframe: 'Next 8 hours',
-      value: 18,
-      unit: 'vehicles',
-      trend: 'up',
-      confidence: 87,
-      description: 'Expected peak at 4:30 PM based on historical patterns',
-      recommendation: 'Ensure all chargers in Zone A are operational',
-    },
-    {
-      title: 'Weekend Forecast',
-      timeframe: 'Sat-Sun',
-      value: 245,
-      unit: 'total sessions',
-      trend: 'up',
-      confidence: 73,
-      description: 'Higher than usual weekend activity expected',
-      recommendation: 'Consider deploying mobile charger to Zone C',
-    },
-    {
-      title: 'Next Week Demand',
-      timeframe: 'Dec 12-18',
-      value: 892,
-      unit: 'sessions',
-      trend: 'up',
-      confidence: 81,
-      description: 'Steady increase due to holiday travel',
-    },
-    {
-      title: 'Seasonal Trend',
-      timeframe: 'Q1 2024',
-      value: 15,
-      unit: '% growth',
-      trend: 'up',
-      confidence: 69,
-      description: 'Quarterly growth projection',
-    },
-  ]
+  useEffect(() => {
+    const fetchForecast = async () => {
+      try {
+        const days = forecastPeriod === '24h' ? 1 : (forecastPeriod === '30d' ? 30 : 7);
+        const [res, accRes] = await Promise.all([
+          api.getForecast(days),
+          api.getForecastAccuracy()
+        ]);
 
-  const demandData = [
-    ...Array.from({ length: 24 }, (_, i) => ({
-      time: `${i}:00`,
-      historical: Math.floor(Math.random() * 15) + 5,
-      predicted: null,
-      upperBound: null,
-      lowerBound: null,
-    })),
-    { time: 'Now', historical: null, predicted: null },
-    ...Array.from({ length: 24 }, (_, i) => ({
-      time: `${i}:00`,
-      historical: null,
-      predicted: Math.floor(Math.random() * 20) + 8,
-      upperBound: Math.floor(Math.random() * 25) + 12,
-      lowerBound: Math.floor(Math.random() * 10) + 3,
-    })),
-  ]
+        const data = res.data;
 
-  const forecastStats = {
-    peak: 18,
-    peakTime: '4:30 PM',
-    average: 12,
-    accuracy: 87,
-  }
+        // Map Forecast Graph Data
+        // Backend returns { dates: [], ensemble: [], lower: [], upper: [] }
+        // Note: Current backend forecast might be simplistic (daily), but let's map it.
+        // If the backend returns empty, show empty.
+        if (data.forecast && data.forecast.dates) {
+          const mappedData = data.forecast.dates.map((date, i) => ({
+            time: new Date(date).toLocaleDateString(),
+            predicted: data.forecast.ensemble[i],
+            upperBound: data.forecast.upper_bound[i],
+            lowerBound: data.forecast.lower_bound[i],
+            historical: null // mix if available
+          }));
+          setDemandData(mappedData);
+
+          // Derive stats
+          const values = data.forecast.ensemble;
+          const maxVal = Math.max(...values);
+          const avgVal = values.reduce((a, b) => a + b, 0) / values.length;
+          const maxIdx = values.indexOf(maxVal);
+
+          setForecastStats({
+            peak: Math.round(maxVal),
+            peakTime: mappedData[maxIdx] ? mappedData[maxIdx].time : '--',
+            average: Math.round(avgVal),
+            accuracy: parseFloat(accRes.data.accuracy) || 85
+          })
+
+          // Generate Key Predictions Cards from data
+          setPredictions([
+            {
+              title: 'Peak Demand Forecast',
+              timeframe: `Next ${forecastPeriod}`,
+              value: Math.round(maxVal),
+              unit: 'vehicles/day',
+              trend: 'up',
+              confidence: parseFloat(accRes.data.accuracy),
+              description: `Highest traffic expected on ${mappedData[maxIdx]?.time}`,
+            },
+            {
+              title: 'Average Load',
+              timeframe: `Next ${forecastPeriod}`,
+              value: Math.round(avgVal),
+              unit: 'sessions/day',
+              trend: 'neutral',
+              confidence: 80,
+              description: 'Steady baseline activity',
+            }
+          ]);
+        }
+
+      } catch (e) {
+        console.error("Failed to fetch predictions", e);
+      }
+    }
+    fetchForecast();
+  }, [forecastPeriod])
 
   return (
     <div className="space-y-6">
@@ -90,11 +101,10 @@ const Predictions = () => {
               <button
                 key={period}
                 onClick={() => setForecastPeriod(period)}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  forecastPeriod === period
+                className={`px-4 py-2 rounded-lg transition-colors ${forecastPeriod === period
                     ? 'bg-primary-600 text-white'
                     : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
-                }`}
+                  }`}
               >
                 {period}
               </button>
@@ -121,7 +131,7 @@ const Predictions = () => {
       </div>
 
       {/* Demand Forecast Chart */}
-      <DemandForecast 
+      <DemandForecast
         data={demandData}
         forecast={forecastStats}
       />
