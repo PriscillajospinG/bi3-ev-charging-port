@@ -14,7 +14,27 @@ async def get_recommendations(
     service: AnalyticsService = Depends(get_analytics_service),
     db: AsyncSession = Depends(get_db)
 ):
-    # Initialize Engine with REAL session data
+    # Try fetching from DB first
+    from sqlalchemy import select
+    
+    # Get latest recommendations (limit 50)
+    result = await db.execute(select(Recommendation).order_by(Recommendation.generated_at.desc()).limit(50))
+    rows = result.scalars().all()
+    
+    if rows:
+        # Convert to list of dicts matching frontend expectation
+        return [{
+            "title": r.title,
+            "priority": r.priority,
+            "location": r.location,
+            "expected_impact": r.expected_impact,
+            "estimated_cost": r.estimated_cost,
+            "roi_timeline": r.roi_timeline,
+            "category": r.category,
+            # Add other fields if needed or mocks
+        } for r in rows]
+
+    # Fallback to Engine Generation if DB empty
     if service.session_df is None:
         return []
     
@@ -22,12 +42,7 @@ async def get_recommendations(
     results = engine.generate_recommendations()
     
     # Persist Recommendations
-    # This might slow down valid "GET" requests if we save every time. 
-    # Usually we'd have a separate "POST /generate" or check if recent ones exist.
-    # For this task "push all model outputs... into new tables", we will save them on generation.
-    
     for r in results:
-        # Check if identical title/location exists recently? For now, just insert all for history.
         rec_db = Recommendation(
             title=r['title'],
             priority=r['priority'],
