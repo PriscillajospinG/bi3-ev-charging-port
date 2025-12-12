@@ -1,6 +1,0 @@
-pandas
-numpy
-prophet
-tensorflow
-xgboost
-scikit-learn
