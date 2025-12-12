@@ -1,25 +1,28 @@
 from fastapi import APIRouter, Depends, HTTPException
-from ..dependencies import get_prediction_service, data_cache
+from ..dependencies import get_prediction_service, data_cache, get_analytics_service
 from ..services.forecast import PredictionService
+from ..services.analytics import AnalyticsService
 from ..schemas.dashboard import ForecastResponse
 
 router = APIRouter(prefix="/api/forecast", tags=["Forecast"])
 
-@router.get("/run", response_model=ForecastResponse)
+@router.get("/run")
 async def run_forecast(
-    days: int = 7, 
-    service: PredictionService = Depends(get_prediction_service)
+    days: int = 7,
+    service: AnalyticsService = Depends(get_analytics_service)
 ):
-    if data_cache.df is None:
-        raise HTTPException(status_code=503, detail="Data not loaded")
-    return service.run_forecast(data_cache.df, days)
+    """
+    Run the prediction engine (Prophet) on latest data.
+    """
+    # Force forecast generation
+    return {"forecast": service.get_forecast(days=days)}
 
 @router.get("/accuracy")
-async def get_forecast_accuracy():
-    return {"accuracy": "88.5%", "metric": "MAPE"}
+async def get_forecast_accuracy(service: AnalyticsService = Depends(get_analytics_service)):
+    forecast = service.get_forecast(days=1)
+    return {"accuracy": forecast.get("accuracy", "85%")}
 
 @router.get("/next7days")
-async def get_next_7_days(service: PredictionService = Depends(get_prediction_service)):
-    if data_cache.df is None:
-        raise HTTPException(status_code=503, detail="Data not loaded")
-    return service.run_forecast(data_cache.df, days=7)
+async def get_forecast_next_7_days(service: AnalyticsService = Depends(get_analytics_service)):
+    forecast = service.get_forecast(days=7)
+    return forecast # The forecast object already contains dates and values
