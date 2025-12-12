@@ -86,5 +86,38 @@ class Recommendation(BaseModel):
     location: str
     expected_impact: str
     estimated_cost: str
-    roi_timeline: str
-    key_insights: List[str]
+
+# --- Frontend Integration Schemas ---
+
+class FrontendMetrics(BaseModel):
+    currentQueue: int
+    queueChange: int
+    vehiclesDetected: int
+    avgDwellTime: str
+    dwellChange: int
+    peakPrediction: str
+    peakTime: str
+
+class FrontendCharger(BaseModel):
+    id: int
+    name: str
+    location: str
+    status: str
+    power: int
+    type: str
+    sessionTime: str
+    energyDelivered: float
+    utilization: int
+    sessions: int
+    revenue: float
+    avgSession: int
+    performance: int
+
+class FrontendOccupancyItem(BaseModel):
+    name: str
+    value: int
+
+class FrontendUtilizationItem(BaseModel):
+    time: str
+    utilization: int
+

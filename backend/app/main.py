@@ -1,4 +1,5 @@
-from fastapi import FastAPI, APIRouter, Depends, HTTPException
+from fastapi import FastAPI, APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect
+from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import os
@@ -12,7 +13,8 @@ from .services.forecast import PredictionService
 from .services.recommendations import RecommendationService
 from .schemas.dashboard import (
     DashboardResponse, RevenuePanel, LiveOccupancy, TrafficAnalysis, 
-    ForecastResponse, Recommendation
+    ForecastResponse, Recommendation,
+    FrontendMetrics, FrontendCharger, FrontendOccupancyItem, FrontendUtilizationItem, Alert
 )
 
 # --- Router Setup ---
@@ -114,11 +116,33 @@ app = FastAPI(title="EV Charging Backend API", version="1.0.0")
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000", "http://localhost:5173", "*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# --- Frontend Integration Endpoints ---
+
+@app.get("/api/metrics/current", response_model=FrontendMetrics, tags=["Metrics"])
+async def get_current_metrics(service: AnalyticsService = Depends(get_analytics_service)):
+    return service.frontend_get_current_metrics()
+
+@app.get("/api/chargers", response_model=List[FrontendCharger], tags=["Chargers"])
+async def get_chargers(service: AnalyticsService = Depends(get_analytics_service)):
+    return service.frontend_get_chargers()
+
+@app.get("/api/analytics/utilization", response_model=List[FrontendUtilizationItem], tags=["Analytics"])
+async def get_frontend_utilization(range: str = "24h", service: AnalyticsService = Depends(get_analytics_service)):
+    return service.frontend_get_utilization(range)
+
+@app.get("/api/analytics/occupancy", response_model=List[FrontendOccupancyItem], tags=["Analytics"])
+async def get_frontend_occupancy(service: AnalyticsService = Depends(get_analytics_service)):
+    return service.frontend_get_occupancy()
+
+@app.get("/api/alerts", response_model=List[Alert], tags=["Alerts"])
+async def get_frontend_alerts(service: AnalyticsService = Depends(get_analytics_service)):
+    return service.get_alerts()
 
 # Startup Event to Load Data & Init DB
 @app.on_event("startup")
@@ -216,6 +240,25 @@ async def startup_event():
         
         data_cache.df = pd.DataFrame(data)
         print(f"Analytics Cache Ready: {len(data_cache.df)} rows loaded.")
+
+# --- WebSocket ---
+@app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    try:
+        while True:
+            data = await websocket.receive_json()
+            # Basic Echo/Ack for now to keep frontend happy
+            if data.get("type") == "subscribe":
+                stream = data.get("payload", {}).get("stream")
+                await websocket.send_json({
+                    "type": "connected",
+                    "payload": {"status": f"Subscribed to {stream}"}
+                })
+    except WebSocketDisconnect:
+        print("Client disconnected")
+    except Exception as e:
+        print(f"WebSocket Error: {e}")
 
 # Include Routers
 app.include_router(dashboard_router)

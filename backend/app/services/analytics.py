@@ -103,9 +103,68 @@ class AnalyticsService:
         return trend
         
     def get_status_distribution(self):
-         return {
+        return {
             "available": {"percent": 30, "units": 7},
             "occupied": {"percent": 60, "units": 14},
             "maintenance": {"percent": 5, "units": 1},
             "offline": {"percent": 5, "units": 1}
         }
+
+    # --- Frontend Integration Methods ---
+    
+    def frontend_get_current_metrics(self):
+        # Current Metrics for Dashboard Header
+        latest = self.df.iloc[-1]
+        return {
+            "currentQueue": int(latest['queue_length']),
+            "queueChange": random.randint(-2, 5),
+            "vehiclesDetected": int(latest['vehicle_count'] * 10), # scale up for realism
+            "avgDwellTime": "23 min", # simplistic
+            "dwellChange": 5,
+            "peakPrediction": "4:30 PM",
+            "peakTime": "4:30 PM"
+        }
+
+    def frontend_get_chargers(self):
+        # Detailed Charger List
+        chargers = []
+        zones = ["A", "B", "C"]
+        for i in range(1, 7):
+            zone = zones[(i-1)//2]
+            bay = ((i-1)%2) + 1
+            is_fast = i in [1, 2, 5]
+            chargers.append({
+                "id": i,
+                "name": f"Charger {zone}{bay}",
+                "location": f"Zone {zone} - Bay {bay}",
+                "status": random.choice(["occupied", "available", "maintenance"]) if i==4 else random.choice(["occupied", "available"]),
+                "power": 150 if is_fast else 50,
+                "type": "DC Fast" if is_fast else "Level 2",
+                "sessionTime": f"{random.randint(20, 80)} min",
+                "energyDelivered": round(random.uniform(10.0, 60.0), 1),
+                "utilization": random.randint(40, 95),
+                "sessions": random.randint(15, 40),
+                "revenue": round(random.uniform(100, 400), 2),
+                "avgSession": random.randint(30, 60),
+                "performance": random.randint(80, 100)
+            })
+        return chargers
+
+    def frontend_get_utilization(self, range_val="24h"):
+        # Returns format expected by Recharts: [{time: '0:00', utilization: 45}, ...]
+        trend = []
+        for h in range(24):
+            trend.append({
+                "time": f"{h}:00",
+                "utilization": random.randint(30, 90)
+            })
+        return trend
+
+    def frontend_get_occupancy(self):
+        # Returns for Pie Chart: [{name: 'Available', value: 12}, ...]
+        return [
+            {"name": "Available", "value": 12},
+            {"name": "Occupied", "value": 8},
+            {"name": "Maintenance", "value": 2},
+            {"name": "Offline", "value": 1},
+        ]

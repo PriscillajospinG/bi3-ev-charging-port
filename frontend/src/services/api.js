@@ -36,12 +36,12 @@ apiClient.interceptors.response.use(
       localStorage.removeItem('auth_token')
       window.location.href = '/login'
     }
-    
+
     // Log API errors for debugging
     if (error.message === 'Network Error' || !error.response) {
       console.error('❌ Backend connection failed:', error.message)
     }
-    
+
     return Promise.reject(error)
   }
 )
@@ -50,32 +50,33 @@ apiClient.interceptors.response.use(
 export const api = {
   // Dashboard
   getDashboardStats: () => apiClient.get('/dashboard/stats'),
-  
+  getDashboardLive: () => apiClient.get('/dashboard/live'),
+
   // Chargers
   getChargers: () => apiClient.get('/chargers'),
   getChargerById: (id) => apiClient.get(`/chargers/${id}`),
   getChargerStatus: () => apiClient.get('/chargers/status'),
-  
+
   // Analytics
   getUtilizationData: (params) => apiClient.get('/analytics/utilization', { params }),
   getTrafficData: (params) => apiClient.get('/analytics/traffic', { params }),
   getHeatmapData: (params) => apiClient.get('/analytics/heatmap', { params }),
   getOccupancyStats: () => apiClient.get('/analytics/occupancy'),
-  
+
   // Predictions
   getDemandForecast: (params) => apiClient.get('/predictions/demand', { params }),
   getPeakPredictions: () => apiClient.get('/predictions/peaks'),
   getSeasonalAnalysis: () => apiClient.get('/predictions/seasonal'),
-  
+
   // Recommendations
   getRecommendations: () => apiClient.get('/recommendations'),
   getRecommendationById: (id) => apiClient.get(`/recommendations/${id}`),
   implementRecommendation: (id) => apiClient.post(`/recommendations/${id}/implement`),
-  
+
   // Cameras
   getCameraFeeds: () => apiClient.get('/cameras'),
   getCameraById: (id) => apiClient.get(`/cameras/${id}`),
-  
+
   // Real-time metrics
   getCurrentMetrics: () => apiClient.get('/metrics/current'),
   getAlerts: () => apiClient.get('/alerts'),
