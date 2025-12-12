@@ -1,11 +1,16 @@
 from fastapi import APIRouter, Depends
-from ..dependencies import get_rec_service
-from ..services.recommendations import RecommendationService
-from ..schemas.dashboard import Recommendation
-from typing import List
+from ..dependencies import get_analytics_service
+from ..services.analytics import AnalyticsService
+from ..models.recommendations.recommendation_engine import RecommendationEngine
 
 router = APIRouter(prefix="/api/recommendations", tags=["Recommendations"])
 
-@router.get("/", response_model=List[Recommendation])
-async def get_recommendations(service: RecommendationService = Depends(get_rec_service)):
-    return service.get_recommendations()
+@router.get("/")
+async def get_recommendations(service: AnalyticsService = Depends(get_analytics_service)):
+    # Initialize Engine with REAL session data
+    if service.session_df is None:
+        return []
+    
+    engine = RecommendationEngine(service.session_df)
+    results = engine.generate_recommendations()
+    return results
