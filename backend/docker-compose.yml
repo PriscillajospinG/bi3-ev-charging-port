@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+      - ./models:/app/models # Mount models so changes reflect if needed
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - TIMESCALE_PWD=${TIMESCALE_PWD}
+    # Command to run (using reload for dev)
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload

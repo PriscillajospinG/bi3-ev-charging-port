@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+greenlet
+asyncpg
+pandas
+numpy
+prophet
+scikit-learn
+xgboost
+python-dotenv
+tensorflow
