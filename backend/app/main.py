@@ -30,6 +30,7 @@ app.include_router(forecast.router)
 app.include_router(recommendations.router)
 app.include_router(video.router)
 app.include_router(frontend.router)
+app.include_router(map_router.router)
 
 # Startup Event to Load Data & Init DB
 @app.on_event("startup")

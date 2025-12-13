@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # EV Charging Port Analytics & Optimization Suite
 
 A comprehensive AI-driven solution for electric vehicle charging infrastructure. This project integrates advanced demand forecasting, detailed infrastructure recommendations, and a robust backend logic layer for analytics dashboards.

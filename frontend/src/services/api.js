@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8001/api'
 
 console.log('📡 API Base URL:', API_BASE_URL)
 
@@ -66,6 +66,9 @@ export const api = {
   getChargers: () => apiClient.get('/chargers'),
   getChargerById: (id) => apiClient.get(`/chargers/${id}`),
   getChargerStatus: () => apiClient.get('/chargers/status'),
+
+  // Map / Stations
+  getStations: (params) => apiClient.get('/map/stations', { params }),
 
   // Analytics
   getUtilizationData: (params) => apiClient.get('/analytics/utilization', { params }),

@@ -9,6 +9,7 @@ import TrafficFlowMap from '../components/Dashboard/TrafficFlowMap'
 import RevenueMetrics from '../components/Dashboard/RevenueMetrics'
 import ChargerPerformanceTable from '../components/Dashboard/ChargerPerformanceTable'
 import AlertsPanel from '../components/Dashboard/AlertsPanel'
+import IndiaMap from '../components/Dashboard/IndiaMap'
 import { api } from '../services/api'
 import useAppStore from '../store/useAppStore'
 import websocket from '../services/websocket'
@@ -200,6 +201,11 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <LiveOccupancy occupancy={occupancy} />
         <TrafficFlowMap traffic={traffic} />
+      </div>
+
+      {/* India Charging Stations */}
+      <div className="grid grid-cols-1 gap-6">
+        <IndiaMap />
       </div>
 
       {/* Alerts - Misuse, Queues, Downtime */}
