@@ -26,6 +26,14 @@ class AnalyticsService:
         self.cached_forecast = None
 
     def get_latest_row(self):
+        if self.df.empty:
+            return pd.Series({
+                'timestamp': datetime.datetime.now(),
+                'vehicle_count': 0,
+                'session_count': 0,
+                'occupancy_rate': 0.0,
+                'queue_length': 0
+            })
         return self.df.iloc[-1]
         
     async def get_forecast_async(self, session):
