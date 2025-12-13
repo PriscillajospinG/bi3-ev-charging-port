@@ -1,20 +1,25 @@
+# Base Image
 FROM python:3.10-slim
 
+# Set working directory
 WORKDIR /app
 
-# Install system dependencies (libomp for xgboost, build-essential for others)
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
-    libgomp1 \
+    libpq-dev \
+    gcc \
     && rm -rf /var/lib/apt/lists/*
 
+# Install python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the app code
-COPY app /app/app
-# Copy the models data for seeding (as requested)
-COPY models /app/models
+# Copy application code
+COPY . .
 
-# Command to run the API
+# Expose port
+EXPOSE 8000
+
+# Command to run the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

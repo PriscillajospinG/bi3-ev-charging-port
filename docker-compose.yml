@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: ev-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://tsdbadmin:roiu4nalbvaabahr@dxa9gx2exf.o5no6bjuna.tsdb.cloud.timescale.com:39979/tsdb
+      - OPEN_CHARGE_MAP_API_KEY=daeddd31-1f19-49f7-b2f2-274391e866ef
+    volumes:
+      - ./backend:/app
+      # Exclude venv from volume mount to avoid OS mismatch
+      - /app/venv
+    restart: always
+
+  frontend:
+    build: ./frontend
+    container_name: ev-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000/api
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    restart: always
