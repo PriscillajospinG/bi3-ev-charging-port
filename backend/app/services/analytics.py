@@ -87,7 +87,11 @@ class AnalyticsService:
 
     def get_revenue_panel(self):
         if self.session_df is None:
-            return {} 
+            return {
+                "today": {"actual": "$0.00", "percent_change": "+0%"},
+                "week": {"total": "$0.00", "avg_per_day": "$0.00"},
+                "month": {"total": "$0.00", "target_percent": 0, "projected_30d": "$0.00"}
+            }
             
         engine = RevenueEngine(self.session_df)
         return engine.analyze()
@@ -123,7 +127,12 @@ class AnalyticsService:
         table = self.get_charger_overview()
         
         if not table:
-            return {}
+            return {
+                "total_sessions": 0,
+                "total_revenue": "$0.00",
+                "avg_utilization": "0%",
+                "avg_performance": 0
+            }
 
         rev_sum = sum([float(c['revenue_24h'].replace('$','').replace(',','')) for c in table])
         sess_sum = sum([c['sessions_24h'] for c in table])
