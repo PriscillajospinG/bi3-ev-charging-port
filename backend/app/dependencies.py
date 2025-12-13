@@ -25,7 +25,13 @@ def get_analytics_service():
     # In main startup we load data_cache
     if data_cache.df is None:
         # Fallback empty df to prevent crash if startup failed
-        return AnalyticsService(pd.DataFrame({'timestamp': [], 'vehicle_count': []}))
+        return AnalyticsService(pd.DataFrame({
+            'timestamp': [], 
+            'vehicle_count': [],
+            'session_count': [],
+            'occupancy_rate': [],
+            'queue_length': []
+        }))
     
     # Create and cache service
     service = AnalyticsService(data_cache.df, data_cache.session_df)
