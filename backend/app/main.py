@@ -231,10 +231,21 @@ async def startup_event():
             db_connected = False # Fallback to CSV below
             
     if not db_connected:
-        print("CRITICAL: Database connection failed. Strict mode enabled - exiting startup.")
-        # We could raise an exception here to crash the pod, or just let it run empty. 
-        # User requested "fail if fetching fails", so we just won't load fake data.
-        pass
+        print("Database connection failed. Loading synthetic data from CSV...")
+        if csv_path:
+            try:
+                df_seed = pd.read_csv(csv_path)
+                df_seed['timestamp'] = pd.to_datetime(df_seed['timestamp'])
+                # Ensure UTC
+                if df_seed['timestamp'].dt.tz is None:
+                    df_seed['timestamp'] = df_seed['timestamp'].dt.tz_localize('UTC')
+                
+                data_cache.df = df_seed
+                print(f"Loaded {len(data_cache.df)} rows from synthetic CSV into cache.")
+            except Exception as e:
+                print(f"Failed to load synthetic CSV: {e}")
+        else:
+            print("Synthetic CSV not found. Dashboard will be empty.")
 
     # 4. Generate Consistent Session Data (Only if we have data)
     if data_cache.df is not None and not data_cache.df.empty:
