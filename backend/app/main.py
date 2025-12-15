@@ -1,5 +1,6 @@
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import pandas as pd
 import os
 import sys
@@ -31,6 +32,10 @@ app.include_router(recommendations.router)
 app.include_router(video.router)
 app.include_router(frontend.router)
 app.include_router(map_router.router)
+
+# Mount Static Files
+os.makedirs("static/videos", exist_ok=True)
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Startup Event to Load Data & Init DB
 @app.on_event("startup")

@@ -31,10 +31,17 @@ async def upload_video(background_tasks: BackgroundTasks, file: UploadFile = Fil
         raise HTTPException(status_code=500, detail=f"Could not save file: {e}")
         
     # Trigger background processing
-    background_tasks.add_task(process_video_file, file_path, file.filename)
+    # Use safe_filename to ensure output is unique and matches what we return
+    background_tasks.add_task(process_video_file, file_path, safe_filename)
+    
+    # Construct the URL where the video will be available (once processed)
+    # The frontend can poll this or just display it (it might take a moment to appear)
+    output_url = f"/static/videos/processed_{safe_filename}"
     
     return {
         "message": "Video uploaded successfully. Processing started.",
-        "filename": file.filename,
-        "status": "processing"
+        "filename": safe_filename,
+        "original_filename": file.filename,
+        "status": "processing",
+        "output_video_url": output_url
     }

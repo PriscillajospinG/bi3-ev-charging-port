@@ -9,6 +9,7 @@ import TrafficFlowMap from '../components/Dashboard/TrafficFlowMap'
 import RevenueMetrics from '../components/Dashboard/RevenueMetrics'
 import ChargerPerformanceTable from '../components/Dashboard/ChargerPerformanceTable'
 import AlertsPanel from '../components/Dashboard/AlertsPanel'
+import VideoAnalysis from '../components/Dashboard/VideoAnalysis'
 import IndiaMap from '../components/Dashboard/IndiaMap'
 import { api } from '../services/api'
 import useAppStore from '../store/useAppStore'
@@ -221,6 +222,16 @@ const Dashboard = () => {
           <UtilizationChart data={utilizationData} type="area" />
         </div>
         <OccupancyPieChart data={occupancyData} />
+      </div>
+
+      {/* Video Analysis Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <VideoAnalysis />
+        <div className="card flex items-center justify-center border-2 border-dashed border-slate-700">
+          <div className="text-center text-slate-500">
+            <p>Additional Analysis Widgets Coming Soon</p>
+          </div>
+        </div>
       </div>
 
       {/* Quick Actions */}
